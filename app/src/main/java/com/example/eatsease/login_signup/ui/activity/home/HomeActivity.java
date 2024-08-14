@@ -1,4 +1,4 @@
-package com.example.eatsease.login_signup.ui.activity;
+package com.example.eatsease.login_signup.ui.activity.home;
 
 import android.os.Bundle;
 
@@ -10,7 +10,7 @@ import androidx.core.view.WindowInsetsCompat;
 
 import com.example.eatsease.R;
 
-public class MainActivity extends AppCompatActivity {
+public class HomeActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

@@ -18,13 +18,12 @@ public class FirebaseAuthManager {
         mAuth.createUserWithEmailAndPassword(email, password)
                 .addOnCompleteListener(task -> {
                     if (task.isSuccessful()) {
-                        Log.d("cscs", "createUserWithEmailAndPassword: ");
+                        Log.d("Hamza", "createUserWithEmailAndPassword: ");
                         FirebaseUser user = mAuth.getCurrentUser();
                     } else {
-                        Log.d("cscs", "createUserWithEmailAndPassword:2 ");
+                        Log.d("Hamza", "createUserWithEmailAndPassword:2 ");
                     }
                 });
-
     }
 
     public void loginUser(String email, String password) {
@@ -32,9 +31,9 @@ public class FirebaseAuthManager {
                         password)
                 .addOnCompleteListener(task -> {
                     if (task.isSuccessful()) {
-                        Log.d("cscs", "loginUser: ");
+                        Log.d("Hamza", "loginUser: ");
                     } else {
-                        Log.d("cscs", "loginUser:2 ");
+                        Log.d("Hamza", "loginUser:2 ");
                     }
                 });
     }

@@ -12,10 +12,12 @@ import androidx.core.view.WindowInsetsCompat;
 import com.example.eatsease.R;
 import com.example.eatsease.login_signup.model.repo.Respiratory;
 import com.example.eatsease.login_signup.presenter.splash.SplashPresenter;
+import com.example.eatsease.login_signup.ui.activity.home.HomeActivity;
 import com.example.eatsease.login_signup.ui.activity.login.LogIn;
 
 public class SplashActivity extends AppCompatActivity implements ISplashView {
 
+    Intent intent ;
     private SplashPresenter splashPresenter;
 
     @Override
@@ -32,22 +34,22 @@ public class SplashActivity extends AppCompatActivity implements ISplashView {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
-
-
-
         // Start the delay
         splashPresenter.start(1000L); // 1000 milliseconds delay
     }
-
+    @Override
+    public void isAuthenticated(boolean isAuthenticated) {
+     if (isAuthenticated) {
+         intent = new Intent(SplashActivity.this, HomeActivity.class);
+     }else {
+         intent = new Intent(SplashActivity.this, LogIn.class);
+     }
+    }
     @Override
     public void navigateToLogin() {
-        Intent intent = new Intent(SplashActivity.this, LogIn.class);
         startActivity(intent);
         finish(); // Finish SplashActivity so the user can't navigate back to it
     }
 
-    @Override
-    public void navigateToSignUp() {
-        // Implementation for navigating to the SignUp screen if needed
-    }
+
 }

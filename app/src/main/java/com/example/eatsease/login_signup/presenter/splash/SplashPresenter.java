@@ -1,5 +1,6 @@
 package com.example.eatsease.login_signup.presenter.splash;
 
+import com.example.eatsease.login_signup.model.repo.Respiratory;
 import com.example.eatsease.login_signup.ui.activity.splash.ISplashView;
 
 import java.util.concurrent.TimeUnit;
@@ -11,8 +12,9 @@ import io.reactivex.rxjava3.schedulers.Schedulers;
 public class SplashPresenter {
     private ISplashView iSplashView;
     private static SplashPresenter splashPresenter;
+    private Respiratory respiratory;
 
-    private SplashPresenter(ISplashView iSplashView) {
+    SplashPresenter(ISplashView iSplashView) {
         this.iSplashView = iSplashView;
     }
 
@@ -23,6 +25,16 @@ public class SplashPresenter {
         return splashPresenter;
     }
 
+    public void isAppUser() {
+        if(respiratory.readFromPreferences())
+        {
+            iSplashView.isAuthenticated(true);
+        }
+        else
+        {
+            iSplashView.isAuthenticated(false);
+        }
+    }
     public void start(Long timeInMillis) {
         Observable<Long> doAction = Observable.timer(timeInMillis, TimeUnit.MILLISECONDS);
 
@@ -32,4 +44,5 @@ public class SplashPresenter {
                     iSplashView.navigateToLogin();
                 });
     }
+
 }
