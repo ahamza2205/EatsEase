@@ -3,4 +3,13 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="eatsease">Eats Ease</string>
+    <string name="EatsEase">EatsEase</string>
+    <string name="signup">Sign Up</string>
+    <string name="suigupqote">Register with your valid email address</string>
+    <string name="email">Email Address</string>
+    <string name="password">Password</string>
+    <string name="confirm">Confirm Password</string>
+    <string name="login">Login</string>
+    <string name="loginwith">Login With</string>
+    <string name="signupwith">Sign Up With</string>
 </resources>

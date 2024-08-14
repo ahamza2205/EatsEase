@@ -7,6 +7,10 @@ appcompat = "1.7.0"
 material = "1.12.0"
 activity = "1.9.1"
 constraintlayout = "2.1.4"
+firebase-bom = "33.1.2"
+kotlin = "2.0.10"
+coreKtx = "1.13.1"
+rxjava = "3.x.x"
 
 [libraries]
 junit = { group = "junit", name = "junit", version.ref = "junit" }
@@ -16,7 +20,15 @@ appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "a
 material = { group = "com.google.android.material", name = "material", version.ref = "material" }
 activity = { group = "androidx.activity", name = "activity", version.ref = "activity" }
 constraintlayout = { group = "androidx.constraintlayout", name = "constraintlayout", version.ref = "constraintlayout" }
+firebase-bom = { group = "com.google.firebase", name = "firebase-bom", version.ref = "firebase-bom" }
+firebase-analytics = { group = "com.google.firebase", name = "firebase-analytics-ktx" }
+firebase-auth = { group = "com.google.firebase", name = "firebase-auth" }
+core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
+rxjava = { group = "io.reactivex.rxjava3", name = "rxandroid", version = "3.0.2" }
+
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
+gms = { id = "com.google.gms.google-services", version = "4.4.2" }
+jetbrains-kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 
