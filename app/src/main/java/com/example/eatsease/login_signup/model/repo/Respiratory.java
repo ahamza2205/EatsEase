@@ -2,10 +2,10 @@ package com.example.eatsease.login_signup.model.repo;
 
 import com.example.eatsease.login_signup.model.auth_manager.FirebaseAuthManager;
 
-public class SplashRepo {
+public class Respiratory {
     private FirebaseAuthManager firebaseAuthManager;
 
-    public SplashRepo() {
+    public Respiratory() {
         firebaseAuthManager = new FirebaseAuthManager();
     }
 
@@ -14,3 +14,4 @@ public class SplashRepo {
    }
 
 }
+

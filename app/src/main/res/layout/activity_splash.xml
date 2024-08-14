@@ -16,7 +16,7 @@
         android:padding="10dp"
         android:text="@string/eatsease"
         android:textColor="@color/white"
-        android:textSize="60sp"
+        android:textSize="60dp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
