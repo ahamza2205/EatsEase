@@ -117,13 +117,13 @@
         android:background="@drawable/facebook_btn"
         android:scaleType="fitCenter"
         android:src="@drawable/facebook"
-        app:layout_constraintEnd_toStartOf="@+id/googleBtn"
+        app:layout_constraintEnd_toStartOf="@+id/googleBtn1"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/signupQote" />
 
     <ImageButton
-        android:id="@+id/googleBtn"
+        android:id="@+id/googleBtn1"
         android:layout_width="100dp"
         android:layout_height="50dp"
         android:layout_marginTop="15dp"

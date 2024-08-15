@@ -5,6 +5,7 @@ import android.widget.Toast;
 public interface ILoginView {
     public void navigateToSignUp() ;
     public void showLoginError(String error) ;
+    void navigateToHome();
 }
 
 

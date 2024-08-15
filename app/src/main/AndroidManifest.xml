@@ -18,15 +18,21 @@
         <activity
             android:name=".login_signup.ui.activity.signup.SignUp"
             android:exported="false" />
+
         <activity
             android:name=".login_signup.ui.activity.login.LogIn"
-            android:exported="false" />
+            android:exported="false"/>
+
+        <activity
+            android:name=".login_signup.ui.activity.home.HomeActivity"
+            android:exported="true"/>
+
         <activity
             android:name=".login_signup.ui.activity.splash.SplashActivity"
             android:exported="true">
+            <!-- Intent filter inside the activity that should launch first -->
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>

@@ -2,6 +2,7 @@ package com.example.eatsease.login_signup.ui.activity.splash;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -47,6 +48,9 @@ public class SplashActivity extends AppCompatActivity implements ISplashView {
     }
     @Override
     public void navigateToLogin() {
+        Log.d("cscs", "onCreate:3 ");
+
+        intent = new Intent(SplashActivity.this, LogIn.class);
         startActivity(intent);
         finish(); // Finish SplashActivity so the user can't navigate back to it
     }
