@@ -11,9 +11,8 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import com.example.eatsease.R;
-import com.example.eatsease.login_signup.model.repo.Respiratory;
 import com.example.eatsease.login_signup.presenter.splash.SplashPresenter;
-import com.example.eatsease.login_signup.ui.activity.home.HomeActivity;
+import com.example.eatsease.login_signup.home.ui.activity.HomeActivity;
 import com.example.eatsease.login_signup.ui.activity.login.LogIn;
 
 public class SplashActivity extends AppCompatActivity implements ISplashView {
@@ -48,7 +47,7 @@ public class SplashActivity extends AppCompatActivity implements ISplashView {
     }
     @Override
     public void navigateToLogin() {
-        Log.d("cscs", "onCreate:3 ");
+        Log.d("hamza", "onCreate:3 ");
 
         intent = new Intent(SplashActivity.this, LogIn.class);
         startActivity(intent);

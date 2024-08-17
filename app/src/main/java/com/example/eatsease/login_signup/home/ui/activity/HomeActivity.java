@@ -1,4 +1,4 @@
-package com.example.eatsease.login_signup.ui.activity.home;
+package com.example.eatsease.login_signup.home.ui.activity;
 
 import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
@@ -10,7 +10,7 @@ import com.example.eatsease.R;
 import com.example.eatsease.databinding.ActivityHomeBinding;
 import com.example.eatsease.login_signup.ui.fragment.CalenderFragment;
 import com.example.eatsease.login_signup.ui.fragment.FavoriteFragment;
-import com.example.eatsease.login_signup.ui.fragment.HomeFragment;
+import com.example.eatsease.login_signup.home.ui.fragment.HomeFragment;
 import com.example.eatsease.login_signup.ui.fragment.SearchFragment;
 
 public class HomeActivity extends AppCompatActivity {
@@ -50,10 +50,9 @@ public class HomeActivity extends AppCompatActivity {
     private void replaceFragment(Fragment fragment) {
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-
-        fragmentTransaction.replace(R.id.frameLayout, fragment);
+        fragmentTransaction.replace(R.id.frame_layout, fragment);
+        // Optional: Add to back stack if you want to enable back navigation
         fragmentTransaction.addToBackStack(null);
-        // Optional: Add to back stack
         fragmentTransaction.commit();
     }
 }

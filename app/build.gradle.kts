@@ -63,4 +63,24 @@ dependencies {
 
     // Add the correct RxJava dependency
     implementation(libs.rxjava) // Replace with the correct version
+    implementation (libs.adapter.rxjava3)
+    implementation ("io.reactivex.rxjava3:rxjava:3.1.5")
+
+
+
+    implementation ("androidx.recyclerview:recyclerview:1.3.0") // Use the latest stable version
+    implementation ("androidx.recyclerview:recyclerview:1.2.1") // Use the latest stable version
+
+    implementation ("androidx.cardview:cardview:1.0.0")
+    implementation ("com.github.bumptech.glide:glide:4.15.1")
+    annotationProcessor ("com.github.bumptech.glide:compiler:4.15.1")
+
+    //Retrofit
+    implementation ("com.squareup.retrofit2:retrofit:2.11.0")
+    implementation ("com.squareup.retrofit2:converter-gson:2.11.0")
+
+    implementation (libs.com.github.bumptech.glide.glide2)
+    annotationProcessor (libs.glide.compiler)
+
+
 }

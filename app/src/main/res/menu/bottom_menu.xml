@@ -1,29 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
-
-
-
     <item
         android:id="@+id/home"
-        android:title="Home"
-        android:icon="@drawable/home" />
-
+        android:icon="@drawable/home"
+        android:title="Home" />
     <item
         android:id="@+id/search"
-        android:title="Search"
-        android:icon="@drawable/search" />
-    <item
-        android:id="@+id/calender"
-        android:title="Meal Plan"
-        android:icon="@drawable/calendar" />
-
+        android:icon="@drawable/search"
+        android:title="Search" />
     <item
         android:id="@+id/favorite"
-        android:title="Favorite"
-        android:icon="@drawable/favorite" />
+        android:icon="@drawable/favorite"
+        android:title="Favorite" />
     <item
-        android:id="@+id/logout"
-        android:title="Logout"
-        android:icon="@drawable/logout" />
-
+        android:id="@+id/calender"
+        android:icon="@drawable/calendar"
+        android:title="Calender" />
 </menu>

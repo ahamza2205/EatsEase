@@ -3,20 +3,11 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/login"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".login_signup.ui.activity.home.HomeActivity">
+    tools:context=".login_signup.home.ui.activity.HomeActivity">
 
-    <!-- BottomAppBar at the bottom -->
-
-    <FrameLayout
-        android:id="@+id/frameLayout"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-    </FrameLayout>
-
+    <!-- BottomAppBar for FloatingActionButton (FAB) Cradle -->
     <com.google.android.material.bottomappbar.BottomAppBar
         android:id="@+id/bottomAppBar"
         android:layout_width="match_parent"
@@ -27,25 +18,39 @@
         app:fabCradleRoundedCornerRadius="50dp"
         app:fabAlignmentMode="center" />
 
-
-
-    <!-- BottomNavigationView aligned at the bottom -->
-
+    <!-- BottomNavigationView for Fragment Navigation -->
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottomNavigationView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom"
-        android:background="#0000ffff"
-        android:outlineAmbientShadowColor="@color/black"
+        android:background="@color/red"
         app:itemIconTint="@color/white"
         app:itemRippleColor="@color/red"
         app:itemTextColor="@color/white"
         app:labelVisibilityMode="labeled"
-        app:layout_anchor="@+id/bottomAppBar"
+        app:layout_anchor="@id/bottomAppBar"
         app:layout_anchorGravity="center"
-        app:menu="@menu/bottom_menu">
+        app:menu="@menu/bottom_menu" />
 
-    </com.google.android.material.bottomnavigation.BottomNavigationView>
+    <!-- Title TextView -->
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_margin="15dp"
+        android:fontFamily="@font/lobster"
+        android:text="@string/EatsEase"
+        android:textColor="@color/red"
+        android:textSize="24sp" />
+
+    <!-- FrameLayout for Fragment Replacement -->
+    <FrameLayout
+        android:id="@+id/frame_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="?attr/actionBarSize"
+        android:layout_marginBottom="?attr/actionBarSize" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
