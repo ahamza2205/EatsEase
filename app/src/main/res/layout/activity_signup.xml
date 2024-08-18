@@ -5,7 +5,7 @@
     android:id="@+id/signup"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".login_signup.ui.activity.signup.SignUp">
+    tools:context=".login_signup.authentication.activity.signup.SignUp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -55,13 +55,13 @@
             android:layout_marginTop="30dp"
             android:fontFamily="@font/roboto_medium"
             android:text="@string/email"
-            android:textSize="16dp"
+            android:textSize="18dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/signupQote" />
 
         <EditText
             android:id="@+id/signUpEmailAddress"
-            android:layout_width="300dp"
+            android:layout_width="350dp"
             android:layout_height="50dp"
             android:layout_marginStart="15dp"
             android:layout_marginTop="15dp"
@@ -79,13 +79,13 @@
             android:layout_marginTop="30dp"
             android:fontFamily="@font/roboto_medium"
             android:text="@string/password"
-            android:textSize="16dp"
+            android:textSize="18dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/signUpEmailAddress" />
 
         <EditText
             android:id="@+id/signUpTextPassword"
-            android:layout_width="300dp"
+            android:layout_width="350dp"
             android:layout_height="50dp"
             android:layout_marginStart="15dp"
             android:layout_marginTop="15dp"
@@ -103,13 +103,13 @@
             android:layout_marginTop="30dp"
             android:fontFamily="@font/roboto_medium"
             android:text="@string/confirm"
-            android:textSize="16dp"
+            android:textSize="18dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/signUpTextPassword" />
 
         <EditText
             android:id="@+id/signUpTextPassword2"
-            android:layout_width="300dp"
+            android:layout_width="350dp"
             android:layout_height="50dp"
             android:layout_marginStart="15dp"
             android:layout_marginTop="15dp"

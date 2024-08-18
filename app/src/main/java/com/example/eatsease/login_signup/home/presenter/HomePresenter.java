@@ -1,7 +1,7 @@
 package com.example.eatsease.login_signup.home.presenter;
 
 import com.example.eatsease.login_signup.home.model.repo.HomeRepo;
-import com.example.eatsease.login_signup.home.ui.MealView;
+import com.example.eatsease.login_signup.home.ui.fragment.MealView;
 
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 import io.reactivex.rxjava3.disposables.CompositeDisposable;
@@ -16,7 +16,6 @@ public class HomePresenter {
         this.repository = new HomeRepo();
         this.view = view;
     }
-
     public void fetchMealCategories() {
         disposables.add(
                 repository.getMealCategories()
@@ -30,7 +29,6 @@ public class HomePresenter {
                         )
         );
     }
-
     public void fetchSeafoodMeals(String categoryName) {
         disposables.add(
                 repository.getSeafoodMeals(categoryName)
@@ -42,9 +40,7 @@ public class HomePresenter {
                         )
         );
     }
-
     public void clear() {
         disposables.clear();
     }
-
 }

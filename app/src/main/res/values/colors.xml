@@ -5,5 +5,9 @@
     <color name="red">#EF2A39</color>
     <color name="facebook">#0080FF</color>
     <color name="x">#000000</color>
-
+    <color name="gray">#808080</color>
+        <color name="colorPrimary">#FFFFFFFF</color> <!-- White -->
+        <color name="colorOnPrimary">#000000</color> <!-- Black text on white background -->
+        <color name="colorSecondary">#EF2A39</color> <!-- Red -->
+        <color name="colorOnSecondary">#FFFFFFFF</color> <!-- White text on red background -->
 </resources>

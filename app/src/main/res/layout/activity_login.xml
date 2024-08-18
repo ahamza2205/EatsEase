@@ -5,7 +5,7 @@
     android:id="@+id/login"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".login_signup.ui.activity.login.LogIn">
+    tools:context=".login_signup.authentication.activity.login.LogIn">
 
 
     <TextView
@@ -29,7 +29,7 @@
         android:layout_marginTop="20dp"
         android:fontFamily="@font/roboto_bold"
         android:text="@string/login"
-        android:textSize="20dp"
+        android:textSize="24dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/eatseaseTitel" />
 
@@ -53,13 +53,13 @@
         android:layout_marginTop="30dp"
         android:fontFamily="@font/roboto_medium"
         android:text="@string/email"
-        android:textSize="16dp"
+        android:textSize="18dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/signUp" />
 
     <EditText
         android:id="@+id/loginEmailAddress"
-        android:layout_width="300dp"
+        android:layout_width="350dp"
         android:layout_height="50dp"
         android:layout_marginStart="15dp"
         android:layout_marginTop="15dp"
@@ -77,13 +77,13 @@
         android:layout_marginTop="30dp"
         android:fontFamily="@font/roboto_medium"
         android:text="@string/password"
-        android:textSize="16dp"
+        android:textSize="18dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/loginEmailAddress" />
 
     <EditText
         android:id="@+id/loginTextPassword"
-        android:layout_width="300dp"
+        android:layout_width="350dp"
         android:layout_height="50dp"
         android:layout_marginStart="15dp"
         android:layout_marginTop="15dp"
