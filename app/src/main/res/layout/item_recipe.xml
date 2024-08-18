@@ -4,7 +4,7 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:layout_margin="8dp"
-    app:cardCornerRadius="8dp"
+    app:cardCornerRadius="25dp"
     app:cardElevation="8dp"
     android:outlineAmbientShadowColor="@color/red"
     android:outlineSpotShadowColor="@color/red"
@@ -26,15 +26,32 @@
             android:id="@+id/recipe_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
-            android:layout_marginTop="168dp"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="8dp"
             android:background="#42000000"
             android:fontFamily="@font/roboto_bold"
             android:gravity="center"
             android:padding="4dp"
             android:text="Recipe"
             android:textColor="@android:color/white"
-            android:textSize="18dp" />
+            android:textSize="18sp" />
+
+        <ImageButton
+            android:id="@+id/favorite_button"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="5dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="-1dp"
+            android:layout_marginEnd="-1dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginBottom="5dp"
+            android:background="@drawable/rounded_red_background"
+            android:contentDescription="@string/add_to_favorites"
+            android:src="@drawable/baseline_favorite_24" />
+
     </RelativeLayout>
 
 </androidx.cardview.widget.CardView>

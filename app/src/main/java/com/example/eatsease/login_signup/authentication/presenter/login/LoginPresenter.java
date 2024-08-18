@@ -1,5 +1,7 @@
 package com.example.eatsease.login_signup.authentication.presenter.login;
 
+import android.util.Log;
+
 import com.example.eatsease.login_signup.authentication.model.repo.NetworkCallback;
 import com.example.eatsease.login_signup.authentication.model.sharedperferences.SharedPreRespiratory;
 import com.example.eatsease.login_signup.authentication.activity.login.ILoginView;
@@ -20,7 +22,8 @@ public class LoginPresenter implements ILoginPresenter, NetworkCallback {
     private ILoginView loginView;
     private SharedPreRespiratory sharedPreRespiratory;
     private FirebaseAuthManager firebaseAuthManager;
-
+    private String email;
+    private String password;
     public LoginPresenter(ILoginView loginView, SharedPreRespiratory sharedPreRespiratory) {
         this.loginView = loginView;
         this.sharedPreRespiratory = sharedPreRespiratory;
@@ -30,8 +33,9 @@ public class LoginPresenter implements ILoginPresenter, NetworkCallback {
     @Override
     public void onSuccess() {
         // Save the email and password to preferences after successful login
-        sharedPreRespiratory.addToPreferences(firebaseAuthManager.getCurrentUser().getEmail(), "YourPassword"); // Replace "YourPassword" with actual pass if required
+        sharedPreRespiratory.addToPreferences(email, password); // Replace "YourPassword" with actual pass if required
         loginView.onSignInSuccess();
+        Log.d("Hamza", "onSuccess: ");
     }
 
     @Override
@@ -41,6 +45,8 @@ public class LoginPresenter implements ILoginPresenter, NetworkCallback {
 
     @Override
     public void loginUser(String email, String password) {
+        this.email = email;
+        this.password = password;
         firebaseAuthManager.loginUser(email, password, this);
     }
 

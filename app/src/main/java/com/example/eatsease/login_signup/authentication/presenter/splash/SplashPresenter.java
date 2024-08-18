@@ -1,5 +1,6 @@
 package com.example.eatsease.login_signup.authentication.presenter.splash;
 
+import android.content.Context;
 import android.util.Log;
 
 import com.example.eatsease.login_signup.authentication.model.sharedperferences.SharedPreRespiratory;
@@ -13,38 +14,29 @@ import io.reactivex.rxjava3.schedulers.Schedulers;
 
 public class SplashPresenter {
     private ISplashView iSplashView;
-    private static SplashPresenter splashPresenter;
     private SharedPreRespiratory sharedPreRespiratory;
-    SplashPresenter(ISplashView iSplashView) {
-        this.iSplashView = iSplashView;
-    }
 
-    public static SplashPresenter getInstance(ISplashView iSplashView) {
-        if (splashPresenter == null) {
-            splashPresenter = new SplashPresenter(iSplashView);
-        }
-        return splashPresenter;
+    public SplashPresenter(Context context, ISplashView iSplashView) {
+        this.iSplashView = iSplashView;
+        sharedPreRespiratory = SharedPreRespiratory.getInstance(context);
     }
 
     public void isAppUser() {
-        if(sharedPreRespiratory.readFromPreferences())
-        {
+        if(sharedPreRespiratory.readFromPreferences()) {
             iSplashView.isAuthenticated(true);
-        }
-        else
-        {
+        } else {
             iSplashView.isAuthenticated(false);
         }
     }
+
     public void start(Long timeInMillis) {
         Observable.timer(timeInMillis, TimeUnit.MILLISECONDS)
-                .subscribeOn(Schedulers.io()) // Run delay on the IO thread
-                .observeOn(AndroidSchedulers.mainThread()) // Observe on the main thread
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(aLong -> {
                     Log.d("hamza-splash", "onCreate: 2");
-                    // This block will be executed after the specified delay
                     iSplashView.navigateToLogin();
                 });
     }
-
 }
+

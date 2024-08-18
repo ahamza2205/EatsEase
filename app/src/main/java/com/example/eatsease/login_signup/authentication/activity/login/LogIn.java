@@ -1,3 +1,4 @@
+
 package com.example.eatsease.login_signup.authentication.activity.login;
 
 import android.content.Intent;
@@ -15,7 +16,6 @@ import com.example.eatsease.login_signup.authentication.model.sharedperferences.
 import com.example.eatsease.login_signup.authentication.presenter.login.LoginPresenter;
 import com.example.eatsease.login_signup.homeactivity.HomeActivity;
 import com.example.eatsease.login_signup.authentication.activity.signup.SignUp;
-import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 
 public class LogIn extends AppCompatActivity implements ILoginView {
 
@@ -26,9 +26,6 @@ public class LogIn extends AppCompatActivity implements ILoginView {
     private LoginPresenter loginPresenter;
     private ImageButton googleBtn;
     private ImageButton facebookBtn;
-    //google auth
-    GoogleSignInClient mGoogleSignInClient;
-    private final int RC_SIGN = 20;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,8 +39,9 @@ public class LogIn extends AppCompatActivity implements ILoginView {
         signupButton = findViewById(R.id.signupBtn);
         googleBtn = findViewById(R.id.googleBtn1);
         facebookBtn = findViewById(R.id.fbBtn);
+
         // Initialize SharedPreRespiratory and Presenter
-        SharedPreRespiratory sharedPreRespiratory = new SharedPreRespiratory(this);  // Pass the context to SharedPreRespiratory
+        SharedPreRespiratory sharedPreRespiratory = SharedPreRespiratory.getInstance(this);
         loginPresenter = new LoginPresenter(this, sharedPreRespiratory);
 
         // Set click listeners
@@ -74,8 +72,6 @@ public class LogIn extends AppCompatActivity implements ILoginView {
         });
     }
 
-
-
     @Override
     public void onSignInSuccess() {
         Intent intent = new Intent(LogIn.this, HomeActivity.class);
@@ -88,3 +84,4 @@ public class LogIn extends AppCompatActivity implements ILoginView {
         Toast.makeText(LogIn.this, "Login failed: " + error, Toast.LENGTH_SHORT).show();
     }
 }
+

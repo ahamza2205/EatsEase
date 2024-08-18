@@ -1,3 +1,5 @@
+
+
 package com.example.eatsease.login_signup.authentication.activity.splash;
 
 import android.content.Intent;
@@ -17,7 +19,6 @@ import com.example.eatsease.login_signup.authentication.activity.login.LogIn;
 
 public class SplashActivity extends AppCompatActivity implements ISplashView {
 
-    Intent intent ;
     private SplashPresenter splashPresenter;
 
     @Override
@@ -27,32 +28,32 @@ public class SplashActivity extends AppCompatActivity implements ISplashView {
         setContentView(R.layout.activity_splash);
 
         // Initialize presenter
-        splashPresenter = SplashPresenter.getInstance(this);
+        splashPresenter = new SplashPresenter(this, this);
+
+        // Check if the user is authenticated
+        splashPresenter.isAppUser();
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.login), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+
         // Start the delay
         splashPresenter.start(1000L); // 1000 milliseconds delay
     }
+
     @Override
     public void isAuthenticated(boolean isAuthenticated) {
-     if (isAuthenticated) {
-         intent = new Intent(SplashActivity.this, HomeActivity.class);
-     }else {
-         intent = new Intent(SplashActivity.this, LogIn.class);
-     }
-    }
-    @Override
-    public void navigateToLogin() {
-        Log.d("hamza", "onCreate:3 ");
-
-        intent = new Intent(SplashActivity.this, LogIn.class);
+        Intent intent;
+        if (isAuthenticated) {
+            intent = new Intent(SplashActivity.this, HomeActivity.class);
+            Log.d("hamza", "isAuthenticated: yes");
+        } else {
+            intent = new Intent(SplashActivity.this, LogIn.class);
+            Log.d("hamza", "isAuthenticated: no");
+        }
         startActivity(intent);
         finish(); // Finish SplashActivity so the user can't navigate back to it
     }
-
-
 }
