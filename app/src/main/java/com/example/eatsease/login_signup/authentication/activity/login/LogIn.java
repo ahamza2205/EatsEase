@@ -14,7 +14,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.eatsease.R;
 import com.example.eatsease.login_signup.authentication.model.sharedperferences.SharedPreRespiratory;
 import com.example.eatsease.login_signup.authentication.presenter.login.LoginPresenter;
-import com.example.eatsease.login_signup.homeactivity.HomeActivity;
+import com.example.eatsease.homeactivity.HomeActivity;
 import com.example.eatsease.login_signup.authentication.activity.signup.SignUp;
 
 public class LogIn extends AppCompatActivity implements ILoginView {

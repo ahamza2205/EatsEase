@@ -14,7 +14,7 @@ import androidx.core.view.WindowInsetsCompat;
 
 import com.example.eatsease.R;
 import com.example.eatsease.login_signup.authentication.presenter.splash.SplashPresenter;
-import com.example.eatsease.login_signup.homeactivity.HomeActivity;
+import com.example.eatsease.homeactivity.HomeActivity;
 import com.example.eatsease.login_signup.authentication.activity.login.LogIn;
 
 public class SplashActivity extends AppCompatActivity implements ISplashView {

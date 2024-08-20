@@ -15,7 +15,7 @@
         android:theme="@style/Base.Theme.EatsEase"
         tools:targetApi="31">
         <activity
-            android:name=".login_signup.Test.TestActivity"
+            android:name=".Test.TestActivity"
             android:exported="true" />
         <activity
             android:name=".login_signup.authentication.activity.splash.SplashActivity"
@@ -35,7 +35,7 @@
             android:name=".login_signup.authentication.activity.login.LogIn"
             android:exported="false" />
         <activity
-            android:name=".login_signup.homeactivity.HomeActivity"
+            android:name=".homeactivity.HomeActivity"
             android:exported="true" />
 
         <meta-data

@@ -17,8 +17,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.eatsease.R;
-import com.example.eatsease.login_signup.home.model.response.Meal;
-import com.example.eatsease.login_signup.mealdetail.MealDetailPresenter;
+import com.example.eatsease.home.model.response.Meal;
+import com.example.eatsease.login_signup.mealdetail.presenter.MealDetailPresenter;
 import com.example.eatsease.login_signup.mealdetail.adapter.IngredientAdapter;
 
 import java.util.ArrayList;
