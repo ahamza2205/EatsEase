@@ -40,6 +40,8 @@ public class HomePresenter {
                         )
         );
     }
+
+
     public void clear() {
         disposables.clear();
     }

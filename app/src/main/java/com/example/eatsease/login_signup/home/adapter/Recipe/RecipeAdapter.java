@@ -7,15 +7,17 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.eatsease.R;
 import com.example.eatsease.login_signup.home.model.response.Meal;
+import com.example.eatsease.login_signup.home.ui.fragment.HomeFragmentDirections;
 
+import java.util.ArrayList;
 import java.util.List;
-
-import io.reactivex.rxjava3.annotations.NonNull;
 
 public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.RecipeViewHolder> {
 
@@ -23,7 +25,7 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.RecipeView
     private Context context;
 
     public RecipeAdapter(List<Meal> recipesList, Context context) {
-        this.recipesList = recipesList;
+        this.recipesList = recipesList != null ? recipesList : new ArrayList<>(); // Initialize with empty list if null
         this.context = context;
     }
 
@@ -41,18 +43,23 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.RecipeView
         Glide.with(context)
                 .load(recipe.getMealThumbnail())
                 .into(holder.recipeImage);
+
+        // Set click listener for each recipe item
+        holder.itemView.setOnClickListener(v -> {
+            // Handle recipe item click
+            HomeFragmentDirections.ActionHomeFragmentToMealDetailFragment action =
+                    HomeFragmentDirections.actionHomeFragmentToMealDetailFragment(recipe.getMealId());
+            Navigation.findNavController(holder.itemView).navigate(action);
+        });
     }
 
     @Override
     public int getItemCount() {
-        if (recipesList == null){
-            return  0;
-        }
         return recipesList.size();
     }
 
     public void updateRecipeList(List<Meal> newRecipes) {
-        this.recipesList = newRecipes;
+        this.recipesList = newRecipes != null ? newRecipes : new ArrayList<>();
         notifyDataSetChanged(); // Refresh RecyclerView with new data
     }
 
@@ -67,4 +74,3 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.RecipeView
         }
     }
 }
-

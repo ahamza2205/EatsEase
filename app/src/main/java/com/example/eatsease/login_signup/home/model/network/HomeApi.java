@@ -19,4 +19,7 @@ public interface HomeApi {
 
     @GET("random.php")
     Single<RandomMealResponse> getRandomMeal();
+
+    @GET("lookup.php")
+    Single<MealsResponse> getMealById(@Query("i") String mealId);
 }

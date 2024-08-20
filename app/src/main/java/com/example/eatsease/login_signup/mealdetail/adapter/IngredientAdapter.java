@@ -9,6 +9,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.example.eatsease.R;
 import com.example.eatsease.login_signup.mealdetail.Ingredient;
 
@@ -22,6 +23,11 @@ public class IngredientAdapter extends RecyclerView.Adapter<IngredientAdapter.In
         this.ingredients = ingredients;
     }
 
+    public void updateIngredientDataList(List<Ingredient> newIngredientDataList) {
+        this.ingredients = newIngredientDataList;
+        notifyDataSetChanged();
+}
+
     @NonNull
     @Override
     public IngredientViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -32,8 +38,14 @@ public class IngredientAdapter extends RecyclerView.Adapter<IngredientAdapter.In
     @Override
     public void onBindViewHolder(@NonNull IngredientViewHolder holder, int position) {
         Ingredient ingredient = ingredients.get(position);
+
+        // Set the ingredient name
         holder.ingredientName.setText(ingredient.getName());
-        holder.ingredientImage.setImageResource(ingredient.getImageResId());
+
+        // Load the ingredient image using Glide
+        Glide.with(holder.itemView.getContext())
+                .load("https://www.themealdb.com/images/ingredients/" + ingredient.getName() + "-Small.png")
+                .into(holder.ingredientImage);
     }
 
     @Override
@@ -41,11 +53,12 @@ public class IngredientAdapter extends RecyclerView.Adapter<IngredientAdapter.In
         return ingredients.size();
     }
 
-    static class IngredientViewHolder extends RecyclerView.ViewHolder {
+    public static class IngredientViewHolder extends RecyclerView.ViewHolder {
+
         ImageView ingredientImage;
         TextView ingredientName;
 
-        IngredientViewHolder(@NonNull View itemView) {
+        public IngredientViewHolder(@NonNull View itemView) {
             super(itemView);
             ingredientImage = itemView.findViewById(R.id.ingredientImage);
             ingredientName = itemView.findViewById(R.id.ingredientName);

@@ -17,11 +17,9 @@ public class HomeRepo {
         Retrofit retrofit = RetrofitClient.getInstance();
         api = retrofit.create(HomeApi.class);
     }
-
     public Observable<CategoriesResponse> getMealCategories() {
         return api.getMealCategories();
     }
-
     public Single<MealsResponse> getSeafoodMeals(String categoryName) {
         return api.getMealsByCategory(categoryName);
     }
@@ -29,4 +27,9 @@ public class HomeRepo {
     public Single<RandomMealResponse> getRandomMeal() {
         return api.getRandomMeal();
     }
+    public Single<MealsResponse>  getMealById(String id) {
+        return api.getMealById(id);
+     }
+
+
 }

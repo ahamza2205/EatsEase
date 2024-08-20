@@ -2,6 +2,8 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.gms)
     alias(libs.plugins.jetbrains.kotlin.android)
+    id ("androidx.navigation.safeargs")
+
 }
 
 android {
@@ -51,6 +53,8 @@ dependencies {
     implementation(libs.firebase.analytics)
     implementation(libs.firebase.auth)
     implementation(libs.core.ktx)
+    implementation(libs.navigation.fragment.ktx)
+    implementation(libs.navigation.ui.ktx)
     testImplementation(libs.junit)
     androidTestImplementation(libs.ext.junit)
     androidTestImplementation(libs.espresso.core)
@@ -90,11 +94,21 @@ dependencies {
     // CircleImageView
     implementation ("de.hdodenhof:circleimageview:3.1.0")
 
-// athuth
+    // athuth
     implementation("com.google.android.gms:play-services-auth:20.5.0")
     implementation("com.google.android.gms:play-services-auth-api-phone:18.0.1")
     implementation("com.google.firebase:firebase-auth-ktx:22.0.0")
     implementation("androidx.credentials:credentials:1.2.2")
     implementation("androidx.credentials:credentials-play-services-auth:1.2.2")
     implementation("com.google.android.libraries.identity.googleid:googleid:1.1.1")
+
+     // Navigation
+    implementation("androidx.navigation:navigation-fragment:2.5.3")
+    implementation("androidx.navigation:navigation-ui:2.5.3")
+
+    // Youtube player
+    implementation ("com.pierfrancescosoffritti.androidyoutubeplayer:core:12.0.0")
+
+    // Material Components
+    implementation ("com.google.android.material:material:1.9.0")
 }

@@ -2,16 +2,14 @@ package com.example.eatsease.login_signup.homeactivity;
 
 import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
+import androidx.navigation.ui.NavigationUI;
 
 import com.example.eatsease.R;
 import com.example.eatsease.databinding.ActivityHomeBinding;
-import com.example.eatsease.login_signup.home.ui.fragment.CalenderFragment;
-import com.example.eatsease.login_signup.home.ui.fragment.FavoriteFragment;
-import com.example.eatsease.login_signup.home.ui.fragment.HomeFragment;
-import com.example.eatsease.login_signup.home.ui.fragment.SearchFragment;
+import com.google.android.material.bottomappbar.BottomAppBar;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class HomeActivity extends AppCompatActivity {
 
@@ -22,37 +20,13 @@ public class HomeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding = ActivityHomeBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+        BottomNavigationView bottomNavigationView = findViewById(R.id.bottomNavigationView);
+         // BottomAppBar bottomAppBar=findViewById(R.id.bottomNavigationView);
+        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
+        // Set up navigation with the BottomNavigationView
+        NavigationUI.setupWithNavController(bottomNavigationView,navController);
 
-
-        // Set the default fragment
-        replaceFragment(new HomeFragment());
-
-        // Set up the BottomNavigationView
-        binding.bottomNavigationView.setOnItemSelectedListener(item -> {
-            Fragment selectedFragment = null;
-            if (item.getItemId() == R.id.home) {
-                selectedFragment = new HomeFragment();
-            } else if (item.getItemId() == R.id.search)
-            {
-                selectedFragment = new SearchFragment();
-            } else if (item.getItemId() == R.id.favorite) {
-                selectedFragment = new FavoriteFragment();
-            } else if (item.getItemId() == R.id.calender) {
-                selectedFragment = new CalenderFragment();
-            }
-            if (selectedFragment != null) {
-                replaceFragment(selectedFragment);
-            }
-            return true;
-        });
     }
 
-    private void replaceFragment(Fragment fragment) {
-        FragmentManager fragmentManager = getSupportFragmentManager();
-        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        fragmentTransaction.replace(R.id.frame_layout, fragment);
-        // Optional: Add to back stack if you want to enable back navigation
-        fragmentTransaction.addToBackStack(null);
-        fragmentTransaction.commit();
-    }
+
 }

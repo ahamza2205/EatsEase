@@ -11,7 +11,6 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
 import com.example.eatsease.R;
 import com.example.eatsease.login_signup.home.adapter.Recipe.RecipeAdapter;
 import com.example.eatsease.login_signup.home.adapter.categories.CategoryAdapter;
@@ -38,8 +37,8 @@ public class HomeFragment extends Fragment implements MealView {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         presenter = new HomePresenter(this);
-        presenter.fetchMealCategories();
     }
+
 
     @Nullable
     @Override
@@ -64,6 +63,8 @@ public class HomeFragment extends Fragment implements MealView {
         randomRecyclerView.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
         randomAdapter = new RandomAdapter(getContext());
         randomRecyclerView.setAdapter(randomAdapter);
+
+        presenter.fetchMealCategories();
 
         return view;
     }

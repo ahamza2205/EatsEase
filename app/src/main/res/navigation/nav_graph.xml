@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/homeFragment">
+
+    <!-- Home Fragment -->
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="com.example.eatsease.login_signup.home.ui.fragment.HomeFragment"
+        android:label="fragment_home"
+        tools:layout="@layout/home_fragment" >
+        <action
+            android:id="@+id/action_homeFragment_to_mealDetailFragment"
+            app:destination="@id/mealDetailFragment" />
+    </fragment>
+
+    <!-- Meal Detail Fragment -->
+    <fragment
+        android:id="@+id/mealDetailFragment"
+        android:name="com.example.eatsease.login_signup.mealdetail.fragment.MealDetailFragment"
+        android:label="fragment_meal_detail"
+        tools:layout="@layout/fragment_meal_detail" >
+        <argument
+            android:name="mealId"
+            app:argType="string" />
+    </fragment>
+
+</navigation>

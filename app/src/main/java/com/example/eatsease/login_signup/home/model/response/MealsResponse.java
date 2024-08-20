@@ -11,4 +11,6 @@ public class MealsResponse {
     public List<Meal> getMeals() {
         return meals;
     }
+
+
 }

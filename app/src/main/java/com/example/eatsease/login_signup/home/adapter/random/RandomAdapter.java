@@ -9,6 +9,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
@@ -16,6 +17,7 @@ import com.example.eatsease.R;
 import com.example.eatsease.login_signup.home.model.repo.HomeRepo;
 import com.example.eatsease.login_signup.home.model.response.Meal;
 import com.example.eatsease.login_signup.home.model.response.RandomMealResponse;
+import com.example.eatsease.login_signup.home.ui.fragment.HomeFragmentDirections;
 
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 import io.reactivex.rxjava3.disposables.CompositeDisposable;
@@ -50,7 +52,16 @@ public class RandomAdapter extends RecyclerView.Adapter<RandomAdapter.RandomView
                     .load(currentMeal.getMealThumbnail())
                     .into(holder.mealImage);
         }
+
+        // Set click listener for each recipe item
+        holder.itemView.setOnClickListener(v -> {
+            HomeFragmentDirections.ActionHomeFragmentToMealDetailFragment action =
+                    HomeFragmentDirections.actionHomeFragmentToMealDetailFragment(currentMeal.getMealId());
+            Navigation.findNavController(holder.itemView).navigate(action);
+        });
     }
+
+
 
     @Override
     public int getItemCount() {

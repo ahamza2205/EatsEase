@@ -10,4 +10,6 @@
         <color name="colorOnPrimary">#000000</color> <!-- Black text on white background -->
         <color name="colorSecondary">#EF2A39</color> <!-- Red -->
         <color name="colorOnSecondary">#FFFFFFFF</color> <!-- White text on red background -->
+    <color name="primaryTextColor">#000000</color>
+    <color name="secondaryTextColor">#666666</color>
 </resources>

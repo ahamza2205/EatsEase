@@ -35,7 +35,6 @@ public class SplashPresenter {
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(aLong -> {
                     Log.d("hamza-splash", "onCreate: 2");
-                    iSplashView.navigateToLogin();
                 });
     }
 }

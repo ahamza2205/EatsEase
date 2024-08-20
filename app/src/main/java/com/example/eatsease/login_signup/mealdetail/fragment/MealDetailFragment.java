@@ -15,20 +15,26 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.example.eatsease.R;
-import com.example.eatsease.login_signup.mealdetail.Ingredient;
+import com.example.eatsease.login_signup.home.model.response.Meal;
+import com.example.eatsease.login_signup.mealdetail.MealDetailPresenter;
 import com.example.eatsease.login_signup.mealdetail.adapter.IngredientAdapter;
 
 import java.util.ArrayList;
-import java.util.List;
+
+import io.reactivex.rxjava3.disposables.CompositeDisposable;
 
 public class MealDetailFragment extends Fragment {
 
     private ImageView mealImage;
     private TextView mealTitle, instructions;
     private RecyclerView ingredientRecyclerView;
+    private IngredientAdapter ingredientAdapter;
     private VideoView mealVideo;
-    private Button addToCalendarBtn, addToFavoritesBtn;
+    private Button addToCalendarBtn , addToFavoritesBtn;
+    MealDetailPresenter presenter;
+    private final CompositeDisposable disposables = new CompositeDisposable(); // Manage RxJava disposables
 
     @Nullable
     @Override
@@ -44,38 +50,47 @@ public class MealDetailFragment extends Fragment {
         addToCalendarBtn = view.findViewById(R.id.addToCalendarBtn);
         addToFavoritesBtn = view.findViewById(R.id.addToFavoritesBtn);
 
-        // Setup RecyclerView
-        setupIngredientRecyclerView();
+        // Setup RecyclerView for Ingredients
+        ingredientRecyclerView.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
+        ingredientAdapter = new IngredientAdapter(new ArrayList<>());
+        ingredientRecyclerView.setAdapter(ingredientAdapter);
 
-        // Set data (replace with actual data fetching)
-        mealTitle.setText("Salmon Eggs Benedict");
-        instructions.setText("Instructions for making the meal...");
-        mealImage.setImageResource(R.drawable.foods); // Placeholder image
-
-        // Setup VideoView
-      //  mealVideo.setVideoPath("path_to_video");  // Set the video path
-       // mealVideo.start();
+        presenter = new MealDetailPresenter(this);
 
         return view;
     }
 
-    private void setupIngredientRecyclerView() {
-        // Set layout manager to horizontal
-        ingredientRecyclerView.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
 
-        // Set adapter
-        IngredientAdapter adapter = new IngredientAdapter(getIngredients());
-        ingredientRecyclerView.setAdapter(adapter);
+        // Retrieve mealId from arguments
+        if (getArguments() != null) {
+            MealDetailFragmentArgs args = MealDetailFragmentArgs.fromBundle(getArguments());
+            String mealId = args.getMealId(); // Correct getter method: getMealId()
+            presenter.fetchDetailsmeal(mealId); // Ensure fetchDetailsMeal() accepts mealId
+        }
     }
 
-    private List<Ingredient> getIngredients() {
-        // Replace this with actual data fetching
-        List<Ingredient> ingredients = new ArrayList<>();
-        ingredients.add(new Ingredient("Eggs", R.drawable.foods));
-        ingredients.add(new Ingredient("White Wine Vinegar", R.drawable.foods));
-        ingredients.add(new Ingredient("English Muffins", R.drawable.foods));
-        ingredients.add(new Ingredient("Butter", R.drawable.foods));
-        ingredients.add(new Ingredient("Smoked Salmon", R.drawable.foods));
-        return ingredients;
+    public void updateMeal(Meal meal) {
+        // Update meal details in the UI
+        ingredientAdapter.updateIngredientDataList(meal.getIngredients());
+        mealTitle.setText(meal.getMealName());
+        instructions.setText(meal.getInstructions());
+        Glide.with(getContext())
+                .load(meal.getMealThumbnail())
+                .into(mealImage);
+
+        // Handle video if available
+        if (meal.getYoutubeUrl() != null && !meal.getYoutubeUrl().isEmpty()) {
+            mealVideo.setVideoPath(meal.getYoutubeUrl());
+            mealVideo.start();
+        }
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        disposables.clear(); // Clear RxJava disposables when view is destroyed
     }
 }
