@@ -6,8 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
-    tools:context=".login_signup.homeactivity.HomeActivity">
-
+    tools:context=".homeactivity.HomeActivity">
     <!-- Title TextView -->
     <TextView
         android:id="@+id/textView3"
@@ -19,7 +18,6 @@
         android:text="@string/EatsEase"
         android:textColor="@color/red"
         android:textSize="34sp" />
-
     <fragment
         android:id="@+id/nav_host_fragment"
         android:layout_marginTop="?attr/actionBarSize"
@@ -30,7 +28,6 @@
         app:navGraph="@navigation/nav_graph"
         app:defaultNavHost="true"
         />
-
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
 
