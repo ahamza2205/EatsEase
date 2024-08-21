@@ -12,8 +12,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.eatsease.R;
-import com.example.eatsease.home.model.response.CategoriesResponse;
-import com.example.eatsease.home.model.response.CategoryResponse;
+import com.example.eatsease.model.network.response.CategoriesResponse;
+import com.example.eatsease.model.network.response.CategoryResponse;
 
 public class CategorySearchItemsAdapter extends RecyclerView.Adapter<CategorySearchItemsAdapter.SearchAdapterViewHolder> {
 

@@ -11,12 +11,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.util.Log;
-import android.widget.CompoundButton;
 
 import com.example.eatsease.R;
-import com.example.eatsease.home.model.response.AreaResponse;
-import com.example.eatsease.home.model.response.CategoriesResponse;
-import com.example.eatsease.home.model.response.CategoryResponse;
+import com.example.eatsease.model.network.response.AreaResponse;
+import com.example.eatsease.model.network.response.CategoriesResponse;
+import com.example.eatsease.model.network.response.CategoryResponse;
 import com.example.eatsease.search.view.adapter.AreaSearchItemsAdapter;
 import com.example.eatsease.search.view.adapter.CategorySearchItemsAdapter;
 import com.example.eatsease.search.presenter.SearchPresenter;

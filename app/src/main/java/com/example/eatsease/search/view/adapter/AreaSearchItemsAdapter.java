@@ -11,7 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.eatsease.R;
-import com.example.eatsease.home.model.response.AreaResponse;
+import com.example.eatsease.model.network.response.AreaResponse;
 
 import java.util.List;
 

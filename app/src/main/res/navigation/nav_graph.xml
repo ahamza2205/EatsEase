@@ -8,7 +8,7 @@
     <!-- Home Fragment -->
     <fragment
         android:id="@+id/homeFragment"
-        android:name="com.example.eatsease.home.ui.fragment.HomeFragment"
+        android:name="com.example.eatsease.home.view.fragment.HomeFragment"
         android:label="fragment_home"
         tools:layout="@layout/home_fragment" >
         <action
@@ -19,7 +19,7 @@
     <!-- Meal Detail Fragment -->
     <fragment
         android:id="@+id/mealDetailFragment"
-        android:name="com.example.eatsease.login_signup.mealdetail.fragment.MealDetailFragment"
+        android:name="com.example.eatsease.mealdetail.fragment.MealDetailFragment"
         android:label="fragment_meal_detail"
         tools:layout="@layout/fragment_meal_detail" >
         <argument
@@ -28,12 +28,12 @@
     </fragment>
     <fragment
         android:id="@+id/calenderFragment"
-        android:name="com.example.eatsease.home.ui.fragment.CalenderFragment"
+        android:name="com.example.eatsease.home.view.fragment.CalenderFragment"
         android:label="fragment_calender2"
         tools:layout="@layout/fragment_calender2" />
     <fragment
         android:id="@+id/favoriteFragment2"
-        android:name="com.example.eatsease.home.ui.fragment.FavoriteFragment"
+        android:name="com.example.eatsease.favorite.FavoriteFragment"
         android:label="fragment_favorite2"
         tools:layout="@layout/fragment_favorite2" />
     <fragment

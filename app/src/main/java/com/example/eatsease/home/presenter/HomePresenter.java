@@ -1,19 +1,19 @@
 package com.example.eatsease.home.presenter;
 
-import com.example.eatsease.home.model.repo.HomeRepo;
-import com.example.eatsease.home.ui.fragment.MealView;
+import com.example.eatsease.model.respiratory.Respiratory;
+import com.example.eatsease.home.view.fragment.MealView;
 
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 import io.reactivex.rxjava3.disposables.CompositeDisposable;
 import io.reactivex.rxjava3.schedulers.Schedulers;
 
 public class HomePresenter {
-    private final HomeRepo repository;
+    private final Respiratory repository;
     private final MealView view;
     private final CompositeDisposable disposables = new CompositeDisposable(); // Manage RxJava disposables
 
     public HomePresenter(MealView view) {
-        this.repository = new HomeRepo();
+        this.repository = new Respiratory();
         this.view = view;
     }
     public void fetchMealCategories() {

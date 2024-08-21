@@ -1,7 +1,7 @@
 package com.example.eatsease.search.view;
 
-import com.example.eatsease.home.model.response.AreaResponse;
-import com.example.eatsease.home.model.response.CategoriesResponse;
+import com.example.eatsease.model.network.response.AreaResponse;
+import com.example.eatsease.model.network.response.CategoriesResponse;
 
 import java.util.List;
 
