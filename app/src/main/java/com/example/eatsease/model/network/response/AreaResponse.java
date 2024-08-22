@@ -7,6 +7,10 @@ public class AreaResponse {
     @SerializedName("meals")
     private List<Area> meals;
 
+    public void setMeals(List<Area> meals) {
+        this.meals = meals;
+    }
+
     public List<Area> getMeals() {
         return meals;
     }
@@ -15,6 +19,9 @@ public class AreaResponse {
         @SerializedName("strArea")
         private String areaName;
 
+        public Area(String areaName) {
+            this.areaName = areaName;
+        }
         public String getAreaName() {
             return areaName;
         }

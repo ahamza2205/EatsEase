@@ -43,6 +43,12 @@ public class MealDetailFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_meal_detail, container, false);
 
+        return view;
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
         // Initialize views
         mealImage = view.findViewById(R.id.mealImage);
         mealTitle = view.findViewById(R.id.mealTitle);
@@ -58,14 +64,6 @@ public class MealDetailFragment extends Fragment {
         ingredientRecyclerView.setAdapter(ingredientAdapter);
 
         presenter = new MealDetailPresenter(this , Respiratory.getInstance(this.getContext()), RetrofitClient.getInstance());
-
-        return view;
-    }
-
-    @Override
-    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
-
         // Retrieve mealId from arguments
         if (getArguments() != null) {
             MealDetailFragmentArgs args = MealDetailFragmentArgs.fromBundle(getArguments());

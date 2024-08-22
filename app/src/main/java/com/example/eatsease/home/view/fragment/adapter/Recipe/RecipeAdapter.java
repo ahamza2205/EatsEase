@@ -59,9 +59,14 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.RecipeView
         return recipesList.size();
     }
 
-    public void updateRecipeList(List<Meal> newRecipes) {
-        this.recipesList = newRecipes != null ? newRecipes : new ArrayList<>();
-        notifyDataSetChanged(); // Refresh RecyclerView with new data
+    public void  updateRecipeList(List<Meal> newRecipes) {
+       // if (newRecipes != null) {
+            recipesList.clear();
+            recipesList.addAll(newRecipes);
+            notifyDataSetChanged();
+      //  }
+       // this.recipesList = newRecipes != null ? newRecipes : new ArrayList<>();
+       // notifyDataSetChanged(); // Refresh RecyclerView with new data
     }
 
     public static class RecipeViewHolder extends RecyclerView.ViewHolder {

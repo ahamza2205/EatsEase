@@ -11,6 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.util.Log;
+import android.widget.Toast;
 
 import com.example.eatsease.R;
 import com.example.eatsease.model.network.RetrofitClient;
@@ -18,6 +19,7 @@ import com.example.eatsease.model.network.response.AreaResponse;
 import com.example.eatsease.model.network.response.CategoriesResponse;
 import com.example.eatsease.model.network.response.CategoryResponse;
 import com.example.eatsease.model.network.response.Ingredientt;
+import com.example.eatsease.model.network.response.MealsResponse;
 import com.example.eatsease.model.respiratory.Respiratory;
 import com.example.eatsease.search.view.adapter.AreaSearchItemsAdapter;
 import com.example.eatsease.search.view.adapter.CategorySearchItemsAdapter;
@@ -105,10 +107,8 @@ public class SearchFragment extends Fragment implements ISearchView {
         }
     }
 
-    private void updateRecyclerViewWithCategories(List<CategoryResponse> filteredList) {
-        CategoriesResponse filteredCategoriesResponse = new CategoriesResponse();
-        //filteredCategoriesResponse.setCategories(filteredList);  // Ensure correct setter is used
-        categoryAdapter.setCategoryList(filteredCategoriesResponse);
+    private void updateRecyclerViewWithCategories(List<CategoryResponse> categoryResponses) {
+        categoryAdapter.setCategoryList(categoriesResponse);
         categoryAdapter.notifyDataSetChanged();  // Notify the adapter of data changes
     }
     private void updateRecyclerViewWithAreas(List<AreaResponse.Area> areas) {
@@ -150,5 +150,25 @@ public class SearchFragment extends Fragment implements ISearchView {
     @Override
     public void onFetchIngredientsError(String message) {
 
+    }
+
+    @Override
+    public void onMealsSuccess(MealsResponse mealsResponse) {
+
+    }
+
+    @Override
+    public void onFetchMealsError(Throwable throwable) {
+
+    }
+
+    @Override
+    public void onAreaMealsSuccess(MealsResponse mealsResponse) {
+        Log.d("kero", "onAreaMealsSuccess: ");
+    }
+
+    @Override
+    public void onFetchAreaMealsError(Throwable throwable) {
+        Log.d("h", "on bs: ");
     }
 }

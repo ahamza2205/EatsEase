@@ -37,9 +37,12 @@ public class Respiratory {
         api = retrofit.api;
       //  mealsDataBase = MealsDataBase.getInstance(context);
     }
+
+
     public Observable<CategoriesResponse> getMealCategories() {
         return api.getMealCategories();
     }
+
     public Single<MealsResponse> getSeafoodMeals(String categoryName) {
         return api.getMealsByCategory(categoryName);
     }
@@ -60,9 +63,13 @@ public class Respiratory {
     public Single<AreaResponse> getMealAreasList() {
         return api.getMealAreasList();
     }
-
+    // New method for fetching ingredients
     public Single<IngredienttsResponse> getIngredientsList() {
         return api.getIngredientsList();
+    }
+    // New method for fetching recipes by area
+    public Single<MealsResponse> getMealsByArea(String area) {
+        return api.getMealsByArea(area);
     }
 
 

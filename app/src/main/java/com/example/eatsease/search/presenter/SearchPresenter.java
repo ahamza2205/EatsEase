@@ -4,8 +4,11 @@ import com.example.eatsease.model.network.RetrofitClient;
 import com.example.eatsease.model.respiratory.Respiratory;
 import com.example.eatsease.search.view.ISearchView;
 
+import java.util.ArrayList;
+
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 import io.reactivex.rxjava3.disposables.CompositeDisposable;
+import io.reactivex.rxjava3.disposables.Disposable;
 import io.reactivex.rxjava3.schedulers.Schedulers;
 
 public class SearchPresenter {
@@ -53,5 +56,41 @@ public class SearchPresenter {
                 );
     }
 
+    public void fetchSeafoodMeals(String categoryName) {
+        disposable.add(
+                respiratory.getSeafoodMeals(categoryName)
+                        .subscribeOn(Schedulers.io())
+                        .observeOn(AndroidSchedulers.mainThread())
+                        .subscribe(
+                                view::onMealsSuccess,
+                                throwable -> view.onFetchMealsError(throwable)
+                        )
+        );
+    }
+    public void getCanadianMeals( String areaName) {
+         disposable.add(
+                 respiratory.getMealsByArea(areaName)
+                         .subscribeOn(Schedulers.io())
+                         .observeOn(AndroidSchedulers.mainThread())
+                         .subscribe(
+                                 view::onAreaMealsSuccess,
+                                 throwable -> view.onFetchAreaMealsError(throwable)
+                                    )
+         );
+    }
+
+
+
+//    public void fetchMeals(String choosensearch, String specifiedType) {
+//        if ("Ingredients".equals(choosensearch)) {
+//            fetchIngredients(specifiedType);
+//        } else if ("Area".equals(choosensearch)) {
+//            fetchAreas(specifiedType);
+//        } else if ("Category".equals(choosensearch)) {
+//            fetchMealCategories(specifiedType);
+//        } else {
+//            view.showError("Unknown search type: " + choosensearch);
+//        }
+//    }
 
 }

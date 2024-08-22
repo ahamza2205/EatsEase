@@ -9,7 +9,7 @@
     <fragment
         android:id="@+id/homeFragment"
         android:name="com.example.eatsease.home.view.fragment.HomeFragment"
-        android:label="fragment_home"
+        android:label="Home"
         tools:layout="@layout/home_fragment" >
         <action
             android:id="@+id/action_homeFragment_to_mealDetailFragment"
@@ -20,26 +20,52 @@
     <fragment
         android:id="@+id/mealDetailFragment"
         android:name="com.example.eatsease.mealdetail.fragment.MealDetailFragment"
-        android:label="fragment_meal_detail"
+        android:label="Meal Detail"
         tools:layout="@layout/fragment_meal_detail" >
         <argument
             android:name="mealId"
             app:argType="string" />
     </fragment>
+
+    <!-- Calendar Fragment -->
     <fragment
         android:id="@+id/calenderFragment"
         android:name="com.example.eatsease.home.view.fragment.CalenderFragment"
-        android:label="fragment_calender2"
+        android:label="Calendar"
         tools:layout="@layout/fragment_calender2" />
+
+    <!-- Favorite Fragment -->
     <fragment
         android:id="@+id/favoriteFragment2"
         android:name="com.example.eatsease.favorite.FavoriteFragment"
-        android:label="fragment_favorite2"
+        android:label="Favorites"
         tools:layout="@layout/fragment_favorite2" />
+
+    <!-- Search Fragment -->
     <fragment
         android:id="@+id/searchFragment2"
         android:name="com.example.eatsease.search.view.SearchFragment"
-        android:label="fragment_search2"
-        tools:layout="@layout/fragment_search2" />
+        android:label="Search"
+        tools:layout="@layout/fragment_search2" >
+        <action
+            android:id="@+id/action_searchFragment2_to_searchItemFragment"
+            app:destination="@id/searchItemFragment" />
+    </fragment>
+
+    <!-- Search Item Fragment -->
+    <fragment
+        android:id="@+id/searchItemFragment"
+        android:name="com.example.eatsease.search.SearchItemFragment"
+        android:label="Search Items"
+        tools:layout="@layout/fragment_search_item" >
+        <argument
+            android:name="strCategory"
+            app:argType="string"
+            app:nullable="true"/>
+        <argument
+            android:name="strArea"
+            app:argType="string"
+            app:nullable="true"/>
+    </fragment>
 
 </navigation>
