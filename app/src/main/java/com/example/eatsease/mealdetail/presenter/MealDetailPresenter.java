@@ -2,6 +2,7 @@ package com.example.eatsease.mealdetail.presenter;
 
 import android.util.Log;
 
+import com.example.eatsease.model.network.RetrofitClient;
 import com.example.eatsease.model.respiratory.Respiratory;
 import com.example.eatsease.model.network.response.Meal;
 import com.example.eatsease.mealdetail.fragment.MealDetailFragment;
@@ -15,15 +16,18 @@ import io.reactivex.rxjava3.schedulers.Schedulers;
 public class MealDetailPresenter {
     private MealDetailFragment mealDetialFragment;
     private Respiratory repo;
-    private final CompositeDisposable disposables = new CompositeDisposable();
+    private RetrofitClient retrofitClient ;
+    private CompositeDisposable disposable;
 
 
-    public MealDetailPresenter(MealDetailFragment mealDetialFragment) {
+    public MealDetailPresenter(MealDetailFragment mealDetialFragment , Respiratory repo , RetrofitClient retrofitClient) {
         this.mealDetialFragment = mealDetialFragment;
-        this.repo = new Respiratory();
+        this.repo = repo;
+        this.retrofitClient = retrofitClient ;
+        this.disposable =  new CompositeDisposable();
     }
     public void fetchDetailsmeal(String mealId) {
-        disposables.add(
+        disposable.add(
                 repo.getMealById(mealId)
                         .subscribeOn(Schedulers.io())
                         .observeOn(AndroidSchedulers.mainThread())

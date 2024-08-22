@@ -18,8 +18,10 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.example.eatsease.R;
 import com.example.eatsease.mealdetail.presenter.MealDetailPresenter;
+import com.example.eatsease.model.network.RetrofitClient;
 import com.example.eatsease.model.network.response.Meal;
 import com.example.eatsease.mealdetail.adapter.IngredientAdapter;
+import com.example.eatsease.model.respiratory.Respiratory;
 
 import java.util.ArrayList;
 
@@ -55,7 +57,7 @@ public class MealDetailFragment extends Fragment {
         ingredientAdapter = new IngredientAdapter(new ArrayList<>());
         ingredientRecyclerView.setAdapter(ingredientAdapter);
 
-        presenter = new MealDetailPresenter(this);
+        presenter = new MealDetailPresenter(this , Respiratory.getInstance(this.getContext()), RetrofitClient.getInstance());
 
         return view;
     }

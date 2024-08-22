@@ -14,10 +14,10 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.eatsease.R;
+import com.example.eatsease.home.view.fragment.HomeFragmentDirections;
 import com.example.eatsease.model.respiratory.Respiratory;
 import com.example.eatsease.model.network.response.Meal;
 import com.example.eatsease.model.network.response.RandomMealResponse;
-import com.example.eatsease.home.ui.fragment.HomeFragmentDirections;
 
 
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
@@ -34,7 +34,7 @@ public class RandomAdapter extends RecyclerView.Adapter<RandomAdapter.RandomView
 
     public RandomAdapter(Context context) {
         this.context = context;
-        this.respiratory = new Respiratory(); // Initialize the Respiratory
+        this.respiratory = new Respiratory(context); // Initialize the Respiratory
         fetchRandomMeal(); // Fetch the first meal when the adapter is created
     }
 

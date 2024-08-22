@@ -13,9 +13,11 @@ import android.view.ViewGroup;
 import android.util.Log;
 
 import com.example.eatsease.R;
+import com.example.eatsease.model.network.RetrofitClient;
 import com.example.eatsease.model.network.response.AreaResponse;
 import com.example.eatsease.model.network.response.CategoriesResponse;
 import com.example.eatsease.model.network.response.CategoryResponse;
+import com.example.eatsease.model.respiratory.Respiratory;
 import com.example.eatsease.search.view.adapter.AreaSearchItemsAdapter;
 import com.example.eatsease.search.view.adapter.CategorySearchItemsAdapter;
 import com.example.eatsease.search.presenter.SearchPresenter;
@@ -59,13 +61,12 @@ public class SearchFragment extends Fragment implements ISearchView {
         categoryAdapter = new CategorySearchItemsAdapter(new CategoriesResponse(), getContext());
         recyclerView.setAdapter(categoryAdapter);  // Initially set to categoryAdapter
         areaAdapter = new AreaSearchItemsAdapter(new ArrayList<>(), getContext());
-        presenter = new SearchPresenter(this);
+        presenter = new SearchPresenter(this , new Respiratory(getContext()) , new RetrofitClient());
         presenter.fetchMealCategories();
         presenter.fetchMealAreas();
 
         updateChipsItems();
     }
-
     @Override
     public void onFetchCategoriesSuccess(CategoriesResponse categoriesResponse) {
         this.categoriesResponse = categoriesResponse;
@@ -105,25 +106,20 @@ public class SearchFragment extends Fragment implements ISearchView {
         }
     }
 
-
-
     private void updateRecyclerViewWithCategories(List<CategoryResponse> filteredList) {
         CategoriesResponse filteredCategoriesResponse = new CategoriesResponse();
         //filteredCategoriesResponse.setCategories(filteredList);  // Ensure correct setter is used
         categoryAdapter.setCategoryList(filteredCategoriesResponse);
         categoryAdapter.notifyDataSetChanged();  // Notify the adapter of data changes
     }
-
     private void updateRecyclerViewWithAreas(List<AreaResponse.Area> areas) {
         areaAdapter.setAreaList(areas);
         areaAdapter.notifyDataSetChanged();  // Notify the adapter of data changes
     }
-
     @Override
     public void onFetchCategoriesError(Throwable throwable) {
         Log.e("SearchFragment", "Error fetching categories", throwable);
     }
-
     @Override
     public void onFetchAreasError(Throwable throwable) {
         Log.e("SearchFragment", "Error fetching areas", throwable);

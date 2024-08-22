@@ -13,8 +13,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.eatsease.R;
+import com.example.eatsease.home.view.fragment.HomeFragmentDirections;
 import com.example.eatsease.model.network.response.Meal;
-import com.example.eatsease.home.ui.fragment.HomeFragmentDirections;
 
 
 import java.util.ArrayList;

@@ -66,9 +66,6 @@ dependencies {
     // Choose one version of play-services-auth
     implementation("com.google.android.gms:play-services-auth:21.2.0") // or 20.5.0, but not both
 
-    // Material Components dependency (already specified in the implementation section)
-    implementation("com.google.android.material:material:1.9.0")
-
     // Add the correct RxJava dependency
     implementation(libs.rxjava) // Replace with the correct version
     implementation (libs.adapter.rxjava3)
@@ -112,11 +109,12 @@ dependencies {
     // Material Components
     implementation ("com.google.android.material:material:1.9.0")
 
-    // Material Components
-    implementation ("com.google.android.material:material:1.9.0")
-
     // Room
-    implementation ("androidx.room:room-runtime:2.4.1")
-    annotationProcessor ("androidx.room:room-compiler:2.4.1")
+    implementation ("androidx.room:room-runtime:2.5.1")
+    annotationProcessor ("androidx.room:room-compiler:2.5.1")
+    implementation ("androidx.room:room-rxjava3:2.5.1")
 
+    // RxJava
+    implementation ("io.reactivex.rxjava3:rxandroid:3.0.0")
+    implementation ("io.reactivex.rxjava3:rxjava:3.1.5")
 }

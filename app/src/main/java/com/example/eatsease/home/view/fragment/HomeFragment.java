@@ -15,11 +15,13 @@ import com.example.eatsease.R;
 import com.example.eatsease.home.view.fragment.adapter.categories.CategoryAdapter;
 import com.example.eatsease.home.view.fragment.adapter.Recipe.RecipeAdapter;
 import com.example.eatsease.home.view.fragment.adapter.random.RandomAdapter;
+import com.example.eatsease.model.network.RetrofitClient;
 import com.example.eatsease.model.network.response.CategoriesResponse;
 import com.example.eatsease.model.network.response.CategoryResponse;
 import com.example.eatsease.model.network.response.Meal;
 import com.example.eatsease.model.network.response.MealsResponse;
 import com.example.eatsease.home.presenter.HomePresenter;
+import com.example.eatsease.model.respiratory.Respiratory;
 
 import java.util.List;
 
@@ -36,7 +38,7 @@ public class HomeFragment extends Fragment implements MealView {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        presenter = new HomePresenter(this);
+        presenter = new HomePresenter(this , Respiratory.getInstance(this.getContext()) , RetrofitClient.getInstance());
     }
 
 

@@ -1,18 +1,24 @@
 package com.example.eatsease.search.presenter;
 
+import com.example.eatsease.model.network.RetrofitClient;
 import com.example.eatsease.model.respiratory.Respiratory;
 import com.example.eatsease.search.view.ISearchView;
 
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
+import io.reactivex.rxjava3.disposables.CompositeDisposable;
 import io.reactivex.rxjava3.schedulers.Schedulers;
 
 public class SearchPresenter {
-    private final ISearchView view;
-    private final Respiratory respiratory;
+    private  ISearchView view;
+    private  Respiratory respiratory;
+    private  RetrofitClient retrofitClient ;
+    private CompositeDisposable disposable;
 
-    public SearchPresenter(ISearchView view) {
+    public SearchPresenter(ISearchView view , Respiratory respiratory , RetrofitClient retrofitClient) {
+        this.respiratory = respiratory;
         this.view = view;
-        this.respiratory = new Respiratory();
+        this.retrofitClient = retrofitClient;
+        this.disposable =  new CompositeDisposable();
     }
 
     // Fetch meal categories

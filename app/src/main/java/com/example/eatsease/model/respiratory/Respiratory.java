@@ -2,8 +2,7 @@ package com.example.eatsease.model.respiratory;
 
 import android.content.Context;
 
-import com.example.eatsease.model.database.FavoriteMeal;
-import com.example.eatsease.model.database.MealsDataBase;
+
 import com.example.eatsease.model.network.ApiService;
 import com.example.eatsease.model.network.response.AreaResponse;
 import com.example.eatsease.model.network.response.CategoriesResponse;
@@ -12,24 +11,30 @@ import com.example.eatsease.model.network.response.RandomMealResponse;
 import com.example.eatsease.model.network.response.MealsResponse;
 import com.example.eatsease.model.network.RetrofitClient;
 
-import java.util.List;
-
-import io.reactivex.rxjava3.core.Completable;
-import io.reactivex.rxjava3.core.Flowable;
 import io.reactivex.rxjava3.core.Observable;
 import io.reactivex.rxjava3.core.Single;
-import io.reactivex.rxjava3.schedulers.Schedulers;
-import retrofit2.Retrofit;
 
 public class Respiratory {
     private ApiService api;
-    private final MealsDataBase mealsDataBase ;
+   // private final MealsDataBase mealsDataBase ;
     private Context context;
+    private  static Respiratory repo = null;
 
-    public Respiratory() {
-        Retrofit retrofit = RetrofitClient.getInstance( );
-        api = retrofit.create(ApiService.class);
-        mealsDataBase = MealsDataBase.getInstance(context);
+    public static Respiratory getInstance(Context context)
+    {
+        if (repo==null)
+        {
+            repo=new Respiratory(context);
+        }
+        return repo;
+    }
+
+    public Respiratory(Context context) {
+        this.context = context;
+        this.api = api;
+        RetrofitClient retrofit = RetrofitClient.getInstance();
+        api = retrofit.api;
+      //  mealsDataBase = MealsDataBase.getInstance(context);
     }
     public Observable<CategoriesResponse> getMealCategories() {
         return api.getMealCategories();
@@ -56,23 +61,23 @@ public class Respiratory {
     }
 
 
-    // Database methods for favorites
-    public Completable addFavoriteMeal(FavoriteMeal favoriteMeal) {
-        return mealsDataBase.favoriteMealDao().insert(favoriteMeal);
-    }
-    // Check if meal is favorite
-    public Single<Boolean> isFavoriteMeal(String mealId) {
-        return Single.fromCallable(() -> mealsDataBase.favoriteMealDao().getMealById(mealId) != null)
-                .subscribeOn(Schedulers.io());
-    }
-   // Get all favorite meals
-    public Flowable<List<FavoriteMeal>> getFavoriteMeals(String userId) {
-        return mealsDataBase.favoriteMealDao().getAllFavoriteMeals(userId)
-                .subscribeOn(Schedulers.io());
-    }
-    // Remove favorite
-    public Completable removeFavoriteMeal(FavoriteMeal favoriteMeal) {
-        return mealsDataBase.favoriteMealDao().delete(favoriteMeal)
-                .subscribeOn(Schedulers.io());
-    }
+//    // Database methods for favorites
+//    public Completable addFavoriteMeal(FavoriteMeal favoriteMeal) {
+//        return mealsDataBase.favoriteMealDao().insert(favoriteMeal);
+//    }
+//    // Check if meal is favorite
+//    public Single<Boolean> isFavoriteMeal(String mealId) {
+//        return Single.fromCallable(() -> mealsDataBase.favoriteMealDao().getMealById(mealId) != null)
+//                .subscribeOn(Schedulers.io());
+//    }
+//   // Get all favorite meals
+//    public Flowable<List<FavoriteMeal>> getFavoriteMeals(String userId) {
+//        return mealsDataBase.favoriteMealDao().getAllFavoriteMeals(userId)
+//                .subscribeOn(Schedulers.io());
+//    }
+//    // Remove favorite
+//    public Completable removeFavoriteMeal(FavoriteMeal favoriteMeal) {
+//        return mealsDataBase.favoriteMealDao().delete(favoriteMeal)
+//                .subscribeOn(Schedulers.io());
+//    }
 }
