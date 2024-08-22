@@ -37,6 +37,7 @@ public class SearchItemFragment extends Fragment implements ISearchView {
     private RecipeAdapter recipeAdapter , recipeAreaAdapter;
     private RecyclerView recyclerView;
      private List<Meal> newRecipes ;
+     private String strCategory;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -69,6 +70,7 @@ public class SearchItemFragment extends Fragment implements ISearchView {
         SearchItemFragmentArgs args = SearchItemFragmentArgs.fromBundle(getArguments());
         String categoryName = args.getStrCategory();
         String areaName = args.getStrArea();
+        Log.d("TEST_AREA", "Fetching seafood meals for category: " + categoryName);
         if (categoryName != null) {
             Log.d("SearchItemFragment", "Fetching seafood meals for category: " + categoryName);
             presenter.fetchSeafoodMeals(categoryName);
@@ -127,7 +129,7 @@ public class SearchItemFragment extends Fragment implements ISearchView {
 
     @Override
     public void onAreaMealsSuccess(MealsResponse mealsResponse) {
-            Log.d("SearchItemFragment", "Received area meals: " + mealsResponse);
+            Log.d("SearchItemFragment", "Received area meals: " + mealsResponse.getMeals());
             recipeAdapter.updateRecipeList(mealsResponse.getMeals());  // Use the correct adapter
 
     }
