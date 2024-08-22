@@ -164,11 +164,21 @@ public class SearchFragment extends Fragment implements ISearchView {
 
     @Override
     public void onAreaMealsSuccess(MealsResponse mealsResponse) {
-        Log.d("kero", "onAreaMealsSuccess: ");
+        Log.d("hamza", "onAreaMealsSuccess: ");
     }
 
     @Override
     public void onFetchAreaMealsError(Throwable throwable) {
         Log.d("h", "on bs: ");
+    }
+
+    @Override
+    public void onIngredientsMealsFetched(MealsResponse mealsResponse) {
+
+    }
+
+    @Override
+    public void onFetchIngredientsMealsError(Throwable throwable) {
+
     }
 }

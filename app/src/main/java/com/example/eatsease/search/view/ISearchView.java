@@ -21,4 +21,7 @@ public interface ISearchView {
 
     void onAreaMealsSuccess (MealsResponse mealsResponse);
     void onFetchAreaMealsError(Throwable throwable);
+
+    void onIngredientsMealsFetched(MealsResponse mealsResponse);
+    void onFetchIngredientsMealsError(Throwable throwable);
 }

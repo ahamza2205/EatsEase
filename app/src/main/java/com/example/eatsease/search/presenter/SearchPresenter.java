@@ -78,19 +78,17 @@ public class SearchPresenter {
                                     )
          );
     }
+    public void getMealsByIngredient(String ingredient) {
+        disposable.add(
+                respiratory.getMealsByIngredient(ingredient)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(
+                            view::onIngredientsMealsFetched,
 
-
-
-//    public void fetchMeals(String choosensearch, String specifiedType) {
-//        if ("Ingredients".equals(choosensearch)) {
-//            fetchIngredients(specifiedType);
-//        } else if ("Area".equals(choosensearch)) {
-//            fetchAreas(specifiedType);
-//        } else if ("Category".equals(choosensearch)) {
-//            fetchMealCategories(specifiedType);
-//        } else {
-//            view.showError("Unknown search type: " + choosensearch);
-//        }
-//    }
+                        throwable -> view.onFetchIngredientsMealsError(throwable)
+                )
+        );
+    }
 
 }

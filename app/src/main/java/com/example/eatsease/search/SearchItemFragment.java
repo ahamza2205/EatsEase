@@ -61,15 +61,15 @@ public class SearchItemFragment extends Fragment implements ISearchView {
         recipeAdapter = new RecipeAdapter(new ArrayList<>(), getContext());
         recyclerView.setAdapter(recipeAdapter);
 
-        // Ensure presenter is initialized
-       // if (presenter == null) {
+
             presenter = new SearchPresenter(this , Respiratory.getInstance(this.getContext()) , RetrofitClient.getInstance());
-     //  }
+
 
             // Fetch data from arguments
         SearchItemFragmentArgs args = SearchItemFragmentArgs.fromBundle(getArguments());
         String categoryName = args.getStrCategory();
         String areaName = args.getStrArea();
+        String ingredientName = args.getStrIngredient();
         Log.d("TEST_AREA", "Fetching seafood meals for category: " + categoryName);
         if (categoryName != null) {
             Log.d("SearchItemFragment", "Fetching seafood meals for category: " + categoryName);
@@ -80,7 +80,10 @@ public class SearchItemFragment extends Fragment implements ISearchView {
             Log.d("SearchItemFragment", "Fetching meals for area: " + areaName);
             presenter.getCanadianMeals(areaName);
         }
-
+          if (ingredientName != null) {
+              Log.d("SearchItemFragment", "Fetching recipes for ingredient: " + ingredientName);
+              presenter.getMealsByIngredient(ingredientName);
+          }
         }
 
 
@@ -136,6 +139,19 @@ public class SearchItemFragment extends Fragment implements ISearchView {
 
     @Override
     public void onFetchAreaMealsError(Throwable throwable) {
+        Log.e("SearchItemFragment", "Error fetching meals", throwable);
+        Toast.makeText(getContext(), "Failed to load meals", Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onIngredientsMealsFetched(MealsResponse mealsResponse) {
+        Log.d("SearchItemFragment", "Received area meals: " + mealsResponse.getMeals());
+        recipeAdapter.updateRecipeList(mealsResponse.getMeals());  // Use the correct adapter
+
+    }
+
+    @Override
+    public void onFetchIngredientsMealsError(Throwable throwable) {
         Log.e("SearchItemFragment", "Error fetching meals", throwable);
         Toast.makeText(getContext(), "Failed to load meals", Toast.LENGTH_SHORT).show();
     }

@@ -9,12 +9,14 @@ import android.widget.TextView;
 
 
 import androidx.annotation.NonNull;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
 
 
 import com.bumptech.glide.Glide;
 import com.example.eatsease.R;
 import com.example.eatsease.model.network.response.Ingredientt;
+import com.example.eatsease.search.view.SearchFragmentDirections;
 
 import java.util.List;
 
@@ -46,6 +48,16 @@ public class IngredientSearchItemsAdapter extends RecyclerView.Adapter<Ingredien
         Glide.with(holder.itemView.getContext())
                 .load("https://www.themealdb.com/images/ingredients/" + ingredientt1.getStrIngredient() + "-Small.png")
                 .into(holder.ingredientImage);
+        // Set click listener for each recipe item
+        if (ingredientt1 != null) {
+            holder.itemView.setOnClickListener(v -> {
+                SearchFragmentDirections.ActionSearchFragment2ToSearchItemFragment action =
+                        SearchFragmentDirections.actionSearchFragment2ToSearchItemFragment( null,null, ingredientt1.getStrIngredient());
+                Navigation.findNavController(v).navigate(action);
+            });
+        }
+
+
     }
 
     public void updatedata(List<Ingredientt> ingredientt) {

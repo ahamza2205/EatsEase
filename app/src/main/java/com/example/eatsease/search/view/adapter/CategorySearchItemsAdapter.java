@@ -68,7 +68,7 @@ public class CategorySearchItemsAdapter extends RecyclerView.Adapter<CategorySea
         if (category != null) {
             holder.itemView.setOnClickListener(v -> {
                 SearchFragmentDirections.ActionSearchFragment2ToSearchItemFragment action =
-                        SearchFragmentDirections.actionSearchFragment2ToSearchItemFragment(category.getStrCategory(),null);
+                        SearchFragmentDirections.actionSearchFragment2ToSearchItemFragment(category.getStrCategory(),null , null);
                 Navigation.findNavController(v).navigate(action);
             });
         }

@@ -66,6 +66,10 @@
             android:name="strArea"
             app:argType="string"
             app:nullable="true"/>
+        <argument
+            android:name="strIngredient"
+            app:argType="string"
+            app:nullable="true" />
     </fragment>
 
 </navigation>

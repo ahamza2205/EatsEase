@@ -71,7 +71,10 @@ public class Respiratory {
     public Single<MealsResponse> getMealsByArea(String area) {
         return api.getMealsByArea(area);
     }
-
+   // New method for fetching recipes by ingredient
+    public Single<MealsResponse> getMealsByIngredient(String ingredient) {
+        return api.getMealsByIngredient(ingredient);
+    }
 
 //    // Database methods for favorites
 //    public Completable addFavoriteMeal(FavoriteMeal favoriteMeal) {

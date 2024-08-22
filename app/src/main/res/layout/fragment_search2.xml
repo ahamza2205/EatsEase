@@ -13,50 +13,64 @@
         android:id="@+id/searchEditText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Search by category..."
+        android:hint="Search ...."
+        android:searchResultHighlightColor="@color/red"
         android:padding="10dp"/>
 
     <!-- ChipGroup for Category, Country, Ingredient -->
 
     <!-- RecyclerView for Category List -->
+
     <com.google.android.material.chip.ChipGroup
         android:id="@+id/chipGroup"
-        android:layout_width="match_parent"
+        android:layout_width="400dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="40dp"
-        android:layout_marginEnd="16dp"
-        android:paddingStart="35dp"
-        app:selectionRequired="true"
+        android:paddingStart="30dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintHorizontal_chainStyle="packed"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/searchBar"
         app:layout_constraintWidth_default="wrap"
+        app:selectionRequired="true"
         app:singleSelection="true">
 
 
         <com.google.android.material.chip.Chip
             android:id="@+id/categories"
-            android:checked="true"
             style="@style/Widget.MaterialComponents.Chip.Filter"
-            android:layout_width="wrap_content"
+            android:layout_width="100dp"
             android:layout_height="wrap_content"
-            android:text="Category" />
+            android:backgroundTint="@color/red"
+            android:checked="true"
+            android:text="Category"
+            android:textAlignment="center"
+            android:textColor="@color/white"
+            android:textSize="18dp"
+            app:closeIconSize="24dp" />
 
         <com.google.android.material.chip.Chip
             android:id="@+id/area"
             style="@style/Widget.MaterialComponents.Chip.Filter"
-            android:layout_width="wrap_content"
+            android:layout_width="100dp"
             android:layout_height="wrap_content"
-            android:text="Area" />
+            android:backgroundTint="@color/red"
+            android:checked="true"
+            android:text="Area"
+            android:textAlignment="center"
+            android:textColor="@color/white"
+            android:textSize="18dp" />
 
         <com.google.android.material.chip.Chip
             android:id="@+id/ingredient"
             style="@style/Widget.MaterialComponents.Chip.Filter"
-            android:layout_width="wrap_content"
+            android:layout_width="100dp"
+            android:textAlignment="center"
             android:layout_height="wrap_content"
+            android:textColor="@color/white"
+            android:checked="true"
+            android:textSize="18dp"
+            android:backgroundTint="@color/red"
             android:text="Ingredients" />
 
     </com.google.android.material.chip.ChipGroup>

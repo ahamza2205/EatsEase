@@ -64,7 +64,7 @@
             if (area != null) {
                 holder.itemView.setOnClickListener(v -> {
                     SearchFragmentDirections.ActionSearchFragment2ToSearchItemFragment action =
-                            SearchFragmentDirections.actionSearchFragment2ToSearchItemFragment( null,area.getAreaName());
+                            SearchFragmentDirections.actionSearchFragment2ToSearchItemFragment( null,area.getAreaName(), null);
                     Navigation.findNavController(v).navigate(action);
                 });
             }
