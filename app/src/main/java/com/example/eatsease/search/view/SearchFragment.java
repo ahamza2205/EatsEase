@@ -17,10 +17,12 @@ import com.example.eatsease.model.network.RetrofitClient;
 import com.example.eatsease.model.network.response.AreaResponse;
 import com.example.eatsease.model.network.response.CategoriesResponse;
 import com.example.eatsease.model.network.response.CategoryResponse;
+import com.example.eatsease.model.network.response.Ingredientt;
 import com.example.eatsease.model.respiratory.Respiratory;
 import com.example.eatsease.search.view.adapter.AreaSearchItemsAdapter;
 import com.example.eatsease.search.view.adapter.CategorySearchItemsAdapter;
 import com.example.eatsease.search.presenter.SearchPresenter;
+import com.example.eatsease.search.view.adapter.IngredientSearchItemsAdapter;
 import com.google.android.material.chip.Chip;
 import com.google.android.material.chip.ChipGroup;
 
@@ -33,8 +35,10 @@ public class SearchFragment extends Fragment implements ISearchView {
     private RecyclerView recyclerView;
     private CategorySearchItemsAdapter categoryAdapter;
     private AreaSearchItemsAdapter areaAdapter;
+    private IngredientSearchItemsAdapter ingredientAdapter;
     private CategoriesResponse categoriesResponse;
     private List<AreaResponse.Area> areaList = new ArrayList<>();
+    private List<Ingredientt> ingredientsList = new ArrayList<>();
     private SearchPresenter presenter;
 
     //chips
@@ -59,26 +63,20 @@ public class SearchFragment extends Fragment implements ISearchView {
 
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         categoryAdapter = new CategorySearchItemsAdapter(new CategoriesResponse(), getContext());
-        recyclerView.setAdapter(categoryAdapter);  // Initially set to categoryAdapter
         areaAdapter = new AreaSearchItemsAdapter(new ArrayList<>(), getContext());
-        presenter = new SearchPresenter(this , new Respiratory(getContext()) , new RetrofitClient());
+        ingredientAdapter = new IngredientSearchItemsAdapter(new ArrayList<>(), getContext()); // Initialize the ingredientAdapter
+
+        recyclerView.setAdapter(categoryAdapter);  // Initially set to categoryAdapter
+
+        presenter = new SearchPresenter(this, new Respiratory(getContext()), new RetrofitClient());
         presenter.fetchMealCategories();
         presenter.fetchMealAreas();
+        presenter.fetchIngredientsList();
 
         updateChipsItems();
     }
-    @Override
-    public void onFetchCategoriesSuccess(CategoriesResponse categoriesResponse) {
-        this.categoriesResponse = categoriesResponse;
-        categoryAdapter.setCategoryList(categoriesResponse);
-        //updateChipsItems();
-    }
 
-    @Override
-    public void onFetchAreasSuccess(List<AreaResponse.Area> areas) {
-        this.areaList = areas;
-          // Ensure chips are updated with listeners
-    }
+
 
     private void updateChipsItems() {
          {
@@ -97,7 +95,8 @@ public class SearchFragment extends Fragment implements ISearchView {
                                 updateRecyclerViewWithAreas(areaList);
                                 break;
                             case "Ingredients":
-                                // Add logic to filter by ingredients if needed
+                                recyclerView.setAdapter(ingredientAdapter);
+                                updateRecyclerViewWithIngredients(ingredientsList);
                                 break;
                         }
                     }
@@ -116,6 +115,24 @@ public class SearchFragment extends Fragment implements ISearchView {
         areaAdapter.setAreaList(areas);
         areaAdapter.notifyDataSetChanged();  // Notify the adapter of data changes
     }
+
+    private void updateRecyclerViewWithIngredients(List<Ingredientt> ingredients) {
+        ingredientAdapter.setIngredientt(ingredients);
+        ingredientAdapter.notifyDataSetChanged();  // Notify the adapter of data changes
+    }
+
+    @Override
+    public void onFetchCategoriesSuccess(CategoriesResponse categoriesResponse) {
+        this.categoriesResponse = categoriesResponse;
+        categoryAdapter.setCategoryList(categoriesResponse);
+        //updateChipsItems();
+    }
+
+    @Override
+    public void onFetchAreasSuccess(List<AreaResponse.Area> areas) {
+        this.areaList = areas;
+        // Ensure chips are updated with listeners
+    }
     @Override
     public void onFetchCategoriesError(Throwable throwable) {
         Log.e("SearchFragment", "Error fetching categories", throwable);
@@ -123,5 +140,15 @@ public class SearchFragment extends Fragment implements ISearchView {
     @Override
     public void onFetchAreasError(Throwable throwable) {
         Log.e("SearchFragment", "Error fetching areas", throwable);
+    }
+
+    public void onIngredientsFetched(List<Ingredientt> ingredients) {
+        this.ingredientsList = ingredients;  // Update the list in the fragment
+        ingredientAdapter.setIngredientt(ingredients);  // Set the data in the adapter
+    }
+
+    @Override
+    public void onFetchIngredientsError(String message) {
+
     }
 }

@@ -42,4 +42,16 @@ public class SearchPresenter {
                         throwable -> view.onFetchAreasError(throwable)
                 );
     }
+
+    public void fetchIngredientsList() {
+        respiratory.getIngredientsList()
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(
+                        ingredientsResponse -> view.onIngredientsFetched(ingredientsResponse.getMeals()),
+                        throwable -> view.onFetchIngredientsError(throwable.getMessage())
+                );
+    }
+
+
 }

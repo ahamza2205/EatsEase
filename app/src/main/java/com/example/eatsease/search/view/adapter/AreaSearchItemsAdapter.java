@@ -42,7 +42,19 @@ public class AreaSearchItemsAdapter extends RecyclerView.Adapter<AreaSearchItems
         AreaResponse.Area area = areaList.get(position);
         holder.areaName.setText(area.getAreaName());
         // If you have an image, you can set it here
-        holder.areaImage.setImageResource(R.drawable.foods);
+// Get the name from the Area object
+        String imageName = area.getAreaName().toLowerCase();// assuming the drawable names are formatted like this
+
+        // Convert the image name to a drawable resource ID
+        int imageResId = context.getResources().getIdentifier(imageName, "drawable", context.getPackageName());
+
+        // Set the drawable resource to the ImageView
+        if (imageResId != 0) {
+            holder.areaImage.setImageResource(imageResId);
+        } else {
+            // Handle the case where the drawable resource was not found
+            holder.areaImage.setImageResource(R.drawable.foods); // Set a default image if not found
+}
     }
 
     @Override

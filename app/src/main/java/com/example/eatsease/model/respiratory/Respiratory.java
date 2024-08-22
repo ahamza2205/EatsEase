@@ -7,6 +7,7 @@ import com.example.eatsease.model.network.ApiService;
 import com.example.eatsease.model.network.response.AreaResponse;
 import com.example.eatsease.model.network.response.CategoriesResponse;
 import com.example.eatsease.model.network.response.CategoryResponse;
+import com.example.eatsease.model.network.response.IngredienttsResponse;
 import com.example.eatsease.model.network.response.RandomMealResponse;
 import com.example.eatsease.model.network.response.MealsResponse;
 import com.example.eatsease.model.network.RetrofitClient;
@@ -58,6 +59,10 @@ public class Respiratory {
     // New method for fetching meal areas list
     public Single<AreaResponse> getMealAreasList() {
         return api.getMealAreasList();
+    }
+
+    public Single<IngredienttsResponse> getIngredientsList() {
+        return api.getIngredientsList();
     }
 
 

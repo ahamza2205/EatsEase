@@ -3,6 +3,7 @@ package com.example.eatsease.model.network;
 import com.example.eatsease.model.network.response.AreaResponse;
 import com.example.eatsease.model.network.response.CategoriesResponse;
 import com.example.eatsease.model.network.response.CategoryResponse;
+import com.example.eatsease.model.network.response.IngredienttsResponse;
 import com.example.eatsease.model.network.response.RandomMealResponse;
 import com.example.eatsease.model.network.response.MealsResponse;
 
@@ -33,8 +34,12 @@ public interface ApiService {
  @GET("list.php?c=list")
  Single<CategoryResponse> getMealCategoriesList();
 
- // 6 -  New endpoint to get the list of meal areas
+ // 6 -  get the list of meal areas
  @GET("list.php?a=list")
  Single<AreaResponse> getMealAreasList();
+
+ // 7 -  get the list of ingredients
+ @GET("list.php?i=list")
+ Single<IngredienttsResponse> getIngredientsList();
 
 }
