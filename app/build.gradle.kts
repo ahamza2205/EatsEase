@@ -124,6 +124,9 @@ dependencies {
     implementation("com.google.firebase:firebase-storage")
 
     implementation ("com.google.android.material:material:")
+    implementation ("com.pierfrancescosoffritti.androidyoutubeplayer:core:10.0.5")
+
+
 
 
 }

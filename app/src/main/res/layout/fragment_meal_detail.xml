@@ -96,7 +96,7 @@
             android:textStyle="bold" />
 
         <!-- Video View -->
-        <VideoView
+        <com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView
             android:id="@+id/mealVideo"
             android:layout_width="match_parent"
             android:layout_height="200dp"

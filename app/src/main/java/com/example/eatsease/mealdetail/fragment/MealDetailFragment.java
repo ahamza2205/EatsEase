@@ -1,5 +1,6 @@
 package com.example.eatsease.mealdetail.fragment;
 
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -7,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.MediaController;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.VideoView;
@@ -27,6 +29,9 @@ import com.example.eatsease.mealdetail.adapter.IngredientAdapter;
 import com.example.eatsease.model.respiratory.Respiratory;
 import com.example.eatsease.plan.model.MealPlanRepository;
 import com.google.android.material.datepicker.MaterialDatePicker;
+import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.YouTubePlayer;
+import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.AbstractYouTubePlayerListener;
+import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -41,7 +46,7 @@ public class MealDetailFragment extends Fragment implements IMealDetailView {
     private TextView mealTitle, instructions;
     private RecyclerView ingredientRecyclerView;
     private IngredientAdapter ingredientAdapter;
-    private VideoView mealVideo;
+    private YouTubePlayerView mealVideo;
     private Button addToCalendarBtn , addToFavoritesBtn;
 
     MealDetailPresenter presenter;
@@ -87,6 +92,24 @@ public class MealDetailFragment extends Fragment implements IMealDetailView {
         }
     }
 
+    public  String extractVideoId(String url) {
+        // Split the URL on '?' to get the query part
+        String[] parts = url.split("\\?");
+        if (parts.length > 1) {
+            // Split the query part on '&' to get individual parameters
+            String query = parts[1];
+            String[] queryParams = query.split("&");
+            for (String param : queryParams) {
+                // Split each parameter on '=' to separate key and value
+                String[] keyValue = param.split("=");
+                if (keyValue.length == 2 && "v".equals(keyValue[0])) {
+                    return keyValue[1]; // Return the value of the 'v' parameter
+                }
+            }
+        }
+        return null; // Return null if the video ID is not found
+    }
+
     public void updateMeal(Meal meal) {
         // Update meal details in the UI
         ingredientAdapter.updateIngredientDataList(meal.getIngredients());
@@ -98,8 +121,17 @@ public class MealDetailFragment extends Fragment implements IMealDetailView {
 
         // Handle video if available
         if (meal.getYoutubeUrl() != null && !meal.getYoutubeUrl().isEmpty()) {
-            mealVideo.setVideoPath(meal.getYoutubeUrl());
-            mealVideo.start();
+            getLifecycle().addObserver(mealVideo);
+            mealVideo.addYouTubePlayerListener(new AbstractYouTubePlayerListener() {
+                @Override
+                public void onReady(@NonNull YouTubePlayer youTubePlayer) {
+                    //if your url is something like this -> https://www.youtube.com/watch?v=EzyXVfyx7CU
+                    Log.d("MealVideo", "updateMeal:"+extractVideoId(meal.getYoutubeUrl()));
+                    Log.d("MealVideo", "updateMeal:"+meal.getYoutubeUrl());
+
+                    youTubePlayer.loadVideo(extractVideoId(meal.getYoutubeUrl()), 0);
+                }
+            });
         }
 
         // Handle addToFavoritesBtn
