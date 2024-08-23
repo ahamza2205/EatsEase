@@ -34,7 +34,7 @@ public class SplashPresenter {
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(aLong -> {
-                    Log.d("hamza-splash", "onCreate: 2");
+                    isAppUser();
                 });
     }
 }

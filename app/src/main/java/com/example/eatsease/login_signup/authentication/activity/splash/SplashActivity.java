@@ -30,9 +30,6 @@ public class SplashActivity extends AppCompatActivity implements ISplashView {
         // Initialize presenter
         splashPresenter = new SplashPresenter(this, this);
 
-        // Check if the user is authenticated
-        splashPresenter.isAppUser();
-
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.login), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
