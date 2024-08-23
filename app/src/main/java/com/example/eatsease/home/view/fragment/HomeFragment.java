@@ -1,6 +1,7 @@
 package com.example.eatsease.home.view.fragment;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,8 +10,10 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
 import com.example.eatsease.R;
 import com.example.eatsease.home.view.fragment.adapter.categories.CategoryAdapter;
 import com.example.eatsease.home.view.fragment.adapter.Recipe.RecipeAdapter;
@@ -25,8 +28,9 @@ import com.example.eatsease.home.presenter.HomePresenter;
 import com.example.eatsease.model.respiratory.Respiratory;
 
 import java.util.List;
+import java.util.Objects;
 
-public class HomeFragment extends Fragment implements MealView {
+public class HomeFragment extends Fragment implements MealView, RecipeAdapter.OnRecipeClickListener {
 
     private HomePresenter presenter;
     private RecyclerView categoryRecyclerView, recipeRecyclerView, randomRecyclerView;
@@ -35,7 +39,7 @@ public class HomeFragment extends Fragment implements MealView {
     private RandomAdapter randomAdapter;
     private List<Meal> recipeList;
     private TextView recipesTitle;
-    private FavoriteMeal favoriteMeal;
+
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -58,7 +62,7 @@ public class HomeFragment extends Fragment implements MealView {
         // Initialize Recipe RecyclerView
         recipeRecyclerView = view.findViewById(R.id.recycler_recipes);
         recipeRecyclerView.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
-        recipeAdapter = new RecipeAdapter(recipeList, getContext() , presenter );
+        recipeAdapter = new RecipeAdapter(recipeList, getContext(), this);
         recipeRecyclerView.setAdapter(recipeAdapter);
 
         // Initialize Random RecyclerView
@@ -69,8 +73,6 @@ public class HomeFragment extends Fragment implements MealView {
 
         presenter.fetchMealCategories();
 
-        // Insert favorite meal
-        presenter.insert(favoriteMeal);
         return view;
     }
 
@@ -116,5 +118,18 @@ public class HomeFragment extends Fragment implements MealView {
         super.onDestroy();
         presenter.clear();
         randomAdapter.clear();  // Clear the disposables in the RandomAdapter
+    }
+
+    @Override
+    public void onRecipeClick(Meal meal) {
+        HomeFragmentDirections.ActionHomeFragmentToMealDetailFragment action =
+                HomeFragmentDirections.actionHomeFragmentToMealDetailFragment(meal.getMealId());
+        Navigation.findNavController(requireView()).navigate(action);
+    }
+
+    @Override
+    public void onFavoriteClick(FavoriteMeal meal) {
+        Log.d("updateMeal", "onFavoriteClick:"+meal.getMealId());
+        presenter.insert(meal);
     }
 }

@@ -1,19 +1,27 @@
 package com.example.eatsease.plan.model;
 import androidx.room.Dao;
+import androidx.room.Delete;
 import androidx.room.Insert;
+import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
+
+import java.util.ArrayList;
+import java.util.List;
+
 import io.reactivex.rxjava3.core.Completable;
 import io.reactivex.rxjava3.core.Single;
 
 @Dao
 public interface MealPlanDao {
-
-    @Insert
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     Completable insertMealPlan(MealPlan mealPlan);
 
-    @Query("SELECT * FROM mealPlan WHERE date = :date LIMIT 1")
-    Single<MealPlan> getMealPlanByDate(String date);
+    @Query("DELETE FROM mealPlan")
+    Completable deleteAllMeals();
 
-    @Query("DELETE FROM mealPlan WHERE date = :date")
-    Completable deleteMealPlanByDate(String date);
+    @Query("SELECT * FROM mealPlan WHERE date = :date ")
+    Single<List<MealPlan>> getMealPlanByDate(String date);
+
+    @Query("DELETE FROM mealPlan WHERE mealId = :id")
+    Completable deleteMealPlanByDate(String id);
 }

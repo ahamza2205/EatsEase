@@ -1,6 +1,7 @@
 package com.example.eatsease.mealdetail.fragment;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -25,6 +26,7 @@ import com.example.eatsease.model.network.response.Meal;
 import com.example.eatsease.mealdetail.adapter.IngredientAdapter;
 import com.example.eatsease.model.respiratory.Respiratory;
 import com.example.eatsease.plan.model.MealPlanRepository;
+import com.google.android.material.datepicker.MaterialDatePicker;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -41,6 +43,7 @@ public class MealDetailFragment extends Fragment implements IMealDetailView {
     private IngredientAdapter ingredientAdapter;
     private VideoView mealVideo;
     private Button addToCalendarBtn , addToFavoritesBtn;
+
     MealDetailPresenter presenter;
     private final CompositeDisposable disposables = new CompositeDisposable(); // Manage RxJava disposables
 
@@ -73,7 +76,8 @@ public class MealDetailFragment extends Fragment implements IMealDetailView {
                 Respiratory.getInstance(getContext()),
                 RetrofitClient.getInstance(),
                 MealPlanRepository.getInstance(getContext()),
-                getContext());
+                getContext(),
+                this);
 
         // Retrieve mealId from arguments
         if (getArguments() != null) {
@@ -115,19 +119,28 @@ public class MealDetailFragment extends Fragment implements IMealDetailView {
 
         addToCalendarBtn.setOnClickListener(v -> {
             // Retrieve the meal ID and current date (you can customize the date handling)
+            Log.d("MealDetailFragment", "clicked");
             String mealId = meal.getMealId();
-            String selectedDate = getCurrentDate(); // Assuming you have a method to get the current date or selected date
-
-            // Add the meal to the calendar (meal plan)
-            presenter.addMealToCalendar(mealId, selectedDate);
+            MaterialDatePicker<Long> m =MaterialDatePicker.Builder.datePicker().build();
+            m.show(getParentFragmentManager(), "MaterialDatePicker");
+            m.addOnPositiveButtonClickListener(selection -> {
+                presenter.addMealToCalendar(mealId, convertLongToDate(selection));
+            });
         });
 
     }
-    private String getCurrentDate() {
-        // Example: Return the current date in the desired format
+    private String convertLongToDate(long timestamp) {
+        // Create a Date object from the timestamp
+        Date date = new Date(timestamp);
+
+        // Create a SimpleDateFormat object with the desired date pattern
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
-        return dateFormat.format(new Date());
+
+        // Format the Date object to the desired string format
+        return dateFormat.format(date);
     }
+
+
 
     @Override
     public void onDestroyView() {

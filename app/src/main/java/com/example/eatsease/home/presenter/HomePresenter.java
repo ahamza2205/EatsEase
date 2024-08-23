@@ -17,9 +17,9 @@ public class HomePresenter {
     private final Respiratory repository;
     private final MealView view;
     private CompositeDisposable disposable;
-    private RetrofitClient retrofitClient ;
-    private Context context ;
-   // private FavoriteMeal favoriteMeal ;
+    private RetrofitClient retrofitClient;
+    private Context context;
+    // private FavoriteMeal favoriteMeal ;
 
     public HomePresenter(MealView view, Respiratory repository, RetrofitClient retrofitClient, Context context) {
         this.repository = repository;
@@ -31,9 +31,9 @@ public class HomePresenter {
 
     public void fetchMealCategories() {
 
-if (retrofitClient == null){
-return;
-}
+        if (retrofitClient == null) {
+            return;
+        }
         disposable.add(
                 repository.getMealCategories()
                         .subscribeOn(Schedulers.io())
@@ -46,6 +46,7 @@ return;
                         )
         );
     }
+
     public void fetchSeafoodMeals(String categoryName) {
         disposable.add(
                 repository.getSeafoodMeals(categoryName)
@@ -57,6 +58,7 @@ return;
                         )
         );
     }
+
     public void clear() {
         disposable.clear();
     }
@@ -74,6 +76,7 @@ return;
                             throwable.printStackTrace();
                         });
     }
+
     public void delete(FavoriteMeal favoriteMeal) {
         repository.removeFavoriteMeal(favoriteMeal)
                 .subscribeOn(Schedulers.io())

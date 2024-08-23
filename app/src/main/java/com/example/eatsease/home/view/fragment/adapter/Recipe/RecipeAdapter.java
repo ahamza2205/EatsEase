@@ -29,12 +29,13 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.RecipeView
     private List<Meal> recipesList;
     private Context context;
      private HomePresenter homePresenter;
-    private FavoriteMeal recipe;
+    private OnRecipeClickListener onRecipeClickListener;
 
-    public RecipeAdapter(List<Meal> recipesList, Context context , HomePresenter homePresenter) {
+
+    public RecipeAdapter(List<Meal> recipesList, Context context, OnRecipeClickListener onRecipeClickListener) {
         this.recipesList = recipesList != null ? recipesList : new ArrayList<>(); // Initialize with empty list if null
         this.context = context;
-        this.homePresenter = homePresenter;
+        this.onRecipeClickListener = onRecipeClickListener;
     }
 
     @NonNull
@@ -54,10 +55,10 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.RecipeView
 
         // Set click listener for each recipe item
         holder.itemView.setOnClickListener(v -> {
+            if (onRecipeClickListener != null) {
+                onRecipeClickListener.onRecipeClick(recipe);
+            }
             // Handle recipe item click
-            HomeFragmentDirections.ActionHomeFragmentToMealDetailFragment action =
-                    HomeFragmentDirections.actionHomeFragmentToMealDetailFragment(recipe.getMealId());
-            Navigation.findNavController(holder.itemView).navigate(action);
         });
 
         holder.favoriteButton.setOnClickListener(v -> {
@@ -68,7 +69,7 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.RecipeView
             favoriteMeal.setThumbnail(recipe.getMealThumbnail());
 
             // Insert the favorite meal using HomePresenter
-            homePresenter.insert(favoriteMeal);
+            onRecipeClickListener.onFavoriteClick(favoriteMeal);
             Toast.makeText(context, "Added to favorites", Toast.LENGTH_SHORT).show();
         });
 
@@ -99,4 +100,9 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.RecipeView
 
         }
     }
+    public interface OnRecipeClickListener {
+        void onRecipeClick(Meal meal);
+        void onFavoriteClick(FavoriteMeal meal);
+    }
 }
+

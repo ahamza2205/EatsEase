@@ -70,6 +70,9 @@
             android:name="strIngredient"
             app:argType="string"
             app:nullable="true" />
+        <action
+            android:id="@+id/action_searchItemFragment_to_mealDetailFragment"
+            app:destination="@id/mealDetailFragment" />
     </fragment>
     <fragment
         android:id="@+id/profileFragment2"

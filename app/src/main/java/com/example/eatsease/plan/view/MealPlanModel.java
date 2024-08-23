@@ -6,6 +6,8 @@ import com.example.eatsease.plan.MealPlanInterFaces;
 import com.example.eatsease.plan.model.MealPlan;
 import com.example.eatsease.plan.model.MealPlanRepository;
 
+import java.util.List;
+
 import io.reactivex.rxjava3.core.Completable;
 import io.reactivex.rxjava3.core.Single;
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
@@ -20,7 +22,7 @@ public class MealPlanModel implements MealPlanInterFaces.Model {
 
 
     @Override
-    public Single<MealPlan> getMealPlan(String date) {
+    public Single<List<MealPlan>> getMealPlan(String date) {
         return mealPlanRepository.getMealPlanByDate(date)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread());
@@ -34,8 +36,8 @@ public class MealPlanModel implements MealPlanInterFaces.Model {
     }
 
     @Override
-    public Completable deleteMealPlan(String date) {
-        return mealPlanRepository.deleteMealPlanByDate(date)
+    public Completable deleteMealPlan(String id) {
+        return mealPlanRepository.deleteMealPlanByDate(id)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread());
     }

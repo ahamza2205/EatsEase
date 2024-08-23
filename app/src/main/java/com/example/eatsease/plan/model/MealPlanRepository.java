@@ -5,6 +5,9 @@ import static okhttp3.internal.Internal.instance;
 import android.content.Context;
 import com.google.firebase.auth.FirebaseAuth;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import io.reactivex.rxjava3.core.Completable;
 import io.reactivex.rxjava3.core.Single;
 import okhttp3.internal.Internal;
@@ -34,7 +37,7 @@ public class MealPlanRepository {
         return instance;
     }
 
-    public Single<MealPlan> getMealPlanByDate(String date) {
+    public Single<List<MealPlan>> getMealPlanByDate(String date) {
         return mealPlanDao.getMealPlanByDate(date);
     }
 
@@ -42,7 +45,11 @@ public class MealPlanRepository {
         return mealPlanDao.insertMealPlan(mealPlan);
     }
 
-    public Completable deleteMealPlanByDate(String date) {
-        return mealPlanDao.deleteMealPlanByDate(date);
+    public Completable deleteAllMeals() {
+        return mealPlanDao.deleteAllMeals();
+    }
+
+    public Completable deleteMealPlanByDate(String id) {
+        return mealPlanDao.deleteMealPlanByDate(id);
     }
 }

@@ -1,7 +1,9 @@
 package com.example.eatsease.search.presenter;
 
 import android.content.Context;
+import android.widget.Toast;
 
+import com.example.eatsease.model.database.FavoriteMeal;
 import com.example.eatsease.model.network.RetrofitClient;
 import com.example.eatsease.model.respiratory.Respiratory;
 import com.example.eatsease.search.view.ISearchView;
@@ -20,6 +22,13 @@ public class SearchPresenter {
         this.view = view;
         this.retrofitClient = retrofitClient;
         this.disposable =  new CompositeDisposable();
+    }
+
+    public void insert(FavoriteMeal favoriteMeal) {
+        respiratory.addFavoriteMeal(favoriteMeal)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe();
     }
 
     // Fetch meal categories

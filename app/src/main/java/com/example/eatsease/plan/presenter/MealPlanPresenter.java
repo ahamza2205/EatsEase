@@ -41,8 +41,8 @@ public class MealPlanPresenter implements MealPlanInterFaces.Presenter {
     }
 
     @Override
-    public void deleteMealPlan(String date) {
-        model.deleteMealPlan(date)
+    public void deleteMealPlan(String id,String date) {
+        model.deleteMealPlan(id)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(

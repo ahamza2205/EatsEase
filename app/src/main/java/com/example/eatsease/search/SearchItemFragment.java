@@ -15,6 +15,7 @@ import android.widget.Toast;
 
 import com.example.eatsease.R;
 import com.example.eatsease.home.view.fragment.adapter.Recipe.RecipeAdapter;
+import com.example.eatsease.model.database.FavoriteMeal;
 import com.example.eatsease.model.network.RetrofitClient;
 import com.example.eatsease.model.network.response.AreaResponse;
 import com.example.eatsease.model.network.response.CategoriesResponse;
@@ -26,12 +27,13 @@ import com.example.eatsease.search.presenter.SearchPresenter;
 import com.example.eatsease.search.view.ISearchView;
 
 
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class SearchItemFragment extends Fragment implements ISearchView {
+public class SearchItemFragment extends Fragment implements ISearchView, RecipeAdapter.OnRecipeClickListener {
 
     private SearchPresenter presenter;
     private RecipeAdapter recipeAdapter , recipeAreaAdapter;
@@ -57,7 +59,7 @@ public class SearchItemFragment extends Fragment implements ISearchView {
         // Initialize RecyclerView and Adapter
         recyclerView = view.findViewById(R.id.recycleSearch);
         // Initialize the adapter with an empty list
-        recipeAdapter = new RecipeAdapter(new ArrayList<>(),getContext() , null);
+        recipeAdapter = new RecipeAdapter(new ArrayList<>(),getContext() , this);
         recyclerView.setAdapter(recipeAdapter);
 
         presenter = new SearchPresenter(this , Respiratory.getInstance(this.getContext()) , RetrofitClient.getInstance());
@@ -152,6 +154,17 @@ public class SearchItemFragment extends Fragment implements ISearchView {
     public void onFetchIngredientsMealsError(Throwable throwable) {
         Log.e("SearchItemFragment", "Error fetching meals", throwable);
         Toast.makeText(getContext(), "Failed to load meals", Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onRecipeClick(Meal meal) {
+        Navigation.findNavController(requireView()).navigate(SearchItemFragmentDirections.actionSearchItemFragmentToMealDetailFragment(meal.getMealId()));
+
+    }
+
+    @Override
+    public void onFavoriteClick(FavoriteMeal meal) {
+        presenter.insert(meal);
     }
 }
 
