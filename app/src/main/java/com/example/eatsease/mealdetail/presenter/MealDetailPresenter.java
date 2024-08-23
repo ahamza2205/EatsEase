@@ -1,7 +1,10 @@
 package com.example.eatsease.mealdetail.presenter;
 
+import android.content.Context;
 import android.util.Log;
+import android.widget.Toast;
 
+import com.example.eatsease.model.database.FavoriteMeal;
 import com.example.eatsease.model.network.RetrofitClient;
 import com.example.eatsease.model.respiratory.Respiratory;
 import com.example.eatsease.model.network.response.Meal;
@@ -18,13 +21,14 @@ public class MealDetailPresenter {
     private Respiratory repo;
     private RetrofitClient retrofitClient ;
     private CompositeDisposable disposable;
+    private Context context;
 
-
-    public MealDetailPresenter(MealDetailFragment mealDetialFragment , Respiratory repo , RetrofitClient retrofitClient) {
+    public MealDetailPresenter(MealDetailFragment mealDetialFragment, Respiratory repo, RetrofitClient retrofitClient, Context context) {
         this.mealDetialFragment = mealDetialFragment;
         this.repo = repo;
-        this.retrofitClient = retrofitClient ;
-        this.disposable =  new CompositeDisposable();
+        this.retrofitClient = retrofitClient;
+        this.disposable = new CompositeDisposable();
+        this.context = context; // Initialize context
     }
     public void fetchDetailsmeal(String mealId) {
         disposable.add(
@@ -47,5 +51,19 @@ public class MealDetailPresenter {
                                 }
                         )
         );
+    }
+
+    public void insert(FavoriteMeal favoriteMeal) {
+        repo.addFavoriteMeal(favoriteMeal)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(
+                        () -> {
+                            Toast.makeText(context, "Product Added To Database", Toast.LENGTH_SHORT).show();
+                        },
+                        throwable -> {
+                            // Handle error
+                            throwable.printStackTrace();
+                        });
     }
 }

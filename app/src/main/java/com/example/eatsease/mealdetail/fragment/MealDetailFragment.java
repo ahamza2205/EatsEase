@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 import android.widget.VideoView;
 
 import androidx.annotation.NonNull;
@@ -18,6 +19,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.example.eatsease.R;
 import com.example.eatsease.mealdetail.presenter.MealDetailPresenter;
+import com.example.eatsease.model.database.FavoriteMeal;
 import com.example.eatsease.model.network.RetrofitClient;
 import com.example.eatsease.model.network.response.Meal;
 import com.example.eatsease.mealdetail.adapter.IngredientAdapter;
@@ -63,7 +65,7 @@ public class MealDetailFragment extends Fragment {
         ingredientAdapter = new IngredientAdapter(new ArrayList<>());
         ingredientRecyclerView.setAdapter(ingredientAdapter);
 
-        presenter = new MealDetailPresenter(this , Respiratory.getInstance(this.getContext()), RetrofitClient.getInstance());
+        presenter = new MealDetailPresenter(this, Respiratory.getInstance(getContext()), RetrofitClient.getInstance(), getContext());
         // Retrieve mealId from arguments
         if (getArguments() != null) {
             MealDetailFragmentArgs args = MealDetailFragmentArgs.fromBundle(getArguments());
@@ -86,6 +88,20 @@ public class MealDetailFragment extends Fragment {
             mealVideo.setVideoPath(meal.getYoutubeUrl());
             mealVideo.start();
         }
+
+        // Handle addToFavoritesBtn
+          addToFavoritesBtn.setOnClickListener(v -> {
+              // Create a FavoriteMeal object based on the current Meal
+              FavoriteMeal favoriteMeal = new FavoriteMeal();
+              favoriteMeal.setMealId(meal.getMealId());
+              favoriteMeal.setMealName(meal.getMealName());
+              favoriteMeal.setThumbnail(meal.getMealThumbnail());
+
+              // Insert the favorite meal using HomePresenter
+              presenter.insert(favoriteMeal);
+              Toast.makeText(getContext(), "Added to favorites", Toast.LENGTH_SHORT).show();
+
+          });
     }
 
     @Override

@@ -4,8 +4,10 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.navigation.Navigation;
@@ -13,7 +15,9 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.eatsease.R;
+import com.example.eatsease.home.presenter.HomePresenter;
 import com.example.eatsease.home.view.fragment.HomeFragmentDirections;
+import com.example.eatsease.model.database.FavoriteMeal;
 import com.example.eatsease.model.network.response.Meal;
 
 
@@ -24,10 +28,13 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.RecipeView
 
     private List<Meal> recipesList;
     private Context context;
+     private HomePresenter homePresenter;
+    private FavoriteMeal recipe;
 
-    public RecipeAdapter(List<Meal> recipesList, Context context) {
+    public RecipeAdapter(List<Meal> recipesList, Context context , HomePresenter homePresenter) {
         this.recipesList = recipesList != null ? recipesList : new ArrayList<>(); // Initialize with empty list if null
         this.context = context;
+        this.homePresenter = homePresenter;
     }
 
     @NonNull
@@ -52,7 +59,21 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.RecipeView
                     HomeFragmentDirections.actionHomeFragmentToMealDetailFragment(recipe.getMealId());
             Navigation.findNavController(holder.itemView).navigate(action);
         });
+
+        holder.favoriteButton.setOnClickListener(v -> {
+            // Create a FavoriteMeal object based on the current Meal
+            FavoriteMeal favoriteMeal = new FavoriteMeal();
+            favoriteMeal.setMealId(recipe.getMealId());
+            favoriteMeal.setMealName(recipe.getMealName());
+            favoriteMeal.setThumbnail(recipe.getMealThumbnail());
+
+            // Insert the favorite meal using HomePresenter
+            homePresenter.insert(favoriteMeal);
+            Toast.makeText(context, "Added to favorites", Toast.LENGTH_SHORT).show();
+        });
+
     }
+
 
     @Override
     public int getItemCount() {
@@ -60,23 +81,22 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.RecipeView
     }
 
     public void  updateRecipeList(List<Meal> newRecipes) {
-       // if (newRecipes != null) {
             recipesList.clear();
             recipesList.addAll(newRecipes);
             notifyDataSetChanged();
-      //  }
-       // this.recipesList = newRecipes != null ? newRecipes : new ArrayList<>();
-       // notifyDataSetChanged(); // Refresh RecyclerView with new data
     }
 
     public static class RecipeViewHolder extends RecyclerView.ViewHolder {
         TextView recipeName;
         ImageView recipeImage;
+        ImageButton favoriteButton;
 
         public RecipeViewHolder(@NonNull View itemView) {
             super(itemView);
             recipeName = itemView.findViewById(R.id.recipe_name);
             recipeImage = itemView.findViewById(R.id.recipe_image);
+            favoriteButton = itemView.findViewById(R.id.home_recipe_favorite_button);
+
         }
     }
 }

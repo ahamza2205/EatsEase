@@ -68,7 +68,6 @@
                     Navigation.findNavController(v).navigate(action);
                 });
             }
-
         }
 
         @Override

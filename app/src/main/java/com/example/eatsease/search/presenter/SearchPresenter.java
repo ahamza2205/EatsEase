@@ -1,5 +1,9 @@
 package com.example.eatsease.search.presenter;
 
+import android.content.Context;
+import android.widget.Toast;
+
+import com.example.eatsease.model.database.FavoriteMeal;
 import com.example.eatsease.model.network.RetrofitClient;
 import com.example.eatsease.model.respiratory.Respiratory;
 import com.example.eatsease.search.view.ISearchView;
@@ -16,7 +20,6 @@ public class SearchPresenter {
     private  Respiratory respiratory;
     private  RetrofitClient retrofitClient ;
     private CompositeDisposable disposable;
-
     public SearchPresenter(ISearchView view , Respiratory respiratory , RetrofitClient retrofitClient) {
         this.respiratory = respiratory;
         this.view = view;
@@ -90,5 +93,7 @@ public class SearchPresenter {
                 )
         );
     }
+
+
 
 }

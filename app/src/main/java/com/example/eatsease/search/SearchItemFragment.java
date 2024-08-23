@@ -58,11 +58,10 @@ public class SearchItemFragment extends Fragment implements ISearchView {
         recyclerView = view.findViewById(R.id.recycleSearch);
       //  recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         // Initialize the adapter with an empty list
-        recipeAdapter = new RecipeAdapter(new ArrayList<>(), getContext());
+        recipeAdapter = new RecipeAdapter(new ArrayList<>(),getContext() , null);
         recyclerView.setAdapter(recipeAdapter);
 
-
-            presenter = new SearchPresenter(this , Respiratory.getInstance(this.getContext()) , RetrofitClient.getInstance());
+        presenter = new SearchPresenter(this , Respiratory.getInstance(this.getContext()) , RetrofitClient.getInstance());
 
 
             // Fetch data from arguments

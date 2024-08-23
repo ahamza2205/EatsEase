@@ -1,6 +1,11 @@
 package com.example.eatsease.home.presenter;
 
+import android.content.Context;
+import android.widget.Toast;
+
+import com.example.eatsease.model.database.FavoriteMeal;
 import com.example.eatsease.model.network.RetrofitClient;
+import com.example.eatsease.model.network.response.Meal;
 import com.example.eatsease.model.respiratory.Respiratory;
 import com.example.eatsease.home.view.fragment.MealView;
 
@@ -13,12 +18,17 @@ public class HomePresenter {
     private final MealView view;
     private CompositeDisposable disposable;
     private RetrofitClient retrofitClient ;
-    public HomePresenter(MealView view , Respiratory repository , RetrofitClient retrofitClient) {
+    private Context context ;
+   // private FavoriteMeal favoriteMeal ;
+
+    public HomePresenter(MealView view, Respiratory repository, RetrofitClient retrofitClient, Context context) {
         this.repository = repository;
         this.view = view;
         this.retrofitClient = retrofitClient;
-        this.disposable =  new CompositeDisposable();
+        this.context = context; // Initialize context here
+        this.disposable = new CompositeDisposable();
     }
+
     public void fetchMealCategories() {
 
 if (retrofitClient == null){
@@ -47,9 +57,34 @@ return;
                         )
         );
     }
-
-
     public void clear() {
         disposable.clear();
+    }
+
+    public void insert(FavoriteMeal favoriteMeal) {
+        repository.addFavoriteMeal(favoriteMeal)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(
+                        () -> {
+                            Toast.makeText(context, "Product Added To Database", Toast.LENGTH_SHORT).show();
+                        },
+                        throwable -> {
+                            // Handle error
+                            throwable.printStackTrace();
+                        });
+    }
+    public void delete(FavoriteMeal favoriteMeal) {
+        repository.removeFavoriteMeal(favoriteMeal)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(
+                        () -> {
+                            Toast.makeText(context, "Product Deleted", Toast.LENGTH_SHORT).show();
+                        },
+                        throwable -> {
+                            // Handle error
+                            throwable.printStackTrace();
+                        });
     }
 }

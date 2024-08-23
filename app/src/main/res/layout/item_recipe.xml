@@ -37,18 +37,18 @@
             android:textSize="18sp" />
 
         <ImageButton
-            android:id="@+id/favorite_button"
+            android:id="@+id/home_recipe_favorite_button"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_alignParentTop="true"
             android:layout_alignParentEnd="true"
             android:layout_marginStart="5dp"
             android:layout_marginLeft="5dp"
-            android:layout_marginTop="-1dp"
-            android:layout_marginEnd="-1dp"
+            android:layout_marginTop="-2dp"
+            android:layout_marginEnd="-2dp"
             android:layout_marginRight="5dp"
             android:layout_marginBottom="5dp"
-            android:background="@drawable/rounded_red_background"
+            android:background="@color/white"
             android:contentDescription="@string/add_to_favorites"
             android:src="@drawable/baseline_favorite_24" />
 

@@ -15,6 +15,7 @@ import com.example.eatsease.R;
 import com.example.eatsease.home.view.fragment.adapter.categories.CategoryAdapter;
 import com.example.eatsease.home.view.fragment.adapter.Recipe.RecipeAdapter;
 import com.example.eatsease.home.view.fragment.adapter.random.RandomAdapter;
+import com.example.eatsease.model.database.FavoriteMeal;
 import com.example.eatsease.model.network.RetrofitClient;
 import com.example.eatsease.model.network.response.CategoriesResponse;
 import com.example.eatsease.model.network.response.CategoryResponse;
@@ -34,11 +35,11 @@ public class HomeFragment extends Fragment implements MealView {
     private RandomAdapter randomAdapter;
     private List<Meal> recipeList;
     private TextView recipesTitle;
-
+    private FavoriteMeal favoriteMeal;
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        presenter = new HomePresenter(this , Respiratory.getInstance(this.getContext()) , RetrofitClient.getInstance());
+        presenter = new HomePresenter(this, Respiratory.getInstance(this.getContext()), RetrofitClient.getInstance(), getContext());
     }
 
 
@@ -57,7 +58,7 @@ public class HomeFragment extends Fragment implements MealView {
         // Initialize Recipe RecyclerView
         recipeRecyclerView = view.findViewById(R.id.recycler_recipes);
         recipeRecyclerView.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
-        recipeAdapter = new RecipeAdapter(recipeList, getContext());
+        recipeAdapter = new RecipeAdapter(recipeList, getContext() , presenter );
         recipeRecyclerView.setAdapter(recipeAdapter);
 
         // Initialize Random RecyclerView
@@ -68,6 +69,8 @@ public class HomeFragment extends Fragment implements MealView {
 
         presenter.fetchMealCategories();
 
+        // Insert favorite meal
+        presenter.insert(favoriteMeal);
         return view;
     }
 
