@@ -1,4 +1,4 @@
-package com.example.eatsease.home.view.fragment;
+package com.example.eatsease.plan;
 
 import android.os.Bundle;
 

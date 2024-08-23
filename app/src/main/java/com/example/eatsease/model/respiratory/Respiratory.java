@@ -95,8 +95,8 @@ public class Respiratory {
                 .subscribeOn(Schedulers.io());
     }
    // Get all favorite meals
-    public Flowable<List<FavoriteMeal>> getFavoriteMeals(String userId) {
-        return mealsDataBase.favoriteMealDao().getAllFavoriteMeals(userId)
+    public Flowable<List<FavoriteMeal>> getFavoriteMeals() {
+        return mealsDataBase.favoriteMealDao().getAllFavoriteMeals()
                 .subscribeOn(Schedulers.io());
     }
     // Remove favorite

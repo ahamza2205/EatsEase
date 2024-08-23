@@ -36,14 +36,14 @@ public class SearchItemFragment extends Fragment implements ISearchView {
     private SearchPresenter presenter;
     private RecipeAdapter recipeAdapter , recipeAreaAdapter;
     private RecyclerView recyclerView;
-     private List<Meal> newRecipes ;
-     private String strCategory;
+    private List<Meal> newRecipes ;
+    private String strCategory;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         // Initialize presenter here, passing the fragment as a view
-      //  presenter = new SearchPresenter(this , Respiratory.getInstance(getContext()) , RetrofitClient.getInstance());
+        //  presenter = new SearchPresenter(this , Respiratory.getInstance(getContext()) , RetrofitClient.getInstance());
     }
 
     @Override
@@ -56,7 +56,6 @@ public class SearchItemFragment extends Fragment implements ISearchView {
         super.onViewCreated(view, savedInstanceState);
         // Initialize RecyclerView and Adapter
         recyclerView = view.findViewById(R.id.recycleSearch);
-      //  recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         // Initialize the adapter with an empty list
         recipeAdapter = new RecipeAdapter(new ArrayList<>(),getContext() , null);
         recyclerView.setAdapter(recipeAdapter);
@@ -64,7 +63,7 @@ public class SearchItemFragment extends Fragment implements ISearchView {
         presenter = new SearchPresenter(this , Respiratory.getInstance(this.getContext()) , RetrofitClient.getInstance());
 
 
-            // Fetch data from arguments
+        // Fetch data from arguments
         SearchItemFragmentArgs args = SearchItemFragmentArgs.fromBundle(getArguments());
         String categoryName = args.getStrCategory();
         String areaName = args.getStrArea();
@@ -79,11 +78,11 @@ public class SearchItemFragment extends Fragment implements ISearchView {
             Log.d("SearchItemFragment", "Fetching meals for area: " + areaName);
             presenter.getCanadianMeals(areaName);
         }
-          if (ingredientName != null) {
-              Log.d("SearchItemFragment", "Fetching recipes for ingredient: " + ingredientName);
-              presenter.getMealsByIngredient(ingredientName);
-          }
+        if (ingredientName != null) {
+            Log.d("SearchItemFragment", "Fetching recipes for ingredient: " + ingredientName);
+            presenter.getMealsByIngredient(ingredientName);
         }
+    }
 
 
     @Override
@@ -131,8 +130,8 @@ public class SearchItemFragment extends Fragment implements ISearchView {
 
     @Override
     public void onAreaMealsSuccess(MealsResponse mealsResponse) {
-            Log.d("SearchItemFragment", "Received area meals: " + mealsResponse.getMeals());
-            recipeAdapter.updateRecipeList(mealsResponse.getMeals());  // Use the correct adapter
+        Log.d("SearchItemFragment", "Received area meals: " + mealsResponse.getMeals());
+        recipeAdapter.updateRecipeList(mealsResponse.getMeals());  // Use the correct adapter
 
     }
 
@@ -155,3 +154,4 @@ public class SearchItemFragment extends Fragment implements ISearchView {
         Toast.makeText(getContext(), "Failed to load meals", Toast.LENGTH_SHORT).show();
     }
 }
+

@@ -8,16 +8,23 @@ import androidx.room.Delete;
 import io.reactivex.rxjava3.core.Completable;
 import io.reactivex.rxjava3.core.Flowable;
 import java.util.List;
+
 @Dao
 public interface FavoriteMealDao {
 
+    // Insert a new favorite meal, replacing if it already exists
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     Completable insert(FavoriteMeal favoriteMeal);
 
-    @Query("SELECT * FROM favorite_meals WHERE userId = :userId")
-    Flowable<List<FavoriteMeal>> getAllFavoriteMeals(String userId);
+    // Get all favorite meals for a particular user
+    @Query("SELECT * FROM favorite_meals")
+    Flowable<List<FavoriteMeal>> getAllFavoriteMeals();
+
+    // Get a specific meal by mealId
     @Query("SELECT * FROM favorite_meals WHERE mealId = :mealId LIMIT 1")
-    FavoriteMeal getMealById(String mealId);
+    Flowable<FavoriteMeal> getMealById(String mealId);
+
+    // Delete a favorite meal
     @Delete
     Completable delete(FavoriteMeal favoriteMeal);
 }

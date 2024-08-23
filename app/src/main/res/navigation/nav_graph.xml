@@ -30,14 +30,14 @@
     <!-- Calendar Fragment -->
     <fragment
         android:id="@+id/calenderFragment"
-        android:name="com.example.eatsease.home.view.fragment.CalenderFragment"
+        android:name="com.example.eatsease.plan.CalenderFragment"
         android:label="Calendar"
         tools:layout="@layout/fragment_calender2" />
 
     <!-- Favorite Fragment -->
     <fragment
         android:id="@+id/favoriteFragment2"
-        android:name="com.example.eatsease.favorite.FavoriteFragment"
+        android:name="com.example.eatsease.favorite.view.FavoriteFragment"
         android:label="Favorites"
         tools:layout="@layout/fragment_favorite2" />
 
@@ -71,5 +71,10 @@
             app:argType="string"
             app:nullable="true" />
     </fragment>
+    <fragment
+        android:id="@+id/profileFragment2"
+        android:name="com.example.eatsease.profile.ProfileFragment"
+        android:label="fragment_profile"
+        tools:layout="@layout/fragment_profile" />
 
 </navigation>

@@ -23,7 +23,6 @@
             android:layout_height="200dp"
             android:scaleType="centerCrop"
             android:src="@drawable/foods"
-            android:background="@drawable/rounded_image_view"
             android:elevation="4dp" />
 
         <TextView
@@ -32,10 +31,10 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginTop="12dp"
-            android:fontFamily="@font/roboto_medium_italic"
+            android:fontFamily="@font/roboto_bold"
             android:gravity="center"
             android:text="Meal Name"
-            android:textColor="@color/gray"
+            android:textColor="@color/black"
             android:textSize="22sp"
             android:textStyle="bold|italic" />
 

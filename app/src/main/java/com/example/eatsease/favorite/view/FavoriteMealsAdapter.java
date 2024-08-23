@@ -4,54 +4,79 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-
+import android.widget.ImageButton;
+import android.widget.ImageView;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-
-
+import com.bumptech.glide.Glide;
+import com.example.eatsease.R;
+import com.example.eatsease.favorite.presenter.FavoriteMealPresenter;
+import com.example.eatsease.model.database.FavoriteMeal;
 import java.util.List;
 
-public class FavoriteMealsAdapter extends RecyclerView.Adapter<FavoriteMealsAdapter.favoritemeal> {
-    List<FavoriteMeal> FavoriteMeal;
-    Context context;
+public class FavoriteMealsAdapter extends RecyclerView.Adapter<FavoriteMealsAdapter.FavoriteMealViewHolder> {
 
-    public FavoriteMealsAdapter(List<FavoriteMeal> FavoriteMeal, Context context) {
-        this.FavoriteMeal = FavoriteMeal;
+    private List<FavoriteMeal> favoriteMeals;
+    private Context context;
+    private FavoriteMealPresenter favoriteMealPresenter ;
+
+    public FavoriteMealsAdapter(List<FavoriteMeal> favoriteMeals, Context context, FavoriteMealPresenter favoriteMealPresenter) {
+        this.favoriteMeals = favoriteMeals;
         this.context = context;
+        this.favoriteMealPresenter = favoriteMealPresenter;
     }
 
-    public void setFavoriteMeal(List<FavoriteMeal> FavoriteMeal) {
-        this.FavoriteMeal = FavoriteMeal;
+    public void setFavoriteMeal(List<FavoriteMeal> favoriteMeals) {
+        this.favoriteMeals = favoriteMeals;
     }
 
     @NonNull
     @Override
-    public favoritemeal onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        LayoutInflater inflater = LayoutInflater.from(parent.getContext());
-        return new favoritemeal(inflater.inflate(R.layout., parent, false));
+    public FavoriteMealViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View view = LayoutInflater.from(context).inflate(R.layout.item_favoritemeal, parent, false);
+        return new FavoriteMealViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull favoritemeal holder, int position) {
+    public void onBindViewHolder(@NonNull FavoriteMealViewHolder holder, int position) {
+        FavoriteMeal favoriteMeal = favoriteMeals.get(position);
+        holder.favRecipeName.setText(favoriteMeal.getMealName());
 
-    }
+        // Load image using Glide or any other image loading library
+        Glide.with(context)
+                .load(favoriteMeal.getThumbnail())
+                .into(holder.favRecipeImage);
 
-    public void updatedata(List<FavoriteMeal> FavoriteMeal) {
-        this.FavoriteMeal = FavoriteMeal;
-        notifyDataSetChanged();
+
+        holder.favRecipeFavoriteButton.setOnClickListener(v -> {
+            favoriteMealPresenter.deleteFavoriteMeal(favoriteMeal);
+            favoriteMeals.remove(position); // Remove the item from the list
+            notifyItemRemoved(position); // Notify the adapter that the item is removed
+            notifyItemRangeChanged(position, favoriteMeals.size()); // Notify the adapter to update the remaining items
+            Toast.makeText(context, "Meal Deleted From Favorites", Toast.LENGTH_SHORT).show();
+        });
     }
 
     @Override
     public int getItemCount() {
-        return FavoriteMeal.size();
+        return favoriteMeals.size();
     }
 
-    public class favoritemeal extends RecyclerView.ViewHolder {
+    public static class FavoriteMealViewHolder extends RecyclerView.ViewHolder {
 
-        public favoritemeal(@NonNull View itemView) {
+        ImageView favRecipeImage;
+        TextView favRecipeName;
+        ImageButton favRecipeFavoriteButton;
+
+        public FavoriteMealViewHolder(@NonNull View itemView) {
             super(itemView);
-
+            favRecipeImage = itemView.findViewById(R.id.favrecipe_image);
+            favRecipeName = itemView.findViewById(R.id.favrecipe_name);
+            favRecipeFavoriteButton = itemView.findViewById(R.id.fav_recipe_favorite_button);
         }
     }
+
 }

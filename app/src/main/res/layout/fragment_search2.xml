@@ -7,19 +7,18 @@
     android:orientation="vertical"
     android:padding="16dp">
 
-
     <!-- Search Bar -->
-    <EditText
-        android:id="@+id/searchEditText"
+    <AutoCompleteTextView
+        android:id="@+id/searchAutoCompleteTextView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Search ...."
+        android:hint="Search By ...."
+        android:padding="10dp"
+        android:completionHint="Search By ...."
         android:searchResultHighlightColor="@color/red"
-        android:padding="10dp"/>
+        android:completionThreshold="1"/>
 
     <!-- ChipGroup for Category, Country, Ingredient -->
-
-    <!-- RecyclerView for Category List -->
 
     <com.google.android.material.chip.ChipGroup
         android:id="@+id/chipGroup"
@@ -30,11 +29,10 @@
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintHorizontal_chainStyle="packed"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/searchBar"
+        app:layout_constraintTop_toBottomOf="@+id/searchAutoCompleteTextView"
         app:layout_constraintWidth_default="wrap"
         app:selectionRequired="true"
         app:singleSelection="true">
-
 
         <com.google.android.material.chip.Chip
             android:id="@+id/categories"

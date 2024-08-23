@@ -50,7 +50,7 @@
             android:layout_marginBottom="5dp"
             android:background="@color/white"
             android:contentDescription="@string/add_to_favorites"
-            android:src="@drawable/baseline_favorite_24" />
+            android:src="@drawable/add_to_favorite" />
 
     </RelativeLayout>
 
