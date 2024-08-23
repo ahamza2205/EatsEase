@@ -1,6 +1,6 @@
 package com.example.eatsease.mealdetail.fragment;
 
-public class IMealDetailView {
-
-
+public interface IMealDetailView {
+    void showMealPlanAdded();
+    void showMealPlanError(String error);
 }

@@ -24,12 +24,16 @@ import com.example.eatsease.model.network.RetrofitClient;
 import com.example.eatsease.model.network.response.Meal;
 import com.example.eatsease.mealdetail.adapter.IngredientAdapter;
 import com.example.eatsease.model.respiratory.Respiratory;
+import com.example.eatsease.plan.model.MealPlanRepository;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.Locale;
 
 import io.reactivex.rxjava3.disposables.CompositeDisposable;
 
-public class MealDetailFragment extends Fragment {
+public class MealDetailFragment extends Fragment implements IMealDetailView {
 
     private ImageView mealImage;
     private TextView mealTitle, instructions;
@@ -65,7 +69,12 @@ public class MealDetailFragment extends Fragment {
         ingredientAdapter = new IngredientAdapter(new ArrayList<>());
         ingredientRecyclerView.setAdapter(ingredientAdapter);
 
-        presenter = new MealDetailPresenter(this, Respiratory.getInstance(getContext()), RetrofitClient.getInstance(), getContext());
+        presenter = new MealDetailPresenter(this,
+                Respiratory.getInstance(getContext()),
+                RetrofitClient.getInstance(),
+                MealPlanRepository.getInstance(getContext()),
+                getContext());
+
         // Retrieve mealId from arguments
         if (getArguments() != null) {
             MealDetailFragmentArgs args = MealDetailFragmentArgs.fromBundle(getArguments());
@@ -102,6 +111,22 @@ public class MealDetailFragment extends Fragment {
               Toast.makeText(getContext(), "Added to favorites", Toast.LENGTH_SHORT).show();
 
           });
+
+
+        addToCalendarBtn.setOnClickListener(v -> {
+            // Retrieve the meal ID and current date (you can customize the date handling)
+            String mealId = meal.getMealId();
+            String selectedDate = getCurrentDate(); // Assuming you have a method to get the current date or selected date
+
+            // Add the meal to the calendar (meal plan)
+            presenter.addMealToCalendar(mealId, selectedDate);
+        });
+
+    }
+    private String getCurrentDate() {
+        // Example: Return the current date in the desired format
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
+        return dateFormat.format(new Date());
     }
 
     @Override
@@ -109,4 +134,16 @@ public class MealDetailFragment extends Fragment {
         super.onDestroyView();
         disposables.clear(); // Clear RxJava disposables when view is destroyed
     }
+
+
+    @Override
+    public void showMealPlanAdded() {
+        Toast.makeText(getContext(), "Meal added to calendar", Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void showMealPlanError(String error) {
+        Toast.makeText(getContext(), error, Toast.LENGTH_SHORT).show();
+    }
+
 }

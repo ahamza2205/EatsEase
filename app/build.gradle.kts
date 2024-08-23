@@ -117,4 +117,10 @@ dependencies {
     // RxJava
     implementation ("io.reactivex.rxjava3:rxandroid:3.0.0")
     implementation ("io.reactivex.rxjava3:rxjava:3.1.5")
+
+    // Firebase
+    implementation("com.google.firebase:firebase-database")
+    implementation("com.google.firebase:firebase-auth")
+    implementation("com.google.firebase:firebase-storage")
+
 }
