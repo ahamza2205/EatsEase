@@ -70,7 +70,7 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.RecipeView
 
             // Insert the favorite meal using HomePresenter
             onRecipeClickListener.onFavoriteClick(favoriteMeal);
-            Toast.makeText(context, "Added to favorites", Toast.LENGTH_SHORT).show();
+            Toast.makeText(context, "Meal Added to favorites", Toast.LENGTH_SHORT).show();
         });
 
     }

@@ -34,8 +34,6 @@ public class SignUp extends AppCompatActivity implements ISignupView {
         Password = findViewById(R.id.signUpTextPassword);
         ConfirmPassword = findViewById(R.id.signUpTextPassword2);
         signupBtn = findViewById(R.id.signupBtn);
-        facebookBtn = findViewById(R.id.fbBtn);
-        googleBtn = findViewById(R.id.googleBtn);
 
         // Initialize Presenter
         signUpPresenter = new SignUpPresenter(this);
@@ -47,12 +45,6 @@ public class SignUp extends AppCompatActivity implements ISignupView {
             String confirmPassword = ConfirmPassword.getText().toString();
 
             signUpPresenter.signUpUser(email, password, confirmPassword);
-        });
-        googleBtn.setOnClickListener(v -> {
-            Toast.makeText(this, "Google Sign-Up is coming soon!", Toast.LENGTH_SHORT).show();
-        });
-        facebookBtn.setOnClickListener(v -> {
-            Toast.makeText(this, "Facebook Sign-Up is coming soon!", Toast.LENGTH_SHORT).show();
         });
     }
 

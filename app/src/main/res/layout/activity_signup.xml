@@ -114,37 +114,4 @@
         android:textSize="16dp"
         android:layout_gravity="center_horizontal"/>
 
-    <TextView
-        android:id="@+id/signuptext"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="550dp"
-        android:layout_marginBottom="27dp"
-        android:fontFamily="@font/lobster"
-        android:text="@string/signupwith"
-        android:textSize="20dp"
-        android:layout_gravity="center_horizontal"/>
-
-    <ImageButton
-        android:id="@+id/fbBtn"
-        android:layout_width="100dp"
-        android:layout_height="50dp"
-        android:layout_marginStart="80dp"
-        android:layout_marginTop="600dp"
-        android:background="@drawable/facebook_btn"
-        android:scaleType="fitCenter"
-        android:src="@drawable/facebook"
-        android:layout_gravity="start"/>
-
-    <ImageButton
-        android:id="@+id/googleBtn"
-        android:layout_width="100dp"
-        android:layout_height="50dp"
-        android:layout_marginTop="600dp"
-        android:layout_marginEnd="80dp"
-        android:background="@drawable/google_btn"
-        android:scaleType="fitCenter"
-        android:src="@drawable/goggleicon"
-        android:layout_gravity="end"/>
-
 </FrameLayout>

@@ -1,7 +1,7 @@
 package com.example.eatsease.login_signup.authentication.model.sharedperferences;
 
 import android.content.Context;
-import android.util.Log;
+
 public class SharedPreRespiratory {
     private SharedPerferencesImp sharedPerferencesImp;
 
@@ -14,15 +14,22 @@ public class SharedPreRespiratory {
     }
 
     public void addToPreferences(String email, String pass) {
-        Log.d("hamza", "addToPreferences: " + email + " " + pass);
         sharedPerferencesImp.addToPreferences(email, pass);
     }
+
     public void removeUserDetails() {
         sharedPerferencesImp.removePreferences();
     }
 
-    public boolean readFromPreferences() {
-        return sharedPerferencesImp.readFromPreferences();
+    public boolean isUserLoggedIn() {
+        return sharedPerferencesImp.isUserLoggedIn();
+    }
+
+    public String getUserEmail() {
+        return sharedPerferencesImp.getUserEmail();
+    }
+
+    public String getUserPassword() {
+        return sharedPerferencesImp.getUserPassword();
     }
 }
-

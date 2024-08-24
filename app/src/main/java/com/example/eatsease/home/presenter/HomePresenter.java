@@ -69,7 +69,7 @@ public class HomePresenter {
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(
                         () -> {
-                            Toast.makeText(context, "Product Added To Database", Toast.LENGTH_SHORT).show();
+                           // Toast.makeText(context, "Product Added To Database", Toast.LENGTH_SHORT).show();
                         },
                         throwable -> {
                             // Handle error
@@ -83,7 +83,7 @@ public class HomePresenter {
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(
                         () -> {
-                            Toast.makeText(context, "Product Deleted", Toast.LENGTH_SHORT).show();
+                           // Toast.makeText(context, "Product Deleted", Toast.LENGTH_SHORT).show();
                         },
                         throwable -> {
                             // Handle error

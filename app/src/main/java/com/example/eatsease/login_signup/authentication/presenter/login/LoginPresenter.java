@@ -5,6 +5,7 @@ import android.util.Log;
 import com.example.eatsease.login_signup.authentication.model.repo.NetworkCallback;
 import com.example.eatsease.login_signup.authentication.model.sharedperferences.SharedPreRespiratory;
 import com.example.eatsease.login_signup.authentication.activity.login.ILoginView;
+import com.example.eatsease.login_signup.authentication.activity.login.OnLoginWithGmailResponse;
 import com.example.eatsease.login_signup.authentication.model.auth_manager.FirebaseAuthManager;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -24,23 +25,11 @@ public class LoginPresenter implements ILoginPresenter, NetworkCallback {
     private FirebaseAuthManager firebaseAuthManager;
     private String email;
     private String password;
+
     public LoginPresenter(ILoginView loginView, SharedPreRespiratory sharedPreRespiratory) {
         this.loginView = loginView;
         this.sharedPreRespiratory = sharedPreRespiratory;
-        this.firebaseAuthManager = new FirebaseAuthManager();
-    }
-
-    @Override
-    public void onSuccess() {
-        // Save the email and password to preferences after successful login
-        sharedPreRespiratory.addToPreferences(email, password); // Replace "YourPassword" with actual pass if required
-        loginView.onSignInSuccess();
-        Log.d("Hamza", "onSuccess: ");
-    }
-
-    @Override
-    public void onFailure(Exception e) {
-        loginView.showLoginError(e.getMessage());
+        this.firebaseAuthManager = FirebaseAuthManager.getInstance();
     }
 
     @Override
@@ -50,18 +39,40 @@ public class LoginPresenter implements ILoginPresenter, NetworkCallback {
         firebaseAuthManager.loginUser(email, password, this);
     }
 
-//    @Override
-//    public void signInUsingGmailAccount(String idToken, OnLoginWithGmailResponse response) {
-//        AuthCredential credential = GoogleAuthProvider.getCredential(idToken, null);
-//        FirebaseAuth.getInstance().signInWithCredential(credential).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-//            @Override
-//            public void onComplete(@NonNull Task<AuthResult> task) {
-//                if (task.isSuccessful()) {
-//                    response.onLoginWithGmailSuccess();
-//                } else {
-//                    response.onLoginWithGmailError(Objects.requireNonNull(task.getException()).toString());
-//                }
-//            }
-//        });
-//    }
+    public void signInUsingGmailAccount(String idToken, OnLoginWithGmailResponse listener) {
+        AuthCredential credential = GoogleAuthProvider.getCredential(idToken, null);
+        FirebaseAuth.getInstance().signInWithCredential(credential).addOnCompleteListener(task -> {
+            if (task.isSuccessful()) {
+                listener.onLoginWithGmailSuccess();
+            } else {
+                listener.onLoginWithGmailError(Objects.requireNonNull(task.getException()).getMessage());
+            }
+        });
+    }
+
+    @Override
+    public void onSuccess() {
+        sharedPreRespiratory.addToPreferences(email, password);
+        loginView.onSignInSuccess();
+    }
+
+    @Override
+    public void onFailure(Exception e) {
+        loginView.showLoginError(e.getMessage());
+    }
+
+    public void signInAnonymously() {
+        FirebaseAuth.getInstance().signInAnonymously().addOnCompleteListener(task -> {
+            if (task.isSuccessful()) {
+                // Save guest information to SharedPreferences
+                String guestEmail = "guest@example.com"; // You can customize this as needed
+                sharedPreRespiratory.addToPreferences(guestEmail, null);
+                loginView.onSignInSuccess();
+            } else {
+                // Handle error
+                loginView.showLoginError(Objects.requireNonNull(task.getException()).getMessage());
+            }
+        });
+    }
+
 }

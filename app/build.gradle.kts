@@ -130,6 +130,12 @@ dependencies {
     implementation ("com.airbnb.android:lottie:2.8.0")
     implementation ("com.airbnb.android:lottie:6.0.0")
 
+     //Authentication with Credential Manager
+    implementation("com.google.android.gms:play-services-auth:21.2.0")
+    implementation("androidx.credentials:credentials:1.2.2")
+    implementation("androidx.credentials:credentials-play-services-auth:1.2.2")
+    implementation("com.google.android.libraries.identity.googleid:googleid:1.1.1")
 
+    implementation ("com.google.android.material:material:1.9.0")
 
 }

@@ -20,7 +20,7 @@ public class SplashPresenter {
     }
 
     public void isAppUser() {
-        if(sharedPreRespiratory.readFromPreferences()) {
+        if(sharedPreRespiratory.isUserLoggedIn()) {
             iSplashView.isAuthenticated(true);
         } else {
             iSplashView.isAuthenticated(false);

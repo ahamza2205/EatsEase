@@ -144,7 +144,7 @@ public class MealDetailFragment extends Fragment implements IMealDetailView {
 
               // Insert the favorite meal using HomePresenter
               presenter.insert(favoriteMeal);
-              Toast.makeText(getContext(), "Added to favorites", Toast.LENGTH_SHORT).show();
+              Toast.makeText(getContext(), "Meal Added to favorites", Toast.LENGTH_SHORT).show();
 
           });
 
@@ -153,7 +153,10 @@ public class MealDetailFragment extends Fragment implements IMealDetailView {
             // Retrieve the meal ID and current date (you can customize the date handling)
             Log.d("MealDetailFragment", "clicked");
             String mealId = meal.getMealId();
-            MaterialDatePicker<Long> m =MaterialDatePicker.Builder.datePicker().build();
+            MaterialDatePicker<Long> m =MaterialDatePicker
+                    .Builder
+                    .datePicker()
+                    .build();
             m.show(getParentFragmentManager(), "MaterialDatePicker");
             m.addOnPositiveButtonClickListener(selection -> {
                 presenter.addMealToCalendar(mealId, convertLongToDate(selection));
@@ -162,7 +165,8 @@ public class MealDetailFragment extends Fragment implements IMealDetailView {
 
     }
     private String convertLongToDate(long timestamp) {
-        // Create a Date object from the timestamp
+
+                // Create a Date object from the timestamp
         Date date = new Date(timestamp);
 
         // Create a SimpleDateFormat object with the desired date pattern
@@ -183,7 +187,7 @@ public class MealDetailFragment extends Fragment implements IMealDetailView {
 
     @Override
     public void showMealPlanAdded() {
-        Toast.makeText(getContext(), "Meal added to calendar", Toast.LENGTH_SHORT).show();
+        Toast.makeText(getContext(), "Meal Added to calendar", Toast.LENGTH_SHORT).show();
     }
 
     @Override

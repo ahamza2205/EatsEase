@@ -33,7 +33,6 @@ public class FavoriteFragment extends Fragment implements IFavMealView {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        super.onCreate(savedInstanceState);
         // Initialize the presenter
         presenter = new FavoriteMealPresenter(new Respiratory(getContext()), this);
     }
