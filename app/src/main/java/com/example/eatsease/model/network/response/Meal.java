@@ -107,6 +107,9 @@ public class Meal {
     @SerializedName("dateModified")
     private String dateModified;
 
+    public Meal(String mealId) {
+        this.mealId = mealId;
+    }
 
     public List<Ingredient> getIngredients() {
         List<Ingredient> ingredients = new ArrayList<>();

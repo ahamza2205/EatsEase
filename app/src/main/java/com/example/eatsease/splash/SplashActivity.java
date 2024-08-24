@@ -1,6 +1,6 @@
 
 
-package com.example.eatsease.login_signup.authentication.activity.splash;
+package com.example.eatsease.splash;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -13,7 +13,6 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import com.example.eatsease.R;
-import com.example.eatsease.login_signup.authentication.presenter.splash.SplashPresenter;
 import com.example.eatsease.homeactivity.HomeActivity;
 import com.example.eatsease.login_signup.authentication.activity.login.LogIn;
 
@@ -37,7 +36,7 @@ public class SplashActivity extends AppCompatActivity implements ISplashView {
         });
 
         // Start the delay
-        splashPresenter.start(1000L); // 1000 milliseconds delay
+        splashPresenter.start(2000L); // 1000 milliseconds delay
     }
 
     @Override

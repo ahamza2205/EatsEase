@@ -1,10 +1,8 @@
-package com.example.eatsease.login_signup.authentication.presenter.splash;
+package com.example.eatsease.splash;
 
 import android.content.Context;
-import android.util.Log;
 
 import com.example.eatsease.login_signup.authentication.model.sharedperferences.SharedPreRespiratory;
-import com.example.eatsease.login_signup.authentication.activity.splash.ISplashView;
 
 import java.util.concurrent.TimeUnit;
 

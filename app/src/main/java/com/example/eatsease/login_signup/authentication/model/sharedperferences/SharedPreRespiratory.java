@@ -17,6 +17,9 @@ public class SharedPreRespiratory {
         Log.d("hamza", "addToPreferences: " + email + " " + pass);
         sharedPerferencesImp.addToPreferences(email, pass);
     }
+    public void removeUserDetails() {
+        sharedPerferencesImp.removePreferences();
+    }
 
     public boolean readFromPreferences() {
         return sharedPerferencesImp.readFromPreferences();

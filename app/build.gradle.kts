@@ -126,6 +126,9 @@ dependencies {
     implementation ("com.google.android.material:material:")
     implementation ("com.pierfrancescosoffritti.androidyoutubeplayer:core:10.0.5")
 
+    // Lottie
+    implementation ("com.airbnb.android:lottie:2.8.0")
+    implementation ("com.airbnb.android:lottie:6.0.0")
 
 
 

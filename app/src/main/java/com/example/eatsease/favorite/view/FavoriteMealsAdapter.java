@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.example.eatsease.R;
 import com.example.eatsease.favorite.presenter.FavoriteMealPresenter;
+import com.example.eatsease.home.view.fragment.adapter.Recipe.RecipeAdapter;
 import com.example.eatsease.model.database.FavoriteMeal;
 import java.util.List;
 
@@ -22,7 +23,7 @@ public class FavoriteMealsAdapter extends RecyclerView.Adapter<FavoriteMealsAdap
     private List<FavoriteMeal> favoriteMeals;
     private Context context;
     private FavoriteMealPresenter favoriteMealPresenter ;
-
+    private RecipeAdapter.OnRecipeClickListener onRecipeClickListener;
     public FavoriteMealsAdapter(List<FavoriteMeal> favoriteMeals, Context context, FavoriteMealPresenter favoriteMealPresenter) {
         this.favoriteMeals = favoriteMeals;
         this.context = context;
@@ -78,5 +79,4 @@ public class FavoriteMealsAdapter extends RecyclerView.Adapter<FavoriteMealsAdap
             favRecipeFavoriteButton = itemView.findViewById(R.id.fav_recipe_favorite_button);
         }
     }
-
 }

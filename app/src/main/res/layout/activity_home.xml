@@ -8,16 +8,6 @@
     android:background="@color/white"
     tools:context=".homeactivity.HomeActivity">
     <!-- Title TextView -->
-    <TextView
-        android:id="@+id/textView3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="15dp"
-        android:fontFamily="@font/lobster"
-        android:text="@string/EatsEase"
-        android:textColor="@color/red"
-        android:textSize="34sp" />
     <fragment
         android:id="@+id/nav_host_fragment"
         android:layout_marginTop="?attr/actionBarSize"
@@ -44,5 +34,14 @@
         app:layout_anchorGravity="center"
         app:menu="@menu/bottom_menu" />
 
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="100dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginStart="16dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/logo" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

@@ -1,9 +1,9 @@
 <resources>
-    <string name="app_name">EatsEase</string>
+    <string name="app_name">Foodies</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="eatsease">EatsEase</string>
-    <string name="EatsEase">EatsEase</string>
+    <string name="eatsease">Foodies</string>
+    <string name="EatsEase">Foodies</string>
     <string name="signup">Sign Up</string>
     <string name="suigupqote">Register with your valid email address</string>
     <string name="email">Email Address</string>

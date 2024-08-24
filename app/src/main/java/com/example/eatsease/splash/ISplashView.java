@@ -1,4 +1,4 @@
-package com.example.eatsease.login_signup.authentication.activity.splash;
+package com.example.eatsease.splash;
 
 public interface ISplashView {
 

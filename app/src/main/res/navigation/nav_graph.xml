@@ -32,14 +32,22 @@
         android:id="@+id/calenderFragment"
         android:name="com.example.eatsease.plan.view.MealPlanFragment"
         android:label="Calendar"
-        tools:layout="@layout/fragment_calender2" />
+        tools:layout="@layout/fragment_calender2" >
+        <action
+            android:id="@+id/action_calenderFragment_to_mealDetailFragment"
+            app:destination="@id/mealDetailFragment" />
+    </fragment>
 
     <!-- Favorite Fragment -->
     <fragment
         android:id="@+id/favoriteFragment2"
         android:name="com.example.eatsease.favorite.view.FavoriteFragment"
         android:label="Favorites"
-        tools:layout="@layout/fragment_favorite2" />
+        tools:layout="@layout/fragment_favorite2" >
+        <action
+            android:id="@+id/action_favoriteFragment2_to_mealDetailFragment"
+            app:destination="@id/mealDetailFragment" />
+    </fragment>
 
     <!-- Search Fragment -->
     <fragment

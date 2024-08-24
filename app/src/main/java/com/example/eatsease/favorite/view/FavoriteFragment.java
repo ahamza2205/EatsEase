@@ -9,13 +9,17 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.eatsease.R;
 import com.example.eatsease.favorite.presenter.FavoriteMealPresenter;
+import com.example.eatsease.home.view.fragment.adapter.Recipe.RecipeAdapter;
 import com.example.eatsease.model.database.FavoriteMeal;
+import com.example.eatsease.model.network.response.Meal;
 import com.example.eatsease.model.respiratory.Respiratory;
+import com.example.eatsease.search.SearchItemFragmentDirections;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,6 +28,7 @@ public class FavoriteFragment extends Fragment implements IFavMealView {
 
     private FavoriteMealsAdapter adapter;
     private FavoriteMealPresenter presenter;
+    private RecipeAdapter.OnRecipeClickListener onRecipeClickListener;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -67,4 +72,5 @@ public class FavoriteFragment extends Fragment implements IFavMealView {
         // Handle errors (e.g., show a Toast)
         Toast.makeText(getContext(), "Error: " + errorMessage, Toast.LENGTH_SHORT).show();
     }
+
 }
