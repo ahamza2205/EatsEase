@@ -31,21 +31,18 @@ public class FavoriteMealPresenter {
         this.view = view;
     }
 
-    public void fetchFavoriteMeals() {
-        repository.getFavoriteMeals()
+    public void fetchFavoriteMealsbyUserEmail(String userEmail) {
+        repository.getFavoriteMealsByUserEmail(userEmail)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(
-                        favoriteMeals -> {
-                            Log.d("FavoriteFragment", "Fetched " + favoriteMeals.size() + " meals for user: " );
-                            view.onFetchDataSuccess(favoriteMeals);
-                        },
-                        throwable -> {
-                            Log.e("FavoriteFragment", "Error fetching meals: " + throwable.getMessage());
-                            view.onFetchDataError(throwable.getMessage());
-                        }
-                );
+                .subscribe(favoriteMeals -> {
+                    Log.d("FavoriteMeals", "Fetched meals count: " + favoriteMeals.size());
+                    view.onFetchDataSuccess(favoriteMeals);
+                }, throwable -> {
+                    Log.e("FavoriteMeals", "Error fetching favorite meals: " + throwable.getMessage());
+                });
     }
+
 
     public void deleteFavoriteMeal(FavoriteMeal favoriteMeal) {
         repository.removeFavoriteMeal(favoriteMeal)
@@ -135,11 +132,7 @@ public void restoreFavoriteMeals() {
         });
 
 
-
-        // Reference to the user's document in Firestore
-
     }
 }
 
-
-    }
+}

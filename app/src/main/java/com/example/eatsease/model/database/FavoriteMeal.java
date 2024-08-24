@@ -3,30 +3,26 @@ package com.example.eatsease.model.database;
 import androidx.annotation.NonNull;
 import androidx.room.Entity;
 
-@Entity(tableName = "favorite_meals",primaryKeys = {"mealName","mealId"})
+@Entity(tableName = "favorite_meals", primaryKeys = {"mealName", "mealId"})
 public class FavoriteMeal {
-
 
     @NonNull
     private String mealName;
     @NonNull
-    private  String mealId;
+    private String mealId;
     private String Thumbnail;
-    private String userId;
-
+    private String userEmail;  // Renamed from userId to userEmail
 
     public FavoriteMeal() {
         this.mealName = mealName;
     }
 
-    public FavoriteMeal(String mealName, String Thumbnail, String userId, String mealId) {
+    public FavoriteMeal(String mealName, String Thumbnail, String userEmail, String mealId) {
         this.mealName = mealName;
         this.Thumbnail = Thumbnail;
-        this.userId = userId;
+        this.userEmail = userEmail;  // Updated to userEmail
         this.mealId = mealId;
     }
-
-
 
     public String getMealName() {
         return mealName;
@@ -40,16 +36,16 @@ public class FavoriteMeal {
         return Thumbnail;
     }
 
-    public void setThumbnail(String thumbnail) {
-        this.Thumbnail = thumbnail;
+    public void setThumbnail(String Thumbnail) {
+        this.Thumbnail = Thumbnail;
     }
 
-    public String getUserId() {
-        return userId;
+    public String getUserEmail() {
+        return userEmail;  // Updated to userEmail
     }
 
-    public void setUserId(String userId) {
-        this.userId = userId;
+    public void setUserEmail(String userEmail) {
+        this.userEmail = userEmail;  // Updated to userEmail
     }
 
     public String getMealId() {
@@ -57,6 +53,6 @@ public class FavoriteMeal {
     }
 
     public void setMealId(String mealId) {
-        this.mealId =mealId;
-}
+        this.mealId = mealId;
+    }
 }

@@ -24,4 +24,10 @@ public interface MealPlanDao {
 
     @Query("DELETE FROM mealPlan WHERE mealId = :id")
     Completable deleteMealPlanByDate(String id);
+
+    @Query("SELECT * FROM mealPlan WHERE date = :date AND userEmail = :userEmail")
+    Single<List<MealPlan>> getMealPlanByDateAndUserEmail(String date, String userEmail);
+
+    @Query("DELETE FROM mealPlan WHERE mealId = :id AND userEmail = :userEmail")
+    Completable deleteMealPlanByIdAndUserEmail(int id, String userEmail);
 }

@@ -20,6 +20,10 @@ public interface FavoriteMealDao {
     @Query("SELECT * FROM favorite_meals")
     Flowable<List<FavoriteMeal>> getAllFavoriteMeals();
 
+    // Get all favorite meals for a particular user
+    @Query("SELECT * FROM favorite_meals WHERE userEmail = :userEmail")
+    Flowable<List<FavoriteMeal>> getAllFavoriteMealsByUserEmail(String userEmail);
+
     // Get a specific meal by mealId
     @Query("SELECT * FROM favorite_meals WHERE mealId = :mealId LIMIT 1")
     Flowable<FavoriteMeal> getMealById(String mealId);

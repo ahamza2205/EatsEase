@@ -104,4 +104,9 @@ public class Respiratory {
         return mealsDataBase.favoriteMealDao().delete(favoriteMeal)
                 .subscribeOn(Schedulers.io());
     }
+
+    public Flowable<List<FavoriteMeal>> getFavoriteMealsByUserEmail(String userEmail) {
+        return mealsDataBase.favoriteMealDao().getAllFavoriteMealsByUserEmail(userEmail)
+                .subscribeOn(Schedulers.io());
+    }
 }

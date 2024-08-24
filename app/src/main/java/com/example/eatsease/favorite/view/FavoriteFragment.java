@@ -1,5 +1,6 @@
 package com.example.eatsease.favorite.view;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -17,6 +18,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.eatsease.R;
 import com.example.eatsease.favorite.presenter.FavoriteMealPresenter;
 import com.example.eatsease.home.view.fragment.adapter.Recipe.RecipeAdapter;
+import com.example.eatsease.login_signup.authentication.model.sharedperferences.SharedPreRespiratory;
 import com.example.eatsease.model.database.FavoriteMeal;
 import com.example.eatsease.model.network.response.Meal;
 import com.example.eatsease.model.respiratory.Respiratory;
@@ -34,7 +36,7 @@ public class FavoriteFragment extends Fragment implements IFavMealView {
     private FavoriteMealsAdapter adapter;
     private FavoriteMealPresenter presenter;
     private RecipeAdapter.OnRecipeClickListener onRecipeClickListener;
-
+    private SharedPreRespiratory sharedPreRespiratory = SharedPreRespiratory.getInstance(getContext());
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -61,7 +63,13 @@ public class FavoriteFragment extends Fragment implements IFavMealView {
         recyclerView.setAdapter(adapter);
 
         // Fetch favorite meals
-        presenter.fetchFavoriteMeals();
+        String userEmail = sharedPreRespiratory.getUserEmail();
+        if (userEmail == null || userEmail.isEmpty()) {
+            // Handle the case where user email is not available
+            Toast.makeText(getContext(), "User email is not available", Toast.LENGTH_SHORT).show();
+            return;
+        }
+        presenter.fetchFavoriteMealsbyUserEmail(userEmail);
     }
 
 

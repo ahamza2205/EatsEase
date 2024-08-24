@@ -45,7 +45,7 @@ public class SharedPerferencesImp {
     }
 
     public String getUserEmail() {
-        return sharedPreferences.getString(EMAIL_KEY, null); // Return null if no email is saved
+        return sharedPreferences.getString(EMAIL_KEY, "N/A"); // Return null if no email is saved
     }
 
     public String getUserPassword() {
