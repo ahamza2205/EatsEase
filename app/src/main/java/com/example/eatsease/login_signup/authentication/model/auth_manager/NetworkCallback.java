@@ -1,4 +1,4 @@
-package com.example.eatsease.login_signup.authentication.model.repo;
+package com.example.eatsease.login_signup.authentication.model.auth_manager;
 
 public interface NetworkCallback {
     public void onSuccess();

@@ -1,14 +1,11 @@
 package com.example.eatsease.login_signup.authentication.model.auth_manager;
 
 import android.util.Log;
-import com.example.eatsease.login_signup.authentication.model.repo.NetworkCallback;
+
 import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
-import com.google.android.gms.auth.api.signin.GoogleSignInClient;
-import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
-import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.firebase.auth.GoogleAuthProvider;
 
 public class FirebaseAuthManager {

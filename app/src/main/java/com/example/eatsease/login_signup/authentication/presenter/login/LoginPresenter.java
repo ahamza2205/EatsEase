@@ -1,22 +1,15 @@
 package com.example.eatsease.login_signup.authentication.presenter.login;
 
-import android.util.Log;
-
-import com.example.eatsease.login_signup.authentication.model.repo.NetworkCallback;
+import com.example.eatsease.login_signup.authentication.model.auth_manager.NetworkCallback;
 import com.example.eatsease.login_signup.authentication.model.sharedperferences.SharedPreRespiratory;
 import com.example.eatsease.login_signup.authentication.activity.login.ILoginView;
 import com.example.eatsease.login_signup.authentication.activity.login.OnLoginWithGmailResponse;
 import com.example.eatsease.login_signup.authentication.model.auth_manager.FirebaseAuthManager;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthCredential;
-import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.GoogleAuthProvider;
 
 import java.util.Objects;
-
-import io.reactivex.rxjava3.annotations.NonNull;
 
 public class LoginPresenter implements ILoginPresenter, NetworkCallback {
 

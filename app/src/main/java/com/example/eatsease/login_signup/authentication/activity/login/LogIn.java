@@ -32,7 +32,6 @@ public class LogIn extends AppCompatActivity implements ILoginView, OnLoginWithG
     private Button skipButton;
     private LoginPresenter loginPresenter;
     private ImageButton googleBtn;
-    private ImageButton facebookBtn;
 
     private GoogleSignInClient mGoogleSignInClient;
     private final int RC_SIGN_IN = 20;
@@ -94,7 +93,7 @@ public class LogIn extends AppCompatActivity implements ILoginView, OnLoginWithG
         mGoogleSignInClient.signOut();  // Optional: Sign out any existing users
 
         Intent signInIntent = mGoogleSignInClient.getSignInIntent();
-        startActivityForResult(signInIntent, RC_SIGN_IN);
+        startActivityForResult(signInIntent,RC_SIGN_IN);
     }
 
     @Override
