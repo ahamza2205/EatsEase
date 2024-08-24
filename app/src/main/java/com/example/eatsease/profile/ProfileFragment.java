@@ -6,14 +6,21 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 import com.example.eatsease.R;
+import com.example.eatsease.favorite.presenter.FavoriteMealPresenter;
+import com.example.eatsease.favorite.view.IFavMealView;
 import com.example.eatsease.login_signup.authentication.activity.login.LogIn;
 import com.example.eatsease.login_signup.authentication.model.auth_manager.FirebaseAuthManager;
 import com.example.eatsease.login_signup.authentication.model.sharedperferences.SharedPreRespiratory;
+import com.example.eatsease.model.database.FavoriteMeal;
+import com.example.eatsease.model.respiratory.Respiratory;
 import com.google.android.material.button.MaterialButton;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+
+import java.util.List;
 
 public class ProfileFragment extends Fragment {
 
@@ -21,7 +28,20 @@ public class ProfileFragment extends Fragment {
     private MaterialButton logoutBtn;
     private FirebaseAuthManager authManager;
     private SharedPreRespiratory sharedPrefRespiratory;
+    private Button backupBtn;
+    private Button restoreBtn;
+    FavoriteMealPresenter favoriteMealPresenter = new FavoriteMealPresenter(new Respiratory(getContext()), new IFavMealView() {
 
+        @Override
+        public void onFetchDataSuccess(List<FavoriteMeal> favoriteMeals) {
+
+        }
+
+        @Override
+        public void onFetchDataError(String errorMessage) {
+
+        }
+    });
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,9 +54,10 @@ public class ProfileFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_profile, container, false);
 
-        profileEmail = view.findViewById(R.id.profile_email); // Correct ID
-        logoutBtn = view.findViewById(R.id.logout); // Correct ID
-
+        profileEmail = view.findViewById(R.id.profile_email);
+        logoutBtn = view.findViewById(R.id.logout);
+        backupBtn = view.findViewById(R.id.backup);
+        restoreBtn = view.findViewById(R.id.restor);
         // Initialize SharedPreferences
         sharedPrefRespiratory = SharedPreRespiratory.getInstance(getActivity());
 
@@ -63,6 +84,16 @@ public class ProfileFragment extends Fragment {
             Intent intent = new Intent(getActivity(), LogIn.class);
             startActivity(intent);
             getActivity().finish();
+        });
+
+        // Handle backup button click
+        backupBtn.setOnClickListener(v -> {
+            favoriteMealPresenter.backupFavoriteMeals();
+        });
+
+        // Handle restore button click
+        restoreBtn.setOnClickListener(v -> {
+            favoriteMealPresenter.restoreFavoriteMeals();
         });
 
         return view;

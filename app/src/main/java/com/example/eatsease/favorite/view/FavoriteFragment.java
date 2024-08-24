@@ -1,6 +1,7 @@
 package com.example.eatsease.favorite.view;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,7 +20,11 @@ import com.example.eatsease.home.view.fragment.adapter.Recipe.RecipeAdapter;
 import com.example.eatsease.model.database.FavoriteMeal;
 import com.example.eatsease.model.network.response.Meal;
 import com.example.eatsease.model.respiratory.Respiratory;
-import com.example.eatsease.search.SearchItemFragmentDirections;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
 
 import java.util.ArrayList;
 import java.util.List;
