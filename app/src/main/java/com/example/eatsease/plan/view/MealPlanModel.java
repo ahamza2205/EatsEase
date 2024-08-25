@@ -20,13 +20,13 @@ public class MealPlanModel implements MealPlanInterFaces.Model {
         mealPlanRepository = MealPlanRepository.getInstance(context);
     }
 
-
-    @Override
     public Single<List<MealPlan>> getMealPlan(String date) {
         return mealPlanRepository.getMealPlanByDate(date)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread());
     }
+
+
 
     @Override
     public Completable saveMealPlan(MealPlan mealPlan) {
@@ -40,5 +40,10 @@ public class MealPlanModel implements MealPlanInterFaces.Model {
         return mealPlanRepository.deleteMealPlanByDate(id)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread());
+    }
+
+    @Override
+    public Single<List<MealPlan>> getMealPlan(String date, String userEmail) {
+        return mealPlanRepository.getMealPlanByDateAndUserEmail(date, userEmail);
     }
 }

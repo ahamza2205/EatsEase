@@ -187,8 +187,14 @@ public class MealDetailFragment extends Fragment implements IMealDetailView {
 
     @Override
     public void showMealPlanAdded() {
-        Toast.makeText(getContext(), "Meal Added to calendar", Toast.LENGTH_SHORT).show();
+        if (isAdded() && getContext() != null) {
+            Toast.makeText(getContext(), "Meal plan added", Toast.LENGTH_SHORT).show();
+        } else {
+            // Handle the case when Fragment is not attached or Context is null
+            Log.e("MealDetailFragment", "Fragment is not attached or Context is null");
+        }
     }
+
 
     @Override
     public void showMealPlanError(String error) {

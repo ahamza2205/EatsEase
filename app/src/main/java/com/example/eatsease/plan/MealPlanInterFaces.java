@@ -22,7 +22,7 @@ public interface MealPlanInterFaces {
         void deleteMealPlan(String id,String date);
     }
     interface Model {
-        Single<List<MealPlan>> getMealPlan(String date);  // Changed to Single
+        public Single<List<MealPlan>> getMealPlan(String date, String userEmail);  // Changed to Single
         Completable saveMealPlan(MealPlan mealPlan);  // Changed to Completable
         Completable deleteMealPlan(String date);  // Changed to Completable
     }

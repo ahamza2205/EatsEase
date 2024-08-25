@@ -54,7 +54,12 @@ public class MealPlanRepository {
     public Completable deleteMealPlanByDate(String id) {
         return mealPlanDao.deleteMealPlanByDate(id);
     }
-
+    public Single<List<MealPlan>> getMealPlanByDateAndUserEmail(String date, String userEmail) {
+        return mealPlanDao.getMealPlanByDateAndUserEmail(date, userEmail);
+    }
+    public Completable deleteMealPlanByIdAndUserEmail(int id, String userEmail) {
+        return mealPlanDao.deleteMealPlanByIdAndUserEmail(id, userEmail);
+    }
 
 
 

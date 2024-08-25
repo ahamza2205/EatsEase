@@ -5,6 +5,8 @@ import android.content.Context;
 import com.example.eatsease.plan.MealPlanInterFaces;
 import com.example.eatsease.plan.model.MealPlan;
 import com.example.eatsease.plan.view.MealPlanModel;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 import io.reactivex.rxjava3.schedulers.Schedulers;
@@ -20,7 +22,14 @@ public class MealPlanPresenter implements MealPlanInterFaces.Presenter {
 
     @Override
     public void loadMealPlan(String date) {
-        model.getMealPlan(date)
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        if (user == null) {
+            view.showMealPlanError("User not authenticated.");
+            return;
+        }
+        String userEmail = user.getEmail();
+
+        model.getMealPlan(date, userEmail)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(
@@ -28,6 +37,7 @@ public class MealPlanPresenter implements MealPlanInterFaces.Presenter {
                         throwable -> view.showMealPlanError("No meal plan found.")
                 );
     }
+
 
     @Override
     public void saveMealPlan(MealPlan mealPlan) {
