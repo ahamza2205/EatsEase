@@ -16,6 +16,9 @@ import com.example.eatsease.login_signup.authentication.model.auth_manager.Fireb
 import com.example.eatsease.login_signup.authentication.model.sharedperferences.SharedPreRespiratory;
 import com.example.eatsease.model.database.FavoriteMeal;
 import com.example.eatsease.model.respiratory.Respiratory;
+import com.example.eatsease.plan.MealPlanInterFaces;
+import com.example.eatsease.plan.model.MealPlan;
+import com.example.eatsease.plan.presenter.MealPlanPresenter;
 import com.google.android.material.button.MaterialButton;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -30,7 +33,8 @@ public class ProfileFragment extends Fragment {
     private SharedPreRespiratory sharedPrefRespiratory;
     private Button backupBtn;
     private Button restoreBtn;
-    FavoriteMealPresenter favoriteMealPresenter = new FavoriteMealPresenter(new Respiratory(getContext()), new IFavMealView() {
+
+       FavoriteMealPresenter favoriteMealPresenter = new FavoriteMealPresenter(new Respiratory(getContext()), new IFavMealView() {
 
         @Override
         public void onFetchDataSuccess(List<FavoriteMeal> favoriteMeals) {
@@ -88,7 +92,8 @@ public class ProfileFragment extends Fragment {
 
         // Handle backup button click
         backupBtn.setOnClickListener(v -> {
-            favoriteMealPresenter.backupFavoriteMeals();
+           favoriteMealPresenter.backupFavoriteMeals();
+           // mealPlanPresenter.backUpPlan("2022-01-01");
         });
 
         // Handle restore button click

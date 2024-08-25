@@ -81,25 +81,25 @@ public class FirebaseAuthManager {
                 });
     }
 
-    public void linkWithGoogle(GoogleSignInAccount googleAccount, NetworkCallback callback) {
-        AuthCredential credential = GoogleAuthProvider.getCredential(googleAccount.getIdToken(), null);
-        FirebaseUser currentUser = mAuth.getCurrentUser();
-
-        if (currentUser != null) {
-            currentUser.linkWithCredential(credential)
-                    .addOnCompleteListener(task -> {
-                        if (task.isSuccessful()) {
-                            Log.d(TAG, "Account linked with Google");
-                            callback.onSuccess();
-                        } else {
-                            String errorMessage = task.getException() != null ? task.getException().getMessage() : "Unknown error";
-                            Log.d(TAG, "Linking failed: " + errorMessage);
-                            callback.onFailure(new Exception(errorMessage));
-                        }
-                    });
-        } else {
-            Log.d(TAG, "No current user to link with Google");
-            callback.onFailure(new Exception("No current user"));
-        }
-    }
+//    public void linkWithGoogle(GoogleSignInAccount googleAccount, NetworkCallback callback) {
+//        AuthCredential credential = GoogleAuthProvider.getCredential(googleAccount.getIdToken(), null);
+//        FirebaseUser currentUser = mAuth.getCurrentUser();
+//
+//        if (currentUser != null) {
+//            currentUser.linkWithCredential(credential)
+//                    .addOnCompleteListener(task -> {
+//                        if (task.isSuccessful()) {
+//                            Log.d(TAG, "Account linked with Google");
+//                            callback.onSuccess();
+//                        } else {
+//                            String errorMessage = task.getException() != null ? task.getException().getMessage() : "Unknown error";
+//                            Log.d(TAG, "Linking failed: " + errorMessage);
+//                            callback.onFailure(new Exception(errorMessage));
+//                        }
+//                    });
+//        } else {
+//            Log.d(TAG, "No current user to link with Google");
+//            callback.onFailure(new Exception("No current user"));
+//        }
+//    }
 }

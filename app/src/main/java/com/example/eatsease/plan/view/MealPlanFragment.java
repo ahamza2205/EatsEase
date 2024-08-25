@@ -5,6 +5,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.CalendarView;
 import android.widget.Toast;  // Import Toast for error messages
 
@@ -33,12 +34,23 @@ public class MealPlanFragment extends Fragment implements MealPlanInterFaces.Vie
     private MealPlanAdapter adapter;
     private MealPlanPresenter presenter;
     private CalendarView calendarView;
-
+    private Button backupBtn;
+    private Button restoreBtn;
+    Date data ;
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_calender2, container, false);
+
+        return view;
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
         calendarView = view.findViewById(R.id.calendarView);
+//        backupBtn = view.findViewById(R.id.btn_backup);
+//        restoreBtn = view.findViewById(R.id.btn_restore);
         Calendar calendar = Calendar.getInstance();
         long todayMillis = calendar.getTimeInMillis();
 
@@ -46,7 +58,7 @@ public class MealPlanFragment extends Fragment implements MealPlanInterFaces.Vie
         calendarView.setDate(todayMillis, true, true);
         // Initialize RecyclerView
         recyclerView = view.findViewById(R.id.recyclerView);
-        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+       // recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
         // Set up adapter
         adapter = new MealPlanAdapter(new ArrayList<>(), getContext(), mealPlan -> {
@@ -64,8 +76,27 @@ public class MealPlanFragment extends Fragment implements MealPlanInterFaces.Vie
             presenter.loadMealPlan(convertDateFormat(year + "-" + month + "-" + dayOfMonth));
         });
 
-        return view;
+        // Set up buttons
+
+        // Set up buttons
+//        backupBtn.setOnClickListener(v -> {
+//            if ( data != null) {
+//                presenter.backUpPlan(thi);
+//            } else {
+//                Toast.makeText(getContext(), "Please select a date first.", Toast.LENGTH_SHORT).show();
+//            }
+//        });
+//
+//        restoreBtn.setOnClickListener(v -> {
+//            if (data != null) {
+//                presenter.restorePlan(data);
+//            } else {
+//                Toast.makeText(getContext(), "Please select a date first.", Toast.LENGTH_SHORT).show();
+//            }
+//        });
     }
+
+
 
     public String convertDateFormat(String dateStr)  {
         // Create SimpleDateFormat object for the input format

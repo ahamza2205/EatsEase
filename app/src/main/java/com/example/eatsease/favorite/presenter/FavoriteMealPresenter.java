@@ -110,8 +110,6 @@ public void restoreFavoriteMeals() {
             if (task.isSuccessful()) {
                 for (QueryDocumentSnapshot document : task.getResult()) {
                     FavoriteMeal favMeal = document.toObject(FavoriteMeal.class);
-
-
                     repository.addFavoriteMeal(favMeal)
                             .subscribeOn(Schedulers.io())
                             .observeOn(AndroidSchedulers.mainThread())
