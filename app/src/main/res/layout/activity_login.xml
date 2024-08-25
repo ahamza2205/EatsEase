@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/login"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    tools:context=".login_signup.authentication.activity.login.LogIn">
+
+    <!-- Existing views -->
+
+    <TextView
+        android:id="@+id/signUp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="15dp"
+        android:layout_gravity="start"
+        android:layout_marginTop="120dp"
+        android:fontFamily="@font/roboto_bold"
+        android:text="@string/login"
+        android:textSize="24dp" />
+
+    <ImageView
+        android:id="@+id/imageView4"
+        android:layout_width="100dp"
+        android:layout_height="65dp"
+        android:layout_gravity="top|start"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="20dp"
+        app:srcCompat="@drawable/logo" />
+
+    <TextView
+        android:id="@+id/emailtitel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="190dp"
+        android:fontFamily="@font/roboto_medium"
+        android:text="@string/email"
+        android:textSize="18dp" />
+
+    <EditText
+        android:id="@+id/loginEmailAddress"
+        android:layout_width="350dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="15dp"
+        android:background="@drawable/rounded_edittext"
+        android:ems="10"
+        android:inputType="textEmailAddress"
+        android:layout_gravity="start"
+        android:layout_marginTop="240dp" />
+
+    <TextView
+        android:id="@+id/passTitel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="310dp"
+        android:fontFamily="@font/roboto_medium"
+        android:text="@string/password"
+        android:textSize="18dp" />
+
+    <EditText
+        android:id="@+id/loginTextPassword"
+        android:layout_width="350dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="15dp"
+        android:background="@drawable/rounded_edittext"
+        android:ems="10"
+        android:inputType="textPassword"
+        android:layout_gravity="start"
+        android:layout_marginTop="360dp" />
+
+    <Button
+        android:id="@+id/loginBtn"
+        android:layout_width="250dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="450dp"
+        android:backgroundTint="@color/red"
+        android:fontFamily="@font/roboto_medium"
+        android:text="@string/login"
+        android:textSize="16dp"
+        android:layout_gravity="center_horizontal" />
+
+    <Button
+        android:id="@+id/signupBtn"
+        android:layout_width="250dp"
+        android:layout_height="56dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="520dp"
+        android:backgroundTint="@color/red"
+        android:fontFamily="@font/roboto_medium"
+        android:text="@string/signupemail"
+        android:textSize="16dp" />
+
+    <TextView
+        android:id="@+id/orTv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="600dp"
+        android:fontFamily="@font/lobster"
+        android:text="@string/or"
+        android:textSize="20dp"
+        android:layout_gravity="center_horizontal" />
+
+    <TextView
+        android:id="@+id/signupQote"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="620dp"
+        android:fontFamily="@font/lobster"
+        android:text="@string/loginwith"
+        android:textSize="20dp"
+        android:layout_gravity="center_horizontal" />
+
+    <ImageButton
+        android:id="@+id/googleBtn1"
+        android:layout_width="100dp"
+        android:layout_height="50dp"
+        android:layout_marginEnd="80dp"
+        android:layout_marginBottom="22dp"
+        android:background="@drawable/google_btn"
+        android:scaleType="fitCenter"
+        android:src="@drawable/goggleicon"
+        android:layout_gravity="end"
+        android:layout_marginTop="650dp" />
+
+    <!-- Updated Skip Button -->
+    <Button
+        android:id="@+id/skipBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Guest"
+        android:backgroundTint="@color/gray"
+        android:textColor="@color/white"
+        android:layout_marginStart="80dp"
+        android:layout_marginEnd="50dp"
+        android:layout_marginBottom="22dp"
+        android:layout_marginTop="650dp" />
+</FrameLayout>

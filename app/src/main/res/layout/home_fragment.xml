@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/roboto_medium_italic"
+            android:paddingBottom="8dp"
+            android:text="Daily Inspiration"
+            android:textColor="@color/red"
+            android:textSize="24sp"
+            android:textStyle="bold" />
+        <!-- Meals RecyclerView -->
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycler_meals"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:nestedScrollingEnabled="false" />
+
+        <!-- Categories Section -->
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/roboto_medium_italic"
+            android:paddingBottom="8dp"
+            android:text="Categories"
+            android:textColor="@color/red"
+            android:textSize="24sp"
+            android:textStyle="bold" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycler_categories"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:nestedScrollingEnabled="false"
+            android:orientation="horizontal" />
+
+        <!-- Recipes Section -->
+        <TextView
+            android:id="@+id/recipesTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:focusedSearchResultHighlightColor="@color/black"
+            android:fontFamily="@font/roboto_medium_italic"
+            android:paddingBottom="8dp"
+            android:text="@string/RecipesTitle"
+            android:textColor="@color/red"
+            android:textSize="24sp"
+            android:textStyle="bold" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycler_recipes"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:nestedScrollingEnabled="false"
+            android:orientation="horizontal" />
+
+    </LinearLayout>
+
+</androidx.core.widget.NestedScrollView>

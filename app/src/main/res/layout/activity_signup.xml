@@ -1,0 +1,117 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/signup"
+    android:background="@color/white"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".login_signup.authentication.activity.signup.SignUp">
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="100dp"
+        android:layout_height="65dp"
+        android:layout_gravity="top|start"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="50dp"
+        app:srcCompat="@drawable/logo" />
+
+    <TextView
+        android:id="@+id/signUp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="120dp"
+        android:fontFamily="@font/roboto_bold"
+        android:text="@string/signup"
+        android:textSize="20dp"
+        android:layout_gravity="start"/>
+
+    <TextView
+        android:id="@+id/signupQote"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="150dp"
+        android:fontFamily="@font/roboto_medium_italic"
+        android:text="@string/suigupqote"
+        android:layout_gravity="start"/>
+
+    <TextView
+        android:id="@+id/emailtitel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="180dp"
+        android:fontFamily="@font/roboto_medium"
+        android:text="@string/email"
+        android:textSize="18dp"
+        android:layout_gravity="start"/>
+
+    <EditText
+        android:id="@+id/signUpEmailAddress"
+        android:layout_width="350dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="210dp"
+        android:background="@drawable/rounded_edittext"
+        android:ems="10"
+        android:inputType="textEmailAddress"
+        android:layout_gravity="start"/>
+
+    <TextView
+        android:id="@+id/passTitel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="280dp"
+        android:fontFamily="@font/roboto_medium"
+        android:text="@string/password"
+        android:textSize="18dp"
+        android:layout_gravity="start"/>
+
+    <EditText
+        android:id="@+id/signUpTextPassword"
+        android:layout_width="350dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="310dp"
+        android:background="@drawable/rounded_edittext"
+        android:ems="10"
+        android:inputType="textPassword"
+        android:layout_gravity="start"/>
+
+    <TextView
+        android:id="@+id/confirmPassTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="380dp"
+        android:fontFamily="@font/roboto_medium"
+        android:text="@string/confirm"
+        android:textSize="18dp"
+        android:layout_gravity="start"/>
+
+    <EditText
+        android:id="@+id/signUpTextPassword2"
+        android:layout_width="350dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="410dp"
+        android:background="@drawable/rounded_edittext"
+        android:ems="10"
+        android:inputType="textPassword"
+        android:layout_gravity="start"/>
+
+    <Button
+        android:id="@+id/signupBtn"
+        android:layout_width="250dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="490dp"
+        android:backgroundTint="@color/red"
+        android:fontFamily="@font/roboto_medium"
+        android:text="@string/signup"
+        android:textSize="16dp"
+        android:layout_gravity="center_horizontal"/>
+
+</FrameLayout>

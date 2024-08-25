@@ -1,3 +1,23 @@
 <resources>
-    <string name="app_name">Eats Ease</string>
+    <string name="app_name">Foodies</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="eatsease">Foodies</string>
+    <string name="EatsEase">Foodies</string>
+    <string name="signup">Sign Up </string>
+    <string name="suigupqote">Register with your valid email address</string>
+    <string name="email">Email Address</string>
+    <string name="password">Password</string>
+    <string name="confirm">Confirm Password</string>
+    <string name="login">Login</string>
+    <string name="loginwith">Login With</string>
+    <string name="signupwith">Sign Up With</string>
+    <string name="or">OR</string>
+    <string name="clientId">61043312423-e0fbrdbv3d5ihdnq5ru5n955hpgpc252.apps.googleusercontent.com</string>
+    <string name="RecipesTitle">RecipesTitle</string>
+    <string name="add_to_favorites">Add To Favorites</string>
+    <string name="default_web_client_id">61043312423-e0fbrdbv3d5ihdnq5ru5n955hpgpc252.apps.googleusercontent.com</string>
+    <string name="signupemail">Sign Up with Email</string>
+
+
 </resources>

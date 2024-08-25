@@ -1,0 +1,6 @@
+<!-- res/drawable/rounded_image_view.xml -->
+<shape xmlns:android="http://schemas.android.com/apk/res/android">
+    <corners android:radius="100dp" />
+    <solid android:color="@color/white" /> <!-- Replace with a solid color or use @android:color/black for testing -->
+</shape>
+

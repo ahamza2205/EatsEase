@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="Bottom.Nav.Bar.Custom.Item.Indicator" parent="Widget.Material3.BottomNavigationView.ActiveIndicator">
+        <item name="android:color">@color/colorPrimary</item>
+    </style>
+
+    <style name="CustomDatePickerDialog" parent="ThemeOverlay.MaterialComponents.MaterialCalendar">
+        <!-- Change header background color -->
+        <item name="materialCalendarHeaderConfirmButton">@color/your_confirm_button_color</item>
+
+
+
+        <!-- Change the overall calendar background color -->
+        <item name="materialCalendarFullscreenTheme">@style/YourCustomCalendarStyle</item>
+    </style>
+
+    <!-- Apply this style for fullscreen theme if needed -->
+    <style name="YourCustomCalendarStyle" parent="Theme.MaterialComponents.DayNight.Dialog">
+        <item name="android:windowBackground">@color/your_background_color</item>
+    </style>
+
+
+</resources>

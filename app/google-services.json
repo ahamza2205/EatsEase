@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "61043312423",
+    "project_id": "eats-ease-f5334",
+    "storage_bucket": "eats-ease-f5334.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:61043312423:android:c3590ceddee63a17df8b02",
+        "android_client_info": {
+          "package_name": "com.example.eatsease"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBBo7D6D_4_VDi9fL_NYox4eJuNpg6kpHw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
