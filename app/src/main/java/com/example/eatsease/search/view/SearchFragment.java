@@ -1,5 +1,6 @@
 package com.example.eatsease.search.view;
 
+import android.app.AlertDialog;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -15,6 +16,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.util.Log;
 import android.widget.AutoCompleteTextView;
+import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.example.eatsease.R;
 import com.example.eatsease.model.network.RetrofitClient;
@@ -198,12 +202,12 @@ public class SearchFragment extends Fragment implements ISearchView {
 
     @Override
     public void onFetchCategoriesError(Throwable throwable) {
-        Log.e("SearchFragment", "Error fetching categories", throwable);
+        showNoInternetDialog();
     }
 
     @Override
     public void onFetchAreasError(Throwable throwable) {
-        Log.e("SearchFragment", "Error fetching areas", throwable);
+
     }
 
     @Override
@@ -214,7 +218,7 @@ public class SearchFragment extends Fragment implements ISearchView {
 
     @Override
     public void onFetchIngredientsError(String message) {
-        Log.e("SearchFragment", "Error fetching ingredients: " + message);
+
     }
 
     @Override
@@ -230,18 +234,49 @@ public class SearchFragment extends Fragment implements ISearchView {
 
     @Override
     public void onFetchAreaMealsError(Throwable throwable) {
-        Log.d("h", "on bs: ");
+        showNoInternetDialog();
     }
 
     @Override
     public void onIngredientsMealsFetched(MealsResponse mealsResponse) {}
 
     @Override
-    public void onFetchIngredientsMealsError(Throwable throwable) {}
+    public void onFetchIngredientsMealsError(Throwable throwable) {showNoInternetDialog();}
 
     @Override
     public void onDestroyView() {
         super.onDestroyView();
         compositeDisposable.clear();
+    }
+
+
+    public void showNoInternetDialog() {
+        // Inflate the custom dialog layout
+        LayoutInflater inflater = LayoutInflater.from(this.getContext());
+        View dialogView = inflater.inflate(R.layout.dialog_custom, null);
+
+        // Build the AlertDialog with the custom style
+        AlertDialog.Builder builder = new AlertDialog.Builder(this.getContext(), R.style.CustomAlertDialog);
+        builder.setView(dialogView);
+
+        // Create the AlertDialog
+        AlertDialog alertDialog = builder.create();
+
+        // Set up the dialog views (similar to the previous example)
+        ImageView dialogImage = dialogView.findViewById(R.id.dialogImage);
+        TextView dialogTitle = dialogView.findViewById(R.id.dialogTitle);
+        TextView dialogMessage = dialogView.findViewById(R.id.dialogMessage);
+        Button dialogButton = dialogView.findViewById(R.id.dialogButton);
+
+        // Customize dialog content
+        dialogImage.setImageResource(R.drawable.wifi);
+        dialogTitle.setText("No Internet Connection");
+        dialogMessage.setText("Please check your connection and try again.");
+
+        // Set button click listener
+        dialogButton.setOnClickListener(v -> alertDialog.dismiss());
+
+        // Show the dialog
+        alertDialog.show();
     }
 }

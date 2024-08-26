@@ -33,20 +33,20 @@ public class FirebaseAuthManager {
         return mAuth.getCurrentUser();
     }
 
-    public void createUserWithEmailAndPassword(String email, String password, NetworkCallback callback) {
-        mAuth.createUserWithEmailAndPassword(email, password)
-                .addOnCompleteListener(task -> {
-                    if (task.isSuccessful()) {
-                        FirebaseUser user = mAuth.getCurrentUser();
-                        Log.d(TAG, "User created: " + (user != null ? user.getEmail() : "Unknown"));
-                        callback.onSuccess();
-                    } else {
-                        String errorMessage = task.getException() != null ? task.getException().getMessage() : "Unknown error";
-                        Log.d(TAG, "User creation failed: " + errorMessage);
-                        callback.onFailure(new Exception(errorMessage));
-                    }
-                });
-    }
+//    public void createUserWithEmailAndPassword(String email, String password, NetworkCallback callback) {
+//        mAuth.createUserWithEmailAndPassword(email, password)
+//                .addOnCompleteListener(task -> {
+//                    if (task.isSuccessful()) {
+//                        FirebaseUser user = mAuth.getCurrentUser();
+//                        Log.d(TAG, "User created: " + (user != null ? user.getEmail() : "Unknown"));
+//                        callback.onSuccess();
+//                    } else {
+//                        String errorMessage = task.getException() != null ? task.getException().getMessage() : "Unknown error";
+//                        Log.d(TAG, "User creation failed: " + errorMessage);
+//                        callback.onFailure(new Exception(errorMessage));
+//                    }
+//                });
+//    }
 
     public void loginUser(String email, String password, NetworkCallback callback) {
         mAuth.signInWithEmailAndPassword(email, password)
@@ -67,19 +67,19 @@ public class FirebaseAuthManager {
         Log.d(TAG, "User signed out");
     }
 
-    public void signInAnonymously(NetworkCallback callback) {
-        mAuth.signInAnonymously()
-                .addOnCompleteListener(task -> {
-                    if (task.isSuccessful()) {
-                        Log.d(TAG, "Signed in anonymously");
-                        callback.onSuccess();
-                    } else {
-                        String errorMessage = task.getException() != null ? task.getException().getMessage() : "Unknown error";
-                        Log.d(TAG, "Anonymous sign-in failed: " + errorMessage);
-                        callback.onFailure(new Exception(errorMessage));
-                    }
-                });
-    }
+//    public void signInAnonymously(NetworkCallback callback) {
+//        mAuth.signInAnonymously()
+//                .addOnCompleteListener(task -> {
+//                    if (task.isSuccessful()) {
+//                        Log.d(TAG, "Signed in anonymously");
+//                        callback.onSuccess();
+//                    } else {
+//                        String errorMessage = task.getException() != null ? task.getException().getMessage() : "Unknown error";
+//                        Log.d(TAG, "Anonymous sign-in failed: " + errorMessage);
+//                        callback.onFailure(new Exception(errorMessage));
+//                    }
+//                });
+//    }
 
 //    public void linkWithGoogle(GoogleSignInAccount googleAccount, NetworkCallback callback) {
 //        AuthCredential credential = GoogleAuthProvider.getCredential(googleAccount.getIdToken(), null);

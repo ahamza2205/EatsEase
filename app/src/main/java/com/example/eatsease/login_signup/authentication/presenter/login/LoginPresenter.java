@@ -59,7 +59,7 @@ public class LoginPresenter implements ILoginPresenter, NetworkCallback {
             if (task.isSuccessful()) {
                 // Save guest information to SharedPreferences
                 String guestEmail = "guest@example.com"; // You can customize this as needed
-                sharedPreRespiratory.addToPreferences(guestEmail, null);
+                sharedPreRespiratory.addToPreferences(guestEmail, "hamza");
                 loginView.onSignInSuccess();
             } else {
                 // Handle error

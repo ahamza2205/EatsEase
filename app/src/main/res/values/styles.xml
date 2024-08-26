@@ -18,6 +18,7 @@
     <style name="YourCustomCalendarStyle" parent="Theme.MaterialComponents.DayNight.Dialog">
         <item name="android:windowBackground">@color/your_background_color</item>
     </style>
-
+    <style name="CustomAlertDialog" parent="ThemeOverlay.AppCompat.Dialog.Alert">
+    </style>
 
 </resources>

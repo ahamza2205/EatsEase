@@ -1,9 +1,12 @@
 package com.example.eatsease.home.view.fragment.adapter.Recipe;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -17,8 +20,12 @@ import com.bumptech.glide.Glide;
 import com.example.eatsease.R;
 import com.example.eatsease.home.presenter.HomePresenter;
 import com.example.eatsease.home.view.fragment.HomeFragmentDirections;
+import com.example.eatsease.login_signup.authentication.activity.login.LogIn;
+import com.example.eatsease.login_signup.authentication.model.auth_manager.FirebaseAuthManager;
+import com.example.eatsease.login_signup.authentication.model.sharedperferences.SharedPerferencesImp;
 import com.example.eatsease.model.database.FavoriteMeal;
 import com.example.eatsease.model.network.response.Meal;
+import com.google.firebase.auth.FirebaseUser;
 
 
 import java.util.ArrayList;
@@ -62,15 +69,21 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.RecipeView
         });
 
         holder.favoriteButton.setOnClickListener(v -> {
-            // Create a FavoriteMeal object based on the current Meal
-            FavoriteMeal favoriteMeal = new FavoriteMeal();
-            favoriteMeal.setMealId(recipe.getMealId());
-            favoriteMeal.setMealName(recipe.getMealName());
-            favoriteMeal.setThumbnail(recipe.getMealThumbnail());
+            FirebaseUser currentUser = FirebaseAuthManager.getInstance().getCurrentUser();
+            if (currentUser == null || currentUser.isAnonymous()) {
+                // User is not logged in or is using anonymous authentication, show the dialog
+                showCustomDialog();
+            } else {
+                // Create a FavoriteMeal object based on the current Meal
+                FavoriteMeal favoriteMeal = new FavoriteMeal();
+                favoriteMeal.setMealId(recipe.getMealId());
+                favoriteMeal.setMealName(recipe.getMealName());
+                favoriteMeal.setThumbnail(recipe.getMealThumbnail());
 
-            // Insert the favorite meal using HomePresenter
-            onRecipeClickListener.onFavoriteClick(favoriteMeal);
-            Toast.makeText(context, "Meal Added to favorites", Toast.LENGTH_SHORT).show();
+                // Insert the favorite meal using HomePresenter
+                onRecipeClickListener.onFavoriteClick(favoriteMeal);
+                Toast.makeText(context, "Meal Added to favorites", Toast.LENGTH_SHORT).show();
+            }
         });
 
     }
@@ -103,6 +116,53 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.RecipeView
     public interface OnRecipeClickListener {
         void onRecipeClick(Meal meal);
         void onFavoriteClick(FavoriteMeal meal);
+    }
+
+    private void showCustomDialog() {
+        // Inflate the custom dialog layout
+        LayoutInflater inflater = LayoutInflater.from(context);
+        View dialogView2 = inflater.inflate(R.layout.dialog_login, null);
+
+        // Build the AlertDialog
+        AlertDialog.Builder builder = new AlertDialog.Builder(context, R.style.CustomAlertDialog);
+        builder.setView(dialogView2);
+
+        // Create the AlertDialog
+        AlertDialog alertDialog = builder.create();
+
+        // Find and set up the views inside the dialog
+        ImageView dialogImage = dialogView2.findViewById(R.id.dialogImage);
+        TextView dialogTitle = dialogView2.findViewById(R.id.dialogTitle);
+        TextView dialogMessage = dialogView2.findViewById(R.id.dialogMessage);
+        Button dialogButton = dialogView2.findViewById(R.id.dialogButton);
+
+        // Set content for the dialog views
+        dialogImage.setImageResource(R.drawable.login); // Set your image resource here
+        dialogTitle.setText("Not Logged In");
+        dialogMessage.setText("Please log in to save your favorite meals.");
+
+        // Set a click listener for the button
+        dialogButton.setOnClickListener(v -> {
+            // Dismiss the dialog
+            alertDialog.dismiss();
+
+            // Log out the user if needed (assumes you have a FirebaseAuthManager)
+            FirebaseAuthManager authManager = FirebaseAuthManager.getInstance();
+            if (authManager != null) {
+                authManager.signOut();
+            }
+
+            // Optionally remove user details from SharedPreferences if applicable
+            SharedPerferencesImp sharedPrefRespiratory = SharedPerferencesImp.getInstance(context);
+             sharedPrefRespiratory.removePreferences();
+
+            // Navigate to the login activity
+            Intent intent = new Intent(context, LogIn.class);
+            context.startActivity(intent);
+        });
+
+        // Show the dialog
+        alertDialog.show();
     }
 }
 

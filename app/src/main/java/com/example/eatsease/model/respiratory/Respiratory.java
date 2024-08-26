@@ -45,7 +45,6 @@ public class Respiratory {
         mealsDataBase = MealsDataBase.getInstance(context);
     }
 
-
     public Observable<CategoriesResponse> getMealCategories() {
         return api.getMealCategories();
     }
@@ -62,9 +61,9 @@ public class Respiratory {
      }
 
     // New method for fetching categories list
-    public Single<CategoryResponse> getMealCategoriesList() {
-        return api.getMealCategoriesList();
-    }
+//    public Single<CategoryResponse> getMealCategoriesList() {
+//        return api.getMealCategoriesList();
+//    }
 
     // New method for fetching meal areas list
     public Single<AreaResponse> getMealAreasList() {
@@ -90,10 +89,10 @@ public class Respiratory {
         return mealsDataBase.favoriteMealDao().insert(favoriteMeal);
     }
     // Check if meal is favorite
-    public Single<Boolean> isFavoriteMeal(String mealId) {
-        return Single.fromCallable(() -> mealsDataBase.favoriteMealDao().getMealById(mealId) != null)
-                .subscribeOn(Schedulers.io());
-    }
+//    public Single<Boolean> isFavoriteMeal(String mealId) {
+//        return Single.fromCallable(() -> mealsDataBase.favoriteMealDao().getMealById(mealId) != null)
+//                .subscribeOn(Schedulers.io());
+//    }
    // Get all favorite meals
     public Flowable<List<FavoriteMeal>> getFavoriteMeals() {
         return mealsDataBase.favoriteMealDao().getAllFavoriteMeals()

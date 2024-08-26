@@ -1,10 +1,13 @@
 package com.example.eatsease.home.view.fragment;
 
+import android.app.AlertDialog;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -110,7 +113,7 @@ public class HomeFragment extends Fragment implements MealView, RecipeAdapter.On
 
     @Override
     public void onFetchDataError(String errorMessage) {
-        // Handle errors here (e.g., display a message to the user)
+showNoInternetDialog();
     }
 
     @Override
@@ -132,4 +135,35 @@ public class HomeFragment extends Fragment implements MealView, RecipeAdapter.On
         Log.d("updateMeal", "onFavoriteClick:"+meal.getMealId());
         presenter.insert(meal);
     }
+
+    public void showNoInternetDialog() {
+        // Inflate the custom dialog layout
+        LayoutInflater inflater = LayoutInflater.from(this.getContext());
+        View dialogView = inflater.inflate(R.layout.dialog_custom, null);
+
+        // Build the AlertDialog with the custom style
+        AlertDialog.Builder builder = new AlertDialog.Builder(this.getContext(), R.style.CustomAlertDialog);
+        builder.setView(dialogView);
+
+        // Create the AlertDialog
+        AlertDialog alertDialog = builder.create();
+
+        // Set up the dialog views (similar to the previous example)
+        ImageView dialogImage = dialogView.findViewById(R.id.dialogImage);
+        TextView dialogTitle = dialogView.findViewById(R.id.dialogTitle);
+        TextView dialogMessage = dialogView.findViewById(R.id.dialogMessage);
+        Button dialogButton = dialogView.findViewById(R.id.dialogButton);
+
+        // Customize dialog content
+        dialogImage.setImageResource(R.drawable.wifi);
+        dialogTitle.setText("No Internet Connection");
+        dialogMessage.setText("Please check your connection and try again.");
+
+        // Set button click listener
+        dialogButton.setOnClickListener(v -> alertDialog.dismiss());
+
+        // Show the dialog
+        alertDialog.show();
+    }
+
 }
